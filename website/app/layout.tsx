@@ -55,6 +55,10 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <head>
+        <meta
+          name="msvalidate.01"
+          content="9D7CE4E3C1DB23FD9654E42A7EC348E9"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
