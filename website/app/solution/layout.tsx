@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: 'MEDISCAN - AI assisted OCR & NLP document processing on Snowflake',
     description: 'Extract structured data from discharge summaries, pathology reports & referral letters averaging 97 - 99% accuracy, available on the Snowflake Marketplace.',
     url: 'https://www.rootcauseanalytics.com.au/solution',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'MEDISCAN by Root Cause Analytics' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MEDISCAN by Root Cause Analytics' }],
   },
 }
 

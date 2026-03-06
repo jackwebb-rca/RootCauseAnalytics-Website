@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: 'Root Cause Analytics',
     title: 'MEDISCAN - AI-Powered Healthcare Document Processing',
     description: 'AI-powered OCR and NLP for healthcare documents in Snowflake, from $0.10 per page, with support for HIPAA and SOC 2 requirements',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'MEDISCAN by Root Cause Analytics' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MEDISCAN by Root Cause Analytics' }],
   },
 }
 

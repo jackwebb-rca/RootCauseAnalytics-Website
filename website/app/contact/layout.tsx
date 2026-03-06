@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: 'Root Cause Analytics - Contact',
     description: 'Talk to our Sydney-based team about deploying MEDISCAN in your Snowflake environment.',
     url: 'https://www.rootcauseanalytics.com.au/contact',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Root Cause Analytics' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Root Cause Analytics' }],
   },
 }
 
