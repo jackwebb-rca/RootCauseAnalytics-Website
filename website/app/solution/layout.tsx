@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'MEDISCAN: Medical OCR & NLP on Snowflake',
-  description: 'Extract structured data from discharge summaries, pathology reports & referral letters. 97–99% accuracy. Deploys from Snowflake Marketplace in 10 minutes. HIPAA compliant.',
+  title: 'MEDISCAN - AI assisted OCR & NLP document processing on Snowflake',
+  description: 'Extract structured data from discharge summaries, pathology reports & referral letters averaging 97 - 99% accuracy, available on the Snowflake Marketplace.',
   alternates: {
     canonical: 'https://www.rootcauseanalytics.com.au/solution',
   },
   openGraph: {
     type: 'website',
-    title: 'MEDISCAN: Medical OCR & NLP on Snowflake',
-    description: 'Extract structured data from medical documents. 97–99% accuracy. Snowflake Native App. HIPAA compliant. 10-minute deployment.',
+    title: 'MEDISCAN - AI assisted OCR & NLP document processing on Snowflake',
+    description: 'Extract structured data from discharge summaries, pathology reports & referral letters averaging 97 - 99% accuracy, available on the Snowflake Marketplace.',
     url: 'https://www.rootcauseanalytics.com.au/solution',
     images: [{ url: '/logo-512.png', width: 512, height: 512, alt: 'MEDISCAN by Root Cause Analytics' }],
   },
