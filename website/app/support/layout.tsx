@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'MEDISCAN Support & FAQ — Root Cause Analytics',
-  description: 'Help with MEDISCAN deployment, configuration, and troubleshooting. FAQ covering HIPAA compliance, Snowflake integration, pricing, and OCR accuracy.',
+  title: 'Root Cause Analytics - Support & FAQ',
+  description: 'Guides, documentation and FAQ for deploying MEDISCAN on Snowflake.',
   alternates: {
     canonical: 'https://www.rootcauseanalytics.com.au/support',
   },
   openGraph: {
     type: 'website',
-    title: 'MEDISCAN Support & FAQ — Root Cause Analytics',
-    description: 'Deployment guides and FAQ for MEDISCAN on Snowflake.',
+    title: 'Root Cause Analytics - Support & FAQ',
+    description: 'Guides, documentation and FAQ for deploying MEDISCAN on Snowflake.',
     url: 'https://www.rootcauseanalytics.com.au/support',
     images: [{ url: '/logo-512.png', width: 512, height: 512, alt: 'MEDISCAN by Root Cause Analytics' }],
   },
