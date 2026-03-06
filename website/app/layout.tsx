@@ -6,8 +6,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.rootcauseanalytics.com.au'),
-  title: 'MEDISCAN — AI Healthcare Document Processing',
-  description: 'AI-powered OCR & NLP for healthcare documents. Snowflake Native App — 10 min deployment, $0.10/page, HIPAA & SOC 2 compliant. Trusted by Australian healthcare organisations.',
+  title: 'MEDISCAN - AI-Powered Healthcare Document Processing',
+  description: 'AI-powered OCR and NLP for healthcare documents in Snowflake, from $0.10 per page, with support for HIPAA and SOC 2 requirements',
   keywords: ['healthcare OCR', 'medical document processing', 'Snowflake native app', 'HIPAA compliant', 'NLP healthcare', 'medical records digitisation', 'AI healthcare Australia'],
   authors: [{ name: 'Root Cause Analytics' }],
   alternates: {
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://www.rootcauseanalytics.com.au',
     siteName: 'Root Cause Analytics',
-    title: 'MEDISCAN — AI Healthcare Document Processing',
-    description: 'AI-powered OCR & NLP for healthcare documents. Snowflake Native App — 10 min deployment, $0.10/page, HIPAA & SOC 2 compliant.',
+    title: 'MEDISCAN - AI-Powered Healthcare Document Processing',
+    description: 'AI-powered OCR and NLP for healthcare documents in Snowflake, from $0.10 per page, with support for HIPAA and SOC 2 requirements',
     images: [{ url: '/logo-512.png', width: 512, height: 512, alt: 'MEDISCAN by Root Cause Analytics' }],
   },
 }
