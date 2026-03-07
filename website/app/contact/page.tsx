@@ -67,9 +67,25 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitting(true)
-    await new Promise((res) => setTimeout(res, 1200))
-    setSubmitting(false)
-    setSubmitted(true)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          company: form.organisation,
+          email: form.email,
+          message: form.message,
+          enquiryType: form.enquiryType,
+        }),
+      })
+      if (!res.ok) throw new Error('Failed')
+      setSubmitted(true)
+    } catch {
+      alert('Something went wrong sending your message. Please email jack.webb@rootcauseanalytics.com.au directly.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
