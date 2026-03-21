@@ -7,6 +7,7 @@ export default defineConfig({
   title: 'Medical Records Intelligence',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production',
+  basePath: '/studio',
   plugins: [structureTool()],
   schema: { types: [articleSchema] },
 })
