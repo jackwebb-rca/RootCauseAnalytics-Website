@@ -168,7 +168,7 @@ export default function SolutionPage() {
                 Snowflake Native App
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 text-balance">
-                The MEDISCAN Solution
+                MEDISCAN
               </h1>
               <p className="text-lg text-white/80 leading-relaxed mb-8 max-w-2xl">
                 A Snowflake-native AI document intelligence platform purpose-built for healthcare. Deploy in 10 minutes, process at $0.10 per page, and keep all data within your existing Snowflake environment.
@@ -196,7 +196,7 @@ export default function SolutionPage() {
         </section>
 
         {/* ===== KEY STATS ===== */}
-        <section className="py-10 bg-[#0f172a] border-b border-slate-800" aria-label="Key statistics">
+        <section className="py-10 bg-gradient-to-br from-[#1E3A8A] to-[#0D9488] border-b border-white/20" aria-label="Key statistics">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
@@ -209,7 +209,7 @@ export default function SolutionPage() {
                   <div className={`text-3xl font-bold mb-1 ${green ? 'text-[#10B981]' : 'text-white'}`}>
                     {value}
                   </div>
-                  <div className="text-sm text-slate-400">{label}</div>
+                  <div className="text-sm text-white/70">{label}</div>
                 </div>
               ))}
             </div>
