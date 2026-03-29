@@ -487,9 +487,6 @@ export default function HomePage() {
                 },
               ].map((step, i) => (
                 <div key={step.step} className="animate-on-scroll relative" style={{ transitionDelay: `${i * 100}ms` }}>
-                  {i < 3 && (
-                    <div className="hidden md:block absolute top-6 left-[calc(50%+3rem)] w-full h-px bg-gradient-to-r from-[#0D9488] to-transparent" aria-hidden="true" />
-                  )}
                   <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center hover:border-[#0D9488]/40 transition-colors">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0D9488] to-[#1E3A8A] text-white font-bold flex items-center justify-center mx-auto mb-4 text-sm">
                       {step.step}
