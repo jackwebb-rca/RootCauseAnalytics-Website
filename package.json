@@ -67,6 +67,18 @@
     "sanity": "^3.66.0",
     "styled-components": "^6.1.0"
   },
+  "overrides": {
+    "next-sanity": {
+      "@sanity/icons": "$@sanity/icons",
+      "@sanity/client": "$@sanity/client"
+    },
+    "@sanity/preview-kit": {
+      "react": "$react"
+    },
+    "@sanity/preview-kit-compat": {
+      "react": "$react"
+    }
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.0",
     "@types/node": "^22",
