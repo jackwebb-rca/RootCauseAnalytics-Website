@@ -107,7 +107,7 @@ export default function AboutPage() {
                 </p>
                 <p className="text-slate-600 leading-relaxed">
                   At $0.10 per page with a 10 Minute Deployment Time, MEDISCAN makes high-accuracy document processing accessible to health systems of every size - from regional hospitals to national networks.{' '}
-                  <Link href="/solution" className="text-[#0D9488] underline underline-offset-2 hover:text-[#1E3A8A] transition-colors font-medium">
+                  <Link href="/MEDISCAN" className="text-[#0D9488] underline underline-offset-2 hover:text-[#1E3A8A] transition-colors font-medium">
                     See a full breakdown of how MEDISCAN works →
                   </Link>
                 </p>

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: 'Medical Records Intelligence - Articles | Root Cause Analytics',
     description: 'Insights on healthcare document processing, medical record digitisation, and AI in health data management.',
     url: 'https://www.rootcauseanalytics.com.au/articles',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Root Cause Analytics' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MEDISCAN by Root Cause Analytics' }],
   },
 }
 

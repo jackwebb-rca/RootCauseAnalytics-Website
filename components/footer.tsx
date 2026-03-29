@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { ExternalLink, MapPin, Mail, Shield, Lock } from 'lucide-react'
 
 const productLinks = [
-  { label: 'Solution Overview', href: '/solution' },
+  { label: 'MEDISCAN', href: '/MEDISCAN' },
   { label: 'Snowflake Marketplace', href: 'https://app.snowflake.com/marketplace', external: true },
   { label: 'Support', href: '/support' },
 ]

@@ -29,7 +29,7 @@ const orgSchema = {
   '@type': 'Organization',
   name: 'Root Cause Analytics',
   url: 'https://www.rootcauseanalytics.com.au',
-  logo: 'https://www.rootcauseanalytics.com.au/logo-512.png',
+  logo: 'https://www.rootcauseanalytics.com.au/logo-blue.png',
   contactPoint: {
     '@type': 'ContactPoint',
     email: 'jack.webb@rootcauseanalytics.com.au',

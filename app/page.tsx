@@ -217,7 +217,7 @@ export default function HomePage() {
                   <ExternalLink size={16} />
                 </a>
                 <Link
-                  href="/solution"
+                  href="/MEDISCAN"
                   className="flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/20 transition-colors"
                 >
                   See How It Works

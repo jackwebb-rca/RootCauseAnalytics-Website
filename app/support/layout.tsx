@@ -24,7 +24,7 @@ const faqSchema = {
       name: 'How do I deploy MEDISCAN?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'MEDISCAN is available on the Snowflake Marketplace. Simply search for "MEDISCAN" in the marketplace, click Install, and follow the guided setup. The entire process takes approximately 10 minutes — no infrastructure provisioning or data migration required.',
+        text: 'MEDISCAN is available on the Snowflake Marketplace. Simply search for "MEDISCAN" in the marketplace, click Install, and follow the guided setup. The entire process takes approximately 10 minutes with no infrastructure provisioning or data migration required.',
       },
     },
     {
@@ -32,7 +32,7 @@ const faqSchema = {
       name: 'Is MEDISCAN HIPAA compliant?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. MEDISCAN is designed to support HIPAA-compliant deployments. A Business Associate Agreement (BAA) is available upon request. All document processing occurs within your Snowflake environment using a zero data movement architecture — patient data never leaves your account.',
+        text: 'Yes. MEDISCAN is designed to support HIPAA-compliant deployments. A Business Associate Agreement (BAA) is available upon request. All document processing occurs within your Snowflake environment using a zero data movement architecture, so patient data never leaves your account.',
       },
     },
     {
@@ -56,7 +56,7 @@ const faqSchema = {
       name: 'What OCR accuracy can I expect?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'MEDISCAN achieves 99% accuracy on clean, high-quality printed documents. Overall accuracy ranges from 97–99% depending on document quality and type. Handwritten notes and low-resolution scans may achieve lower extraction rates.',
+        text: 'MEDISCAN achieves 99% accuracy on clean, high-quality printed documents. Overall accuracy ranges from 97-99% depending on document quality and type. Handwritten notes and low-resolution scans may achieve lower extraction rates.',
       },
     },
     {

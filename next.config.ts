@@ -10,6 +10,18 @@ const nextConfig: NextConfig = {
         destination: 'https://www.rootcauseanalytics.com.au/:path*',
         permanent: true,
       },
+      // Redirect old /solution URL to /MEDISCAN
+      {
+        source: '/solution',
+        destination: '/MEDISCAN',
+        permanent: true,
+      },
+      // Redirect lowercase /mediscan to /MEDISCAN
+      {
+        source: '/mediscan',
+        destination: '/MEDISCAN',
+        permanent: true,
+      },
     ]
   },
   async rewrites() {
