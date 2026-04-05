@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'MEDISCAN - AI assisted OCR & NLP document processing on Snowflake',
-  description: 'Extract structured data from discharge summaries, pathology reports & referral letters averaging 97 - 99% accuracy, available on the Snowflake Marketplace.',
+  title: 'MEDISCAN - Medical Record Digitisation on Snowflake',
+  description: 'Extract structured data from discharge summaries, pathology reports and referral letters at 97-99% accuracy. Available on the Snowflake Marketplace.',
   alternates: {
     canonical: 'https://www.rootcauseanalytics.com.au/mediscan',
   },
   openGraph: {
     type: 'website',
-    title: 'MEDISCAN - AI assisted OCR & NLP document processing on Snowflake',
-    description: 'Extract structured data from discharge summaries, pathology reports & referral letters averaging 97 - 99% accuracy, available on the Snowflake Marketplace.',
+    title: 'MEDISCAN - Medical Record Digitisation on Snowflake',
+    description: 'Extract structured data from discharge summaries, pathology reports and referral letters at 97-99% accuracy. Available on the Snowflake Marketplace.',
     url: 'https://www.rootcauseanalytics.com.au/mediscan',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MEDISCAN by Root Cause Analytics' }],
   },
@@ -21,7 +21,7 @@ const softwareSchema = {
   name: 'MEDISCAN',
   applicationCategory: 'HealthApplication',
   operatingSystem: 'Snowflake',
-  description: 'AI-powered OCR and NLP for healthcare document processing. Snowflake Native App with HIPAA compliance and SOC 2 Type II certification.',
+  description: 'Healthcare document processing as a Snowflake Native App. Extract structured data from medical records with 97-99% accuracy and zero data egress.',
   url: 'https://www.rootcauseanalytics.com.au/mediscan',
   offers: {
     '@type': 'Offer',
@@ -30,12 +30,12 @@ const softwareSchema = {
     description: 'Per page processed',
   },
   featureList: [
-    'HIPAA Compliant',
-    'SOC 2 Type II Certified',
     'Snowflake Native App',
-    '97-99% OCR Accuracy',
-    'Clinical NLP',
-    'Zero Data Movement',
+    '97-99% Extraction Accuracy',
+    'Zero Data Egress',
+    'Human-in-the-Loop Review',
+    'Configurable Accuracy Thresholds',
+    'Audit Trail with PHI Redaction',
     '10 Minute Deployment',
   ],
   publisher: {
