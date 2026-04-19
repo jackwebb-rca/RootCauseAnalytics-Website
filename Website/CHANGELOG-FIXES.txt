@@ -1,0 +1,19 @@
+Files modified:
+- app/page.tsx
+- app/about/page.tsx
+- app/contact/page.tsx
+- app/mediscan/page.tsx
+
+Phrase replacements:
+- 'Runs on Snowflake infrastructure, which is HIPAA-eligible and SOC 2 Type II certified at the platform level' -> 'Runs on Snowflake infrastructure, with your existing Snowflake account controls'
+- 'complexity and compliance requirements of healthcare data' -> 'complexity and security requirements of healthcare data'
+- 'security, compliance, and audit capabilities of your own Snowflake account' -> 'security and audit capabilities of your own Snowflake account'
+- 'Compliant with APP and state health privacy laws' -> 'Sydney-based team supporting Australian healthcare workflows'
+- 'Compliance & Security' -> 'Security Review'
+- 'Request platform security details or arrange a security review with our team.' -> 'Request platform security details or arrange a technical review with our team.'
+- '{ subject: 'Compliance', MEDISCAN: 98, Traditional: 60 }' -> '{ subject: 'Security', MEDISCAN: 98, Traditional: 60 }'
+- 'Exportable reports for compliance and audit purposes' -> 'Exportable reports for internal audit and review purposes'
+
+Validation notes:
+- Repo-wide search for HIPAA, SOC 2, BAA, Business Associate Agreement, HIPAA compliant, SOC 2 certified, and compliance-specific certification wording returned no remaining hits in source text after patch, aside from binary image data.
+- Metadata and JSON-LD were reviewed; no HIPAA/SOC 2 claims remain in visible metadata or structured data.
