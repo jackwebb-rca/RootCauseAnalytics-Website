@@ -1,9 +1,0 @@
-Root Cause Analytics website one-pass fix
-
-Validated changes:
-- Fixed the TSX string termination error in app/support/page.tsx
-- Re-scanned the entire codebase for parse-level syntax errors: none remaining
-- Re-scanned local imports/references: none missing
-
-Files changed in this repair pass:
-- app/support/page.tsx
