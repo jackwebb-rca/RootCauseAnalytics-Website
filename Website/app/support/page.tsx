@@ -46,7 +46,7 @@ const faqs: FaqCategory[] = [
       },
       {
         question: 'Which Snowflake editions are supported?',
-        answer: 'MEDISCAN supports Snowflake Standard, Enterprise, and Business Critical editions. Choose the edition and access controls that match your organisation's security requirements.',
+        answer: "MEDISCAN supports Snowflake Standard, Enterprise, and Business Critical editions. Choose the edition and access controls that match your organisation's security requirements.",
       },
     ],
   },
