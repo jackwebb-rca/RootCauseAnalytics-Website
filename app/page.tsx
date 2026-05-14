@@ -30,8 +30,8 @@ function useScrollAnimation() {
 const stats = [
   { value: 'Free preview', label: 'Same-day delivery' },
   { value: '40+', label: 'Medical document types' },
-  { value: 'Per-row labels', label: 'Insurance bbox precision' },
-  { value: 'Australian-built', label: 'Healthcare conventions' },
+  { value: 'Per-row labels', label: 'Loss runs and SOVs' },
+  { value: 'AU healthcare', label: 'NSW postcodes, Medicare format' },
 ]
 
 // Slideshow of actual documents shipped in the libraries
@@ -282,12 +282,12 @@ export default function HomePage() {
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight text-balance mb-6 animate-fade-in-up">
-                Document AI tools and synthetic training document libraries{' '}
-                <span className="text-[#CCFBF1]">for regulated industries</span>
+                Pre-labelled synthetic documents{' '}
+                <span className="text-[#CCFBF1]">for healthcare and insurance extraction</span>
               </h1>
 
               <p className="text-lg sm:text-xl text-white/80 leading-relaxed mb-8 max-w-2xl animate-fade-in-up delay-100">
-                Root Cause Analytics builds document extraction products and pre-labelled synthetic document libraries for teams working with healthcare, insurance and other privacy-sensitive documents.
+                Every document ships with ground truth, bounding boxes and a scanned variant. Built for teams shipping document AI in healthcare and insurance.
               </p>
 
               <div className="flex flex-wrap gap-4 animate-fade-in-up delay-200">
