@@ -53,7 +53,7 @@ const styleProfiles = [
   { name: 'Claims system export',      desc: 'Claims management system bordereaux with system IDs and audit columns' },
 ]
 
-type PricingRow = { tier: string; size: string; bestFor: string; price: string; delivery: string; highlight?: boolean }
+type PricingRow = { tier: string; size: string; bestFor: string; price: string; highlight?: boolean }
 
 const pricing: PricingRow[] = [
   {
@@ -61,29 +61,25 @@ const pricing: PricingRow[] = [
     size: '2 submission packs',
     bestFor: 'First look. Review the schema, bboxes and disclaimer in real documents.',
     price: 'Free',
-    delivery: 'Same-day',
   },
   {
     tier: 'QA Sprint Pack',
     size: '10 submission packs + engineered red flag summary + 30-minute handover call',
     bestFor: 'Pipeline QA against a controlled, varied input set. Vendor evaluation.',
     price: 'AUD $2,500',
-    delivery: '48 to 72 hours',
     highlight: true,
   },
   {
     tier: 'Production library',
     size: '100+ submission packs',
     bestFor: 'Production regression suite. Internal QA at scale.',
-    price: 'On request',
-    delivery: '1 to 2 weeks',
+    price: 'Contact for quote',
   },
   {
     tier: 'Training library',
     size: '1,000+ submission packs with train / val / test splits',
     bestFor: 'ML model fine-tuning at scale. Layout-model training.',
-    price: 'On request',
-    delivery: '2 to 4 weeks',
+    price: 'Contact for quote',
   },
 ]
 
@@ -278,6 +274,9 @@ export default function InsuranceLibraryPage() {
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
                 Pricing
               </h2>
+              <p className="text-slate-600 leading-relaxed">
+                Every tier ships same-day. The generator is a deterministic Python pipeline that produces a full library in minutes.
+              </p>
             </div>
 
             <div className="overflow-x-auto animate-on-scroll">
@@ -288,7 +287,6 @@ export default function InsuranceLibraryPage() {
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Size</th>
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Best for</th>
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Price</th>
-                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Delivery</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -298,7 +296,6 @@ export default function InsuranceLibraryPage() {
                       <td className="px-4 py-3 text-sm text-slate-700 align-top">{row.size}</td>
                       <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-md">{row.bestFor}</td>
                       <td className={`px-4 py-3 text-sm font-semibold align-top whitespace-nowrap ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600 align-top whitespace-nowrap">{row.delivery}</td>
                     </tr>
                   ))}
                 </tbody>

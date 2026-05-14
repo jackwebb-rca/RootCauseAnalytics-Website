@@ -139,39 +139,34 @@ const shippingChecklist = [
   'Insurance packs additionally ship red_flags_summary.csv with where_to_review pointers',
 ]
 
-type PricingRow = { tier: string; scope: string; price: string; delivery: string; highlight?: boolean }
+type PricingRow = { tier: string; scope: string; price: string; highlight?: boolean }
 
 const pricing: PricingRow[] = [
   {
     tier: 'Insurance 2-pack preview',
-    scope: '2 complete submission packs (about 13 PDFs)',
+    scope: '2 complete submission packs',
     price: 'Free',
-    delivery: 'Same-day on request',
   },
   {
     tier: 'Insurance QA Sprint Pack',
-    scope: '10 complete packs (about 67 PDFs) + engineered red flag summary + 30-minute handover call',
+    scope: '10 complete packs + engineered red flag summary + 30-minute handover call',
     price: 'AUD $2,500',
-    delivery: '48 to 72 hours',
     highlight: true,
   },
   {
     tier: 'Insurance Procurement Pack',
     scope: '5 to 10 packs scoped for vendor evaluation. All vendors score against the same documents',
-    price: 'On request',
-    delivery: '1 to 2 weeks',
+    price: 'Contact for quote',
   },
   {
     tier: 'Medical 25-doc review pack',
     scope: '25 to 35 representative medical documents with a five-minute review path',
     price: 'Free for qualified prospects',
-    delivery: 'Same-day on request',
   },
   {
     tier: 'Medical Pilot Pack',
     scope: '100 to 200 documents scoped to your specialty (discharge, pathology, or a specific clinical area)',
-    price: 'On request',
-    delivery: '1 to 2 weeks',
+    price: 'Contact for quote',
   },
 ]
 
@@ -339,6 +334,9 @@ export default function BenchmarkPacksPage() {
               <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4 text-balance">
                 Pricing summary
               </h2>
+              <p className="text-slate-600 leading-relaxed">
+                Every pack ships same-day. The generator is a deterministic Python pipeline that produces the documents in minutes.
+              </p>
             </div>
 
             <div className="overflow-x-auto animate-on-scroll">
@@ -348,7 +346,6 @@ export default function BenchmarkPacksPage() {
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Pack</th>
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">What is in it</th>
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Price</th>
-                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Delivery</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -357,7 +354,6 @@ export default function BenchmarkPacksPage() {
                       <td className="px-4 py-3 text-sm font-semibold text-slate-800 align-top">{row.tier}</td>
                       <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-xl">{row.scope}</td>
                       <td className={`px-4 py-3 text-sm font-semibold align-top whitespace-nowrap ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600 align-top whitespace-nowrap">{row.delivery}</td>
                     </tr>
                   ))}
                 </tbody>

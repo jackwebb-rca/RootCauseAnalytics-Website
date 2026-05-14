@@ -56,20 +56,20 @@ const libraries = [
   },
 ]
 
-type PricingRow = { tier: string; size: string; bestFor: string; price: string; delivery: string; highlight?: boolean }
+type PricingRow = { tier: string; size: string; bestFor: string; price: string; highlight?: boolean }
 
 const insurancePricing: PricingRow[] = [
-  { tier: 'Free sample', size: '2 submission packs', bestFor: 'First look. Review the schema and disclaimer.', price: 'Free', delivery: 'Same-day' },
-  { tier: 'QA Sprint Pack', size: '10 submission packs + red flag summary + 30-min handover', bestFor: 'Pipeline QA. Vendor evaluation.', price: 'AUD $2,500', delivery: '48 to 72 hours', highlight: true },
-  { tier: 'Production library', size: '100+ submission packs', bestFor: 'Production regression suite. Internal QA at scale.', price: 'On request', delivery: '1 to 2 weeks' },
-  { tier: 'Training library', size: '1,000+ submission packs with train / val / test splits', bestFor: 'ML model fine-tuning at scale.', price: 'On request', delivery: '2 to 4 weeks' },
+  { tier: 'Free sample', size: '2 submission packs', bestFor: 'First look. Review the schema and disclaimer.', price: 'Free' },
+  { tier: 'QA Sprint Pack', size: '10 submission packs + red flag summary + 30-min handover', bestFor: 'Pipeline QA. Vendor evaluation.', price: 'AUD $2,500', highlight: true },
+  { tier: 'Production library', size: '100+ submission packs', bestFor: 'Production regression suite. Internal QA at scale.', price: 'Contact for quote' },
+  { tier: 'Training library', size: '1,000+ submission packs with train / val / test splits', bestFor: 'ML model fine-tuning at scale.', price: 'Contact for quote' },
 ]
 
 const medicalPricing: PricingRow[] = [
-  { tier: 'Free sample', size: '25 to 35 documents', bestFor: 'First look. Review the schema, AU conventions and disclaimer.', price: 'Free', delivery: 'Same-day', highlight: true },
-  { tier: 'Pilot pack', size: '100 to 200 documents scoped to your specialty', bestFor: 'Internal pilot. Specialty-focused review.', price: 'On request', delivery: '1 to 2 weeks' },
-  { tier: 'Production library', size: '500 to 1,000 documents across 40+ types', bestFor: 'Production regression suite. Internal QA at scale.', price: 'On request', delivery: '2 to 3 weeks' },
-  { tier: 'Training library', size: '5,000+ documents with train / val / test splits', bestFor: 'ML model fine-tuning at scale.', price: 'On request', delivery: '4 to 6 weeks' },
+  { tier: 'Free sample', size: '25 to 35 documents', bestFor: 'First look. Review the schema, AU conventions and disclaimer.', price: 'Free', highlight: true },
+  { tier: 'Pilot pack', size: '100 to 200 documents scoped to your specialty', bestFor: 'Internal pilot. Specialty-focused review.', price: 'Contact for quote' },
+  { tier: 'Production library', size: '500 to 1,000 documents across 40+ types', bestFor: 'Production regression suite. Internal QA at scale.', price: 'Contact for quote' },
+  { tier: 'Training library', size: '5,000+ documents with train / val / test splits', bestFor: 'ML model fine-tuning at scale.', price: 'Contact for quote' },
 ]
 
 const sampleSlides = [
@@ -260,7 +260,7 @@ export default function LibrariesPage() {
                 Pricing
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                Same four tiers per library: free sample, paid Sprint or Pilot pack, production library, training library. Only the QA Sprint Pack carries a fixed public price; everything else is quoted on request against your specific scope.
+                Same four tiers per library: free sample, paid Sprint or Pilot pack, production library, training library. Every tier ships same-day. The generator is a deterministic Python pipeline that produces a complete library in minutes, not weeks.
               </p>
             </div>
 
@@ -278,7 +278,6 @@ export default function LibrariesPage() {
                       <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Size</th>
                       <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Best for</th>
                       <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Price</th>
-                      <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Delivery</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -288,7 +287,6 @@ export default function LibrariesPage() {
                         <td className="px-4 py-3 text-sm text-slate-700 align-top">{row.size}</td>
                         <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-md">{row.bestFor}</td>
                         <td className={`px-4 py-3 text-sm font-semibold align-top whitespace-nowrap ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
-                        <td className="px-4 py-3 text-sm text-slate-600 align-top whitespace-nowrap">{row.delivery}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -327,7 +325,6 @@ export default function LibrariesPage() {
                       <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Size</th>
                       <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Best for</th>
                       <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Price</th>
-                      <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Delivery</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -337,7 +334,6 @@ export default function LibrariesPage() {
                         <td className="px-4 py-3 text-sm text-slate-700 align-top">{row.size}</td>
                         <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-md">{row.bestFor}</td>
                         <td className={`px-4 py-3 text-sm font-semibold align-top whitespace-nowrap ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
-                        <td className="px-4 py-3 text-sm text-slate-600 align-top whitespace-nowrap">{row.delivery}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -363,7 +359,7 @@ export default function LibrariesPage() {
             </div>
 
             <p className="text-xs text-slate-500 mt-8 text-center max-w-2xl mx-auto leading-relaxed">
-              All deliveries include ground truth (CSV + JSONL), bounding box records, scanned variants, and a manifest. Production and Training libraries include train / val / test splits. Custom document types or schemas are quoted on request via{' '}
+              Every order ships same-day. The generator produces ground truth (CSV + JSONL), bounding box records, scanned variants, manifest, and train / val / test splits where applicable, all in one pass. Custom document types or schemas are quoted via{' '}
               <Link href="/contact?service=custom-library" className="text-[#0D9488] underline underline-offset-2">RCA Custom Libraries</Link>.
             </p>
           </div>
