@@ -173,21 +173,74 @@ export default function InsuranceLibraryPage() {
 
         {/* BBOX STRUCTURE */}
         <section className="py-20 bg-white" aria-label="Bbox structure">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll">
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-6 text-balance">
-              Bbox structure (a real differentiator)
-            </h2>
-            <p className="text-slate-600 leading-relaxed mb-4">
-              Insurance bboxes are more granular than a single document-level box. For loss run reports, bboxes are returned per claim row from claim_rows_json. For statement of values, bboxes are returned per location row from location_rows_json.
-            </p>
-            <p className="text-slate-600 leading-relaxed">
-              A reviewer can click a specific row in the structured ground truth and highlight the exact pixels on the rendered PDF. That makes the Insurance Library useful for vendor bake-offs: every extractor under test gets the same row-level supervision target, not just a document-level one.
-            </p>
-            <div className="mt-6 bg-slate-50 border border-slate-200 rounded-xl p-5 font-mono text-xs text-slate-700 overflow-x-auto">
-              <div className="text-slate-500 mb-2">// Excerpt from bboxes.jsonl</div>
-              <div>{`{ "claim_rows_json[0].paid": { "page": 0, "x": 390.4, "y": 366.3, "width": 39, "height": 23.6, "row_index": 0, "sub_key": "paid" } }`}</div>
-              <div>{`{ "location_rows_json[2].building_value": { "page": 1, "x": 237.9, "y": 303.3, "width": 37.8, "height": 11.7, "row_index": 2, "sub_key": "building_value" } }`}</div>
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="animate-on-scroll mb-8">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-6 text-balance">
+                Bbox structure: per-row, not just per-document
+              </h2>
+              <p className="text-slate-600 leading-relaxed mb-4">
+                Most synthetic libraries return one bounding box per document. The RCA Insurance Library returns a bbox for every labelled field in the document plus a per-row bbox for every claim in <span className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">claim_rows_json</span> and every location in <span className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">location_rows_json</span>.
+              </p>
+              <p className="text-slate-600 leading-relaxed">
+                That means a LayoutLMv3 or Donut fine-tune learns per-claim and per-location supervision. A reviewer can click any row in the structured ground truth and highlight the exact pixels on the rendered PDF. A vendor bake-off scores extractors on the same row-level target.
+              </p>
             </div>
+
+            <div className="bg-[#0f172a] border border-slate-800 rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+              <div className="flex items-center justify-between px-5 py-3 bg-slate-900 border-b border-slate-800">
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400/60" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/60" />
+                  </div>
+                  <span className="text-xs font-mono text-slate-400 ml-2">
+                    bboxes_sample.jsonl
+                  </span>
+                </div>
+                <span className="text-xs text-slate-500">PACK000004 loss_run_report</span>
+              </div>
+              <pre className="px-5 py-5 text-xs text-slate-200 leading-relaxed font-mono overflow-x-auto whitespace-pre">
+{`{
+  "pdf_filename": "PACK000004_02_loss_run_report.pdf",
+  "document_type": "loss_run_report",
+  "document_id":   "LR-PACK000004-7382",
+  "bboxes": {
+
+    // --- document-level scalars ---------------------
+    "insured_business_name": {
+      "page": 0, "x": 102.3, "y":  87.1, "width": 107.1, "height": 10.6
+    },
+    "insured_abn":           { "page": 0, "x": 266.8, "y":  87.1, "width":  71.4, "height": 10.6 },
+    "policy_number":         { "page": 0, "x": 102.3, "y": 110.1, "width":  71.4, "height": 10.6 },
+    "policy_period_start":   { "page": 0, "x": 212.9, "y": 170.9, "width":  42.5, "height": 11.7 },
+    "policy_period_end":     { "page": 0, "x": 262.9, "y": 170.9, "width":  42.5, "height": 11.7 },
+    "total_paid":            { "page": 0, "x": 510.1, "y": 189.4, "width":  27.0, "height":  9.4 },
+    "total_incurred":        { "page": 0, "x": 510.1, "y": 189.4, "width":  27.0, "height":  9.4 },
+
+    // --- per-claim row entries from claim_rows_json -
+    "claim_rows_json[0].claim_no":    { "page": 0, "x":  55.0, "y": 366.3, "width": 37.0, "height": 23.6, "row_index": 0, "sub_key": "claim_no" },
+    "claim_rows_json[0].loss_date":   { "page": 0, "x": 104.3, "y": 366.3, "width": 25.0, "height": 23.6, "row_index": 0, "sub_key": "loss_date" },
+    "claim_rows_json[0].category":    { "page": 0, "x": 173.4, "y": 366.3, "width": 23.0, "height": 12.4, "row_index": 0, "sub_key": "category" },
+    "claim_rows_json[0].description": { "page": 0, "x": 222.7, "y": 366.3, "width":103.0, "height": 12.4, "row_index": 0, "sub_key": "description" },
+    "claim_rows_json[0].status":      { "page": 0, "x": 355.9, "y": 366.3, "width": 23.0, "height": 23.6, "row_index": 0, "sub_key": "status" },
+    "claim_rows_json[0].paid":        { "page": 0, "x": 390.4, "y": 366.3, "width": 39.0, "height": 23.6, "row_index": 0, "sub_key": "paid" },
+    "claim_rows_json[0].reserve":     { "page": 0, "x": 439.7, "y": 366.3, "width": 31.5, "height": 12.4, "row_index": 0, "sub_key": "reserve" },
+    "claim_rows_json[0].incurred":    { "page": 0, "x": 515.6, "y": 366.3, "width": 22.5, "height": 12.4, "row_index": 0, "sub_key": "incurred" },
+
+    "claim_rows_json[1].claim_no":    { "page": 0, "x":  55.0, "y": 394.8, "width": 37.0, "height": 23.6, "row_index": 1, "sub_key": "claim_no" },
+    "claim_rows_json[1].description": { "page": 0, "x": 222.7, "y": 394.8, "width": 91.0, "height": 12.4, "row_index": 1, "sub_key": "description" },
+    "claim_rows_json[1].paid":        { "page": 0, "x": 390.4, "y": 394.8, "width": 39.0, "height": 23.6, "row_index": 1, "sub_key": "paid" },
+    "claim_rows_json[1].reserve":     { "page": 0, "x": 439.7, "y": 394.8, "width": 39.0, "height": 23.6, "row_index": 1, "sub_key": "reserve" },
+    "claim_rows_json[1].incurred":    { "page": 0, "x": 489.1, "y": 394.8, "width": 49.0, "height": 23.6, "row_index": 1, "sub_key": "incurred" }
+    /* ... 4 more claim rows ... */
+  }
+}`}
+              </pre>
+            </div>
+            <p className="text-xs text-slate-500 mt-4 leading-relaxed animate-on-scroll">
+              <strong className="text-slate-700">Note</strong>: bbox coordinates are in PDF points (origin top-left after the extractor's coordinate normalisation). When a value wraps across two lines in a narrow table cell, the bbox spans both lines using a word-grouped fallback. Total field bboxes per loss run report average 38 across the library.
+            </p>
           </div>
         </section>
 

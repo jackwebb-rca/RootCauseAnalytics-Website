@@ -4,7 +4,8 @@ import { useEffect } from 'react'
 import Link from 'next/link'
 import {
   FileText, Shield, CheckCircle, ArrowRight, ExternalLink, Database,
-  Layers, Library, Briefcase, Stethoscope, Cog, ChevronRight, Code
+  Layers, Library, Briefcase, Stethoscope, Cog, ChevronRight, Code,
+  Repeat, Eye, Lock, Microscope, Activity, Search, Box, Hash, Scan
 } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
@@ -28,7 +29,7 @@ function useScrollAnimation() {
 const stats = [
   { value: '30+', label: 'Medical document types' },
   { value: '8', label: 'Insurance document types' },
-  { value: 'AU', label: 'Healthcare conventions' },
+  { value: 'Australian', label: 'Healthcare conventions' },
   { value: 'AUD $2,500', label: 'Insurance QA Sprint Pack' },
 ]
 
@@ -37,7 +38,28 @@ const trustBadges = [
   'Ground truth + bounding boxes',
   'Scanned variants for every PDF',
   'Visible synthetic disclaimer on every page',
-  'AU document conventions',
+  'Australian document conventions',
+]
+
+const buyerPersonas = [
+  {
+    icon: Code,
+    label: 'ML engineers',
+    headline: 'Shipping healthcare or insurance extraction to production',
+    description: 'You need labeled training data and a regression suite that catches regressions before they hit a customer document. RCA libraries give you pre-labelled PDFs, ground truth, bounding boxes, and scanned variants in one bundle.',
+  },
+  {
+    icon: Search,
+    label: 'Procurement & QA leads',
+    headline: 'Evaluating extraction vendors against a real-world target',
+    description: 'You need every vendor to score against the same documents and the same ground truth. The Insurance QA Sprint Pack ships 10 complete submission packs with engineered red flags. Same input, same target, fair comparison.',
+  },
+  {
+    icon: Database,
+    label: 'Data platform teams',
+    headline: 'Building Snowflake-native document pipelines',
+    description: 'RCA Extract runs as a Snowflake Native App (listing GZSUZU1HJP). Patient data never leaves your account. Your existing Snowflake RBAC and audit logs apply to every page processed.',
+  },
 ]
 
 const productLines = [
@@ -46,13 +68,15 @@ const productLines = [
     name: 'RCA Extract',
     blurb: 'Hosted document extraction for healthcare PDFs. Discharge summaries, ED assessments, referrals, imaging and pathology reports. Snowflake Native App today. Built and tested against the RCA Medical Library.',
     href: '/products/rca-extract',
+    cta: 'See the supported types',
     color: '#0D9488',
   },
   {
     icon: Briefcase,
     name: 'RCA Insurance Library',
-    blurb: 'Synthetic commercial P&C submission packs. Broker emails, loss runs, statements of values, policy schedules, certificates of currency, applications, FNOL forms, claim reports. Eight engineered red flag categories. Per-claim and per-location bbox rows.',
+    blurb: 'Synthetic commercial P&C submission packs. Broker emails, loss runs, statements of values, policy schedules, certificates of currency, applications, FNOL forms, claim reports. Engineered red flag categories. Per-claim and per-location bbox rows.',
     href: '/libraries/insurance',
+    cta: 'See the pack structure',
     color: '#1E3A8A',
     highlight: true,
   },
@@ -61,6 +85,7 @@ const productLines = [
     name: 'RCA Medical Library',
     blurb: 'Synthetic Australian medical training documents. 30+ document types across hospital, ED, GP clinic, pathology, imaging and specialist correspondence. NSW postcodes, Medicare format, provider postnominals.',
     href: '/libraries/medical',
+    cta: 'Browse the document types',
     color: '#0D9488',
   },
   {
@@ -68,6 +93,7 @@ const productLines = [
     name: 'RCA Benchmark Packs',
     blurb: 'Smaller paid review packs, QA packs and pilot packs that sit on top of the libraries. Use them for procurement evaluation, vendor bake-offs or pre-rollout QA. Insurance QA Sprint Pack ships at AUD $2,500.',
     href: '/libraries/benchmark-packs',
+    cta: 'See the pack menu',
     color: '#1E3A8A',
   },
   {
@@ -75,16 +101,42 @@ const productLines = [
     name: 'RCA Custom Libraries',
     blurb: 'Your document types. Your field schema. Your style profiles. Built deterministically and shipped with ground truth and bboxes.',
     href: '/contact?service=custom-library',
+    cta: 'Scope a custom library',
     color: '#10B981',
   },
 ]
 
-const whyBullets = [
-  'Real-looking PDFs at any scale. Visually varied across style profiles and template families, not the same template rendered twenty times.',
-  'Ground truth shipped with every document, as CSV and JSONL. Bounding boxes for labeled fields. Insurance bboxes include per-claim row entries from claim_rows_json and per-location row entries from location_rows_json.',
-  'Scanned variants for the photocopy and JPEG-noise path.',
-  'Reproducible by seed. The same seed produces the same PDFs every time. Useful for versioned QA.',
-  'Safe to share inside your company. Every page carries a visible synthetic disclaimer. Nothing is real patient, claimant, broker, or policyholder data.',
+const whyCards = [
+  {
+    icon: Eye,
+    title: 'Real-looking PDFs at any scale',
+    description: 'Visually varied across eight style profiles and three template families per document type. Not the same template rendered twenty times.',
+  },
+  {
+    icon: Hash,
+    title: 'Ground truth shipped with every doc',
+    description: 'CSV and JSONL. Bounding boxes for labeled fields. Insurance bboxes include per-claim row entries from claim_rows_json and per-location row entries from location_rows_json.',
+  },
+  {
+    icon: Scan,
+    title: 'Scanned variants for the photocopy path',
+    description: 'Every PDF ships with a rotated, noised, JPEG-compressed scanned variant in pdfs_scanned/. Same ground truth, harder input.',
+  },
+  {
+    icon: Repeat,
+    title: 'Reproducible by seed',
+    description: 'The same seed produces the same PDFs every time. Useful for versioned QA, regression suites, and procurement bake-offs.',
+  },
+  {
+    icon: Shield,
+    title: 'Safe to share inside your company',
+    description: 'Every page carries a visible synthetic disclaimer. Nothing is real patient, claimant, broker, or policyholder data. No data agreement required to redistribute internally.',
+  },
+  {
+    icon: Box,
+    title: 'Direct delivery, no third parties',
+    description: 'Libraries ship as direct downloads. No third-party file-share processor unless requested. RCA Extract runs inside your Snowflake account with zero data egress.',
+  },
 ]
 
 const howSteps = [
@@ -143,10 +195,10 @@ export default function HomePage() {
                   <ArrowRight size={16} />
                 </Link>
                 <Link
-                  href="/contact"
+                  href="#sample"
                   className="flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/20 transition-colors"
                 >
-                  Talk to the founder
+                  See an actual sample
                   <ChevronRight size={16} />
                 </Link>
               </div>
@@ -159,8 +211,8 @@ export default function HomePage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {stats.map((s) => (
                   <div key={s.label} className="text-center">
-                    <div className="text-2xl lg:text-3xl font-bold text-white">{s.value}</div>
-                    <div className="text-sm text-white/70 mt-1">{s.label}</div>
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight">{s.value}</div>
+                    <div className="text-xs sm:text-sm text-white/70 mt-1">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -181,6 +233,160 @@ export default function HomePage() {
                   <span className="text-sm font-medium text-slate-700">{badge}</span>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* WHO THIS IS FOR */}
+        <section className="py-20 bg-white" aria-label="Who this is for">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
+                Built for teams who actually have to ship
+              </h2>
+              <p className="text-slate-600 leading-relaxed">
+                Three buyer profiles where the libraries and RCA Extract earn their keep.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {buyerPersonas.map((persona, i) => {
+                const Icon = persona.icon
+                return (
+                  <div
+                    key={persona.label}
+                    className="animate-on-scroll bg-slate-50 border border-slate-200 rounded-xl p-6 hover:border-[#0D9488]/40 hover:shadow-md transition-all flex flex-col"
+                    style={{ transitionDelay: `${i * 100}ms` }}
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-[#CCFBF1] flex items-center justify-center mb-4">
+                      <Icon size={22} className="text-[#0D9488]" />
+                    </div>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#0D9488] mb-2">
+                      {persona.label}
+                    </div>
+                    <h3 className="font-semibold text-slate-800 mb-3 text-lg leading-snug">
+                      {persona.headline}
+                    </h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">{persona.description}</p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* WHAT YOU ACTUALLY GET (sample) */}
+        <section id="sample" className="py-20 bg-slate-50 border-y border-slate-200" aria-label="What you actually get">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#CCFBF1] text-[#0D9488] rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                Sample
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
+                What you actually get
+              </h2>
+              <p className="text-slate-600 leading-relaxed">
+                Each pack ships a folder of PDFs plus the matching ground truth and bounding boxes. Below is a real excerpt from the RCA Insurance Library showing one loss run report and its labelled fields.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-on-scroll">
+              {/* PDF preview card */}
+              <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <FileText size={16} className="text-[#0D9488]" />
+                    <span className="text-sm font-semibold text-slate-700">
+                      PACK000001_02_loss_run_report.pdf
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-400">loss_run_report</span>
+                </div>
+
+                <div className="border border-slate-200 rounded-lg p-5 bg-slate-50/50 font-mono text-xs text-slate-700 leading-relaxed">
+                  <div className="text-slate-900 font-semibold mb-1">[KARRI-CLM] LOSS RUN REPORT</div>
+                  <div className="text-slate-500 mb-3">Karri Specialty Underwriting Pty Ltd</div>
+                  <div className="text-[#0D9488] text-[10px] mb-4 uppercase tracking-wider">Synthetic Training Document</div>
+                  <div className="grid grid-cols-2 gap-2 mb-3">
+                    <div>Insured: <span className="text-slate-900">Ironworks Fabrication Pty Ltd</span></div>
+                    <div>ABN: <span className="text-slate-900">19 600 133 890</span></div>
+                    <div>Policy No: <span className="text-slate-900">KS-2026-271339</span></div>
+                    <div>Period: <span className="text-slate-900">2021-2025</span></div>
+                  </div>
+                  <hr className="border-slate-200 my-3" />
+                  <div className="text-xs text-slate-500 mb-2">CLAIMS</div>
+                  <div className="text-slate-700">
+                    <div className="font-semibold">CLM-2021-20458 | property damage | Closed</div>
+                    <div className="text-slate-500 italic">Damage to the front of house caused by a burst pipe.</div>
+                    <div className="grid grid-cols-3 gap-2 mt-1">
+                      <div>Paid: <span className="text-slate-900">AUD $21,465</span></div>
+                      <div>Reserve: <span className="text-slate-900">AUD $0</span></div>
+                      <div>Incurred: <span className="text-slate-900">AUD $21,465</span></div>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-500 mt-4 leading-relaxed">
+                  Every PDF carries a visible synthetic disclaimer. Names, ABNs, dollar values and dates are computer-generated.
+                </p>
+              </div>
+
+              {/* Bbox + ground truth card */}
+              <div className="bg-[#0f172a] border border-slate-800 rounded-xl p-6 shadow-sm">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <Code size={16} className="text-[#10B981]" />
+                    <span className="text-sm font-semibold text-white">
+                      bboxes.jsonl
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-400">excerpt</span>
+                </div>
+
+                <pre className="text-xs text-slate-200 leading-relaxed font-mono overflow-x-auto whitespace-pre">
+{`{
+  "pdf_filename": "PACK000001_02_loss_run_report.pdf",
+  "document_type": "loss_run_report",
+  "document_id": "LR-PACK000001-6155",
+  "bboxes": {
+    "insured_business_name": {
+      "page": 0, "x": 102.3, "y": 87.1,
+      "width": 107.1, "height": 10.6
+    },
+    "policy_number": {
+      "page": 0, "x": 102.3, "y": 110.1,
+      "width": 71.4, "height": 10.6
+    },
+    "claim_rows_json[0].paid": {
+      "page": 0, "x": 510.1, "y": 189.4,
+      "width": 27, "height": 9.4,
+      "row_index": 0, "sub_key": "paid"
+    },
+    "claim_rows_json[0].reserve": {
+      "page": 0, "x": 438.2, "y": 189.4,
+      "width": 27, "height": 9.4,
+      "row_index": 0, "sub_key": "reserve"
+    }
+    /* ... 15 more labelled fields ... */
+  }
+}`}
+                </pre>
+                <p className="text-xs text-slate-400 mt-4 leading-relaxed">
+                  Per-claim row entries (<span className="font-mono text-[#10B981]">claim_rows_json[0].paid</span>) let a LayoutLMv3 or DocVQA fine-tune learn per-row supervision, not just document-level scalars.
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center mt-10 animate-on-scroll">
+              <Link
+                href="/contact?pack=insurance-2-preview"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#1E3A8A] text-white rounded-lg font-semibold hover:bg-[#172d6b] transition-colors shadow-sm"
+              >
+                Request the full 2-pack preview
+                <ChevronRight size={16} />
+              </Link>
+              <p className="text-xs text-slate-500 mt-3">
+                Free. Same-day delivery on request. PDFs, ground truth, bboxes and scanned variants for two complete submission packs.
+              </p>
             </div>
           </div>
         </section>
@@ -220,7 +426,7 @@ export default function HomePage() {
                     <h3 className="font-semibold text-slate-800 mb-2 text-lg">{p.name}</h3>
                     <p className="text-sm text-slate-600 leading-relaxed mb-3">{p.blurb}</p>
                     <span className="text-sm font-medium text-[#0D9488] inline-flex items-center gap-1">
-                      Learn more
+                      {p.cta}
                       <ArrowRight size={14} />
                     </span>
                   </Link>
@@ -230,29 +436,35 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* WHY TEAMS USE US */}
+        {/* WHY TEAMS USE US - now a card grid */}
         <section className="py-20 bg-[#1E3A8A]" aria-label="Why teams use the libraries">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 text-balance">
-                Why teams use the libraries
+                Why teams pick the RCA libraries
               </h2>
               <p className="text-white/70 leading-relaxed">
-                The properties that matter for QA, training and procurement evaluation.
+                Six properties that matter for QA, training and procurement evaluation.
               </p>
             </div>
-            <div className="max-w-3xl mx-auto">
-              <ul className="flex flex-col gap-4">
-                {whyBullets.map((bullet) => (
-                  <li
-                    key={bullet}
-                    className="animate-on-scroll flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-5"
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {whyCards.map((card, i) => {
+                const Icon = card.icon
+                return (
+                  <div
+                    key={card.title}
+                    className="animate-on-scroll bg-white/5 border border-white/15 rounded-xl p-6 hover:border-white/30 transition-colors"
+                    style={{ transitionDelay: `${i * 60}ms` }}
                   >
-                    <CheckCircle size={18} className="text-[#10B981] mt-0.5 shrink-0" />
-                    <span className="text-white/85 leading-relaxed text-sm sm:text-base">{bullet}</span>
-                  </li>
-                ))}
-              </ul>
+                    <div className="w-10 h-10 rounded-lg bg-[#0D9488]/20 flex items-center justify-center mb-3">
+                      <Icon size={18} className="text-[#10B981]" />
+                    </div>
+                    <h3 className="text-white font-semibold mb-2 leading-snug">{card.title}</h3>
+                    <p className="text-sm text-white/70 leading-relaxed">{card.description}</p>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -337,10 +549,13 @@ export default function HomePage() {
         >
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 text-balance">
-              Try a free preview pack
+              Try the libraries in five minutes
             </h2>
-            <p className="text-white/80 text-lg mb-8 leading-relaxed">
-              Two-pack insurance preview, or a 25 to 35 document medical review pack. No credit card. The pack ships with a README_START_HERE.md and a recommended five-minute review path.
+            <p className="text-white/80 text-lg mb-2 leading-relaxed">
+              Request the free 2-pack insurance preview or a 25 to 35 document medical review pack.
+            </p>
+            <p className="text-white/60 text-sm mb-8 leading-relaxed">
+              No credit card. Same-day delivery on request. Each pack ships with a README_START_HERE.md and a recommended five-minute review path.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
@@ -360,6 +575,12 @@ export default function HomePage() {
                 <ExternalLink size={16} />
               </a>
             </div>
+            <p className="text-white/60 text-sm mt-10 leading-relaxed">
+              Built by Jack Webb in Sydney.{' '}
+              <Link href="/about" className="text-white underline underline-offset-2 hover:no-underline">
+                More about Root Cause Analytics
+              </Link>
+            </p>
           </div>
         </section>
       </main>
