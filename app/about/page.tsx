@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import {
-  Heart, Globe, Shield, Users, CheckCircle, ExternalLink, ArrowRight, Target, Lightbulb, Lock, Library
+  Heart, Globe, Shield, Users, CheckCircle, ArrowRight, Target, Lightbulb, Lock, Library
 } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
@@ -38,7 +38,7 @@ const values = [
   {
     icon: Lightbulb,
     title: 'Simplicity at Scale',
-    description: 'Enterprise data challenges should not require enterprise-scale implementation projects. Our Snowflake Native deployment shape reflects that belief.',
+    description: 'Enterprise data challenges should not require enterprise-scale implementation projects. A self-hosted container that runs in your environment reflects that belief.',
   },
 ]
 
@@ -53,7 +53,7 @@ const teamMembers = [
 
 const capabilities = [
   'Healthcare-specific OCR fine-tuned on clinical documents',
-  'Snowflake Native App architecture for zero data movement',
+  'Self-hosted container for zero data egress',
   'FHIR-aligned output schemas for interoperability',
   'Synthetic training document libraries shipped with ground truth and bounding boxes',
   'Deterministic generators, reproducible by seed',
@@ -61,7 +61,7 @@ const capabilities = [
 ]
 
 const propositionTiles = [
-  { label: 'Extraction product', value: 'RCA Extract', color: '#0D9488', description: 'Snowflake Native App. Listing GZSUZU1HJP. Runs in your Snowflake account.' },
+  { label: 'Extraction product', value: 'RCA Extract', color: '#0D9488', description: 'Self-hosted Docker container. Runs in your cloud or on-prem. Zero data egress.' },
   { label: 'Medical library', value: '40+ types', color: '#1E3A8A', description: 'Discharge, ED, referral, imaging, pathology, plus 35+ specialist types.' },
   { label: 'Insurance library', value: 'Per-row bboxes', color: '#10B981', description: 'Per-claim and per-location row bbox structure for granular extraction QA.' },
   { label: 'Sydney-based', value: 'AU conventions', color: '#0D9488', description: 'NSW postcodes, Medicare format, AU provider postnominals built in.' },
@@ -92,7 +92,7 @@ export default function AboutPage() {
                 About Root Cause Analytics
               </h1>
               <p className="text-lg text-white/80 leading-relaxed max-w-2xl">
-                Root Cause Analytics builds document extraction products and pre-labelled synthetic document libraries for teams working with healthcare, insurance and other privacy-sensitive documents. RCA Extract (formerly MEDISCAN) is our hosted extraction product, available on the Snowflake Marketplace. The RCA libraries are the test data the product is built against, sold separately.
+                Root Cause Analytics builds document extraction products and pre-labelled synthetic document libraries for teams working with healthcare, insurance and other privacy-sensitive documents. RCA Extract (formerly MEDISCAN) is our self-hosted extraction container. The RCA libraries are the test data the product is built against, sold separately.
               </p>
             </div>
           </div>
@@ -113,7 +113,7 @@ export default function AboutPage() {
                   We built RCA Extract to change that for healthcare PDFs, and we built the RCA Medical and Insurance libraries to make sure RCA Extract (and other extraction pipelines) have somewhere safe to be tested.
                 </p>
                 <p className="text-slate-600 leading-relaxed">
-                  RCA Extract runs as a Snowflake Native App inside the customer's Snowflake account. The libraries ship as direct downloads with ground truth, bounding boxes and scanned variants for every document.{' '}
+                  RCA Extract runs as a self-hosted Docker container inside the customer's own environment. The libraries ship as direct downloads with ground truth, bounding boxes and scanned variants for every document.{' '}
                   <Link href="/products/rca-extract" className="text-[#0D9488] underline underline-offset-2 hover:text-[#1E3A8A] transition-colors font-medium">
                     See how RCA Extract works
                   </Link>
@@ -213,7 +213,7 @@ export default function AboutPage() {
                   Technical capabilities
                 </h2>
                 <p className="text-slate-600 leading-relaxed mb-6">
-                  The product line combines healthcare-specific OCR and NLP, deployed as a Snowflake Native App, alongside synthetic training document libraries used internally for validation and sold externally for QA.
+                  The product line combines healthcare-specific OCR and NLP, deployed as a self-hosted container, alongside synthetic training document libraries used internally for validation and sold externally for QA.
                 </p>
                 <ul className="flex flex-col gap-3">
                   {capabilities.map((cap) => (
@@ -230,8 +230,8 @@ export default function AboutPage() {
                   <h3 className="text-lg font-bold text-[#1E3A8A] mb-6">Security & Synthetic Safety</h3>
                   <div className="flex flex-col gap-4">
                     {[
-                      { label: 'RCA Extract runs in Your Snowflake Account', detail: 'No data egress, no third-party processors', icon: Shield },
-                      { label: 'Snowflake Native App', detail: 'Listing ID GZSUZU1HJP', icon: Lock },
+                      { label: 'RCA Extract runs in your own environment', detail: 'Self-hosted container. Zero data egress.', icon: Shield },
+                      { label: 'No third-party data processors', detail: 'No external API calls during extraction', icon: Lock },
                       { label: 'Customer-managed Access Controls', detail: 'Uses your RBAC and audit logs', icon: CheckCircle },
                       { label: 'Library outputs are synthetic only', detail: 'Visible disclaimer on every page', icon: Library },
                     ].map(({ label, detail, icon: Icon }) => (
@@ -259,23 +259,21 @@ export default function AboutPage() {
               Talk to the team
             </h2>
             <p className="text-white/80 mb-8 leading-relaxed">
-              Browse RCA Extract on the Snowflake Marketplace, request a free preview pack from one of the libraries, or reach out to our Sydney team to discuss your specific requirements.
+              Request a free preview pack from one of the libraries, talk to us about deploying RCA Extract in your environment, or reach out about a custom library scoped to your document types.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact?pack=preview"
                 className="flex items-center gap-2 px-8 py-3.5 bg-white text-[#1E3A8A] rounded-lg font-semibold hover:bg-white/90 transition-colors shadow-lg"
               >
-                Browse on Snowflake Marketplace
-                <ExternalLink size={16} />
-              </a>
+                Request a preview pack
+                <ArrowRight size={16} />
+              </Link>
               <Link
-                href="/contact"
+                href="/contact?service=rca-extract"
                 className="flex items-center gap-2 px-8 py-3.5 bg-white/10 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/20 transition-colors"
               >
-                Contact us
+                Talk to us about deployment
                 <ArrowRight size={16} />
               </Link>
             </div>

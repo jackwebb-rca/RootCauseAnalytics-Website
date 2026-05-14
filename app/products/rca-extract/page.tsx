@@ -3,8 +3,8 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import {
-  CheckCircle, ExternalLink, ArrowRight, FileText, Database, Layers,
-  Shield, Lock, Stethoscope, ChevronRight, Activity
+  CheckCircle, ArrowRight, FileText, Database, Layers,
+  Shield, Lock, Stethoscope, ChevronRight, Box, Terminal, Cloud
 } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
@@ -21,10 +21,10 @@ function useScrollAnimation() {
 }
 
 const keyStats = [
-  { value: 'Snowflake', label: 'Native App deployment' },
-  { value: 'AU', label: 'Healthcare conventions' },
-  { value: '10 Min', label: 'Marketplace install time' },
+  { value: 'Self-hosted', label: 'Docker container' },
   { value: 'Zero', label: 'Data egress' },
+  { value: 'Australian', label: 'Healthcare conventions' },
+  { value: 'REST API', label: 'PDF in, JSON out' },
 ]
 
 const documentTypes = [
@@ -52,40 +52,40 @@ const documentTypes = [
 
 const architectureSteps = [
   {
-    icon: Layers,
-    title: 'Document Ingestion',
-    description: 'Stage PDFs in a Snowflake internal or external stage. Multi-page PDF, TIFF, PNG and JPEG inputs supported.',
+    icon: Box,
+    title: 'Pull the container',
+    description: 'Pull the RCA Extract image from a private registry, signed and versioned per release. Runs on any Docker-compatible host. AMD64 and ARM64.',
   },
   {
-    icon: Activity,
-    title: 'Extraction Pipeline',
-    description: 'RCA Extract runs as a Snowflake Native App function. Per-document extraction returns structured fields plus bounding boxes for the labeled fields.',
-  },
-  {
-    icon: Database,
-    title: 'Structured Output',
-    description: 'Results land directly in Snowflake tables. Pre-defined healthcare schemas. FHIR-aligned output available where the schema applies.',
+    icon: Terminal,
+    title: 'Run with a license key',
+    description: 'docker run with a license env var and a volume mount for input PDFs. Health-checks via /healthz. The container exposes a REST API on a port you choose.',
   },
   {
     icon: FileText,
-    title: 'Analytics-Ready',
-    description: 'Query results with standard SQL. Connect to any Snowflake-compatible BI tool. Joins against your existing patient or facility tables work as normal.',
+    title: 'POST a PDF, get JSON',
+    description: 'POST /extract with a PDF body. Get back the structured fields plus bounding boxes for the labeled fields. Same schema as the RCA Medical Library.',
+  },
+  {
+    icon: Database,
+    title: 'Land where you want',
+    description: 'Write results to your warehouse, your EMR, your S3 bucket, your Postgres. The container does extraction. You own the data path.',
   },
 ]
 
-const snowflakeBullets = [
-  'Runs entirely within your Snowflake account. Patient data never leaves your environment.',
-  'Inherits your existing Snowflake RBAC, audit and access policies.',
-  'No external API calls. No third-party data processors involved in extraction.',
-  'Snowflake Marketplace listing: GZSUZU1HJP.',
-  'Encryption at rest and in transit, provided by Snowflake.',
+const deploymentBullets = [
+  'Runs entirely inside your cloud or on-prem. Patient data never leaves your environment.',
+  'Customer-managed compute. You pay your cloud bill, not ours.',
+  'No external API calls during extraction. No third-party data processors involved.',
+  'Inherits your existing RBAC, audit and network policies.',
+  'Encryption at rest and in transit, provided by your infrastructure.',
 ]
 
-const safetyTiles = [
-  { label: 'Runs in Your Snowflake Account', icon: Shield, color: '#0D9488' },
-  { label: 'No Third-Party Processors', icon: Lock, color: '#1E3A8A' },
-  { label: 'FHIR Compatible Output', icon: FileText, color: '#0D9488' },
-  { label: 'Zero Data Movement', icon: Database, color: '#10B981' },
+const deploymentTiles = [
+  { label: 'Runs in your cloud or on-prem', icon: Shield, color: '#0D9488' },
+  { label: 'No third-party processors', icon: Lock, color: '#1E3A8A' },
+  { label: 'FHIR-aligned output', icon: FileText, color: '#0D9488' },
+  { label: 'Zero data egress', icon: Database, color: '#10B981' },
 ]
 
 export default function RCAExtractPage() {
@@ -107,30 +107,28 @@ export default function RCAExtractPage() {
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 border border-white/20 rounded-full text-sm text-white/90 mb-6">
                 <span className="w-2 h-2 rounded-full bg-[#10B981]" />
-                Snowflake Native App
+                Self-hosted Docker container
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 text-balance">
                 RCA Extract
               </h1>
               <p className="text-lg text-white/80 leading-relaxed mb-8 max-w-2xl">
-                Document extraction for healthcare PDFs. Ingests discharge summaries, ED assessments, referral letters, imaging reports and pathology reports. Returns structured fields ready for downstream analytics, EMR ingest, or audit work.
+                Self-hosted document extraction for healthcare PDFs. Ships as a Docker container that runs in your cloud or on-prem. POST a PDF, get back structured fields plus bounding boxes. Zero data egress.
               </p>
               <div className="flex flex-wrap gap-4">
-                <a
-                  href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/contact?service=rca-extract"
                   className="flex items-center gap-2 px-6 py-3 bg-white text-[#1E3A8A] rounded-lg font-semibold hover:bg-white/90 transition-colors shadow-lg"
                 >
-                  Browse on Snowflake Marketplace
-                  <ExternalLink size={16} />
-                </a>
+                  Talk to us about deployment
+                  <ArrowRight size={16} />
+                </Link>
                 <Link
-                  href="/contact"
+                  href="/libraries/medical"
                   className="flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/20 transition-colors"
                 >
-                  Talk to our team
-                  <ArrowRight size={16} />
+                  See the supported document types
+                  <ChevronRight size={16} />
                 </Link>
               </div>
             </div>
@@ -143,23 +141,23 @@ export default function RCAExtractPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {keyStats.map((s) => (
                 <div key={s.label} className="text-center">
-                  <div className="text-2xl lg:text-3xl font-bold text-white">{s.value}</div>
-                  <div className="text-sm text-white/70 mt-1">{s.label}</div>
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight">{s.value}</div>
+                  <div className="text-xs sm:text-sm text-white/70 mt-1">{s.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* WHAT IT DOES */}
-        <section className="py-20 bg-white" aria-label="What RCA Extract does">
+        {/* HOW THE CONTAINER WORKS */}
+        <section className="py-20 bg-white" aria-label="How the container works">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                From Document to Insight
+                How it deploys
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                Native Snowflake architecture means zero data movement and instant analytics on extracted results.
+                A single container image. Your infrastructure. Your data stays where it is.
               </p>
             </div>
 
@@ -250,29 +248,37 @@ export default function RCAExtractPage() {
           </div>
         </section>
 
-        {/* SNOWFLAKE NATIVE APP */}
-        <section className="py-16 bg-slate-50 border-y border-slate-200" aria-label="Snowflake Native App">
+        {/* DEPLOYMENT MODEL */}
+        <section className="py-16 bg-slate-50 border-y border-slate-200" aria-label="Deployment model">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
               <div className="animate-on-scroll">
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                  What you get with a Snowflake Native deployment
+                  What you get with a self-hosted deployment
                 </h2>
                 <p className="text-slate-600 leading-relaxed mb-6">
-                  RCA Extract runs inside your Snowflake account. The product inherits the security and audit capabilities of your own Snowflake environment.
+                  RCA Extract runs as a Docker container inside your own cloud account, your own Kubernetes cluster, or on-prem on any Docker-compatible host. Your infrastructure, your compute bill, your data residency story.
                 </p>
                 <ul className="flex flex-col gap-3">
-                  {snowflakeBullets.map((item) => (
+                  {deploymentBullets.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm text-slate-700">
                       <CheckCircle size={16} className="text-[#0D9488] mt-0.5 shrink-0" />
                       {item}
                     </li>
                   ))}
                 </ul>
+                <div className="mt-6 p-4 bg-white border border-slate-200 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <Cloud size={16} className="text-[#1E3A8A] mt-0.5 shrink-0" />
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      <span className="font-semibold text-slate-700">Other deployment shapes</span> (Snowflake Native App for existing Snowflake customers, managed API for teams without infrastructure) are available on request as part of an enterprise plan. Contact us to scope.
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <div className="animate-on-scroll grid grid-cols-2 gap-4">
-                {safetyTiles.map(({ label, icon: Icon, color }) => (
+                {deploymentTiles.map(({ label, icon: Icon, color }) => (
                   <div
                     key={label}
                     className="bg-white border border-slate-200 rounded-xl p-5 flex flex-col items-center gap-3 text-center hover:border-[#0D9488]/40 transition-colors"
@@ -296,11 +302,11 @@ export default function RCAExtractPage() {
                 Pricing
               </h2>
               <p className="text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
-                Contact us. Pricing depends on document volume, deployment shape and SLA. Pilot packs are available before commitment.
+                Per-seat or per-month, not per-page. You control the compute. Contact us with your scope: volume, document types, deployment shape and SLA. A pilot pack from the RCA Medical Library is the recommended first step.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
-                  href="/contact"
+                  href="/contact?service=rca-extract"
                   className="flex items-center gap-2 px-6 py-3 bg-[#1E3A8A] text-white rounded-lg font-semibold hover:bg-[#172d6b] transition-colors shadow-sm"
                 >
                   Request a quote
@@ -322,26 +328,24 @@ export default function RCAExtractPage() {
         <section className="py-20 bg-gradient-to-br from-[#0D9488] to-[#1E3A8A]" aria-label="Call to action">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 text-balance">
-              Browse RCA Extract on Snowflake Marketplace
+              Talk to us about deployment
             </h2>
             <p className="text-white/80 text-lg mb-8 leading-relaxed">
-              Listing ID GZSUZU1HJP. Snowflake Native App. Runs in your account.
+              Self-hosted container in your cloud, on-prem, or air-gapped. Snowflake Native App available on enterprise plans.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact?service=rca-extract"
                 className="flex items-center gap-2 px-8 py-3.5 bg-white text-[#1E3A8A] rounded-lg font-semibold hover:bg-white/90 transition-colors shadow-lg"
               >
-                Open on Snowflake Marketplace
-                <ExternalLink size={16} />
-              </a>
+                Talk to us about deployment
+                <ArrowRight size={16} />
+              </Link>
               <Link
-                href="/contact"
+                href="/libraries/medical"
                 className="flex items-center gap-2 px-8 py-3.5 bg-white/10 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/20 transition-colors"
               >
-                Talk to our team
+                See the test data first
                 <ChevronRight size={16} />
               </Link>
             </div>

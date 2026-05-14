@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useState } from 'react'
 import {
-  Mail, MapPin, ExternalLink, Send, CheckCircle, ChevronDown, User, Building, MessageSquare, Library
+  Mail, MapPin, Send, CheckCircle, ChevronDown, User, Building, MessageSquare, Library
 } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import Navigation from '@/components/navigation'
@@ -35,7 +35,7 @@ const enquiryTypes = [
   'Insurance QA Sprint Pack (AUD $2,500)',
   'Insurance Library (larger volume)',
   'Medical Library (larger volume)',
-  'RCA Extract on Snowflake',
+  'RCA Extract deployment',
   'Custom library',
   'Pricing & Licensing',
   'Technical Support',
@@ -130,7 +130,7 @@ function ContactPageInner() {
               Get in touch
             </h1>
             <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Our Sydney-based team handles enquiries for RCA Extract on Snowflake and for the RCA training document libraries. Use the form below or email us directly.
+              Our Sydney-based team handles enquiries for RCA Extract deployments and the RCA training document libraries. Use the form below or email us directly.
             </p>
           </div>
         </section>
@@ -157,21 +157,18 @@ function ContactPageInner() {
 
               <div className="p-6 bg-gradient-to-br from-[#1E3A8A] to-[#0D9488] rounded-xl">
                 <div className="w-11 h-11 rounded-lg bg-white/20 flex items-center justify-center mb-4">
-                  <ExternalLink size={20} className="text-white" />
+                  <Send size={20} className="text-white" />
                 </div>
-                <h3 className="font-semibold text-white mb-1">Snowflake Marketplace</h3>
+                <h3 className="font-semibold text-white mb-1">Free preview pack</h3>
                 <p className="text-sm text-white/70 mb-3 leading-relaxed">
-                  Browse RCA Extract directly on the Snowflake Marketplace (listing GZSUZU1HJP).
+                  Same-day delivery on request. Two complete insurance packs or 25 to 35 medical documents, with ground truth and scanned variants.
                 </p>
-                <a
-                  href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/contact?pack=preview"
                   className="inline-flex items-center gap-1.5 text-sm font-medium text-white bg-white/20 hover:bg-white/30 transition-colors px-3 py-1.5 rounded-lg"
                 >
-                  Open Marketplace
-                  <ExternalLink size={13} />
-                </a>
+                  Request a preview pack
+                </Link>
               </div>
 
               <div className="p-6 bg-slate-50 border border-slate-200 rounded-xl">
@@ -205,7 +202,7 @@ function ContactPageInner() {
                   Talk to our team
                 </h2>
                 <p className="text-slate-600 leading-relaxed mb-8">
-                  Whether you are evaluating RCA Extract on Snowflake, requesting a free preview pack from one of the synthetic training document libraries, or scoping a custom library, our Sydney-based team handles it. Use the form, mention the pack or service in the message, and we will respond within one business day (AEST).
+                  Whether you are scoping a self-hosted RCA Extract deployment, requesting a free preview pack from one of the synthetic training document libraries, or building a custom library, our Sydney-based team handles it. Use the form, mention the pack or service in the message, and we will respond within one business day (AEST).
                 </p>
 
                 <div className="flex flex-col gap-5">
@@ -219,8 +216,8 @@ function ContactPageInner() {
                       description: 'AUD $2,500 fixed. 10 packs with engineered red flags, ground truth and bboxes. 48 to 72 hour delivery. 30-minute handover call.',
                     },
                     {
-                      title: 'RCA Extract on Snowflake',
-                      description: 'Browse the listing on the Snowflake Marketplace, or ask us about deployment, schema mapping, or evaluation against the RCA Medical Library.',
+                      title: 'RCA Extract deployment',
+                      description: 'Self-hosted Docker container that runs in your cloud or on-prem. Talk to us about license, schema mapping, and evaluation against the RCA Medical Library.',
                     },
                     {
                       title: 'Custom libraries',

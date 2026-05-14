@@ -28,10 +28,10 @@ function useScrollAnimation() {
 }
 
 const stats = [
+  { value: 'Free preview', label: 'Same-day on request' },
   { value: '40+', label: 'Medical document types' },
-  { value: 'Ground truth', label: 'Per document, every document' },
-  { value: 'Australian', label: 'Healthcare conventions' },
-  { value: 'AUD $2,500', label: 'Insurance QA Sprint Pack' },
+  { value: 'Per-row labels', label: 'Insurance bbox precision' },
+  { value: 'Australian-built', label: 'Healthcare conventions' },
 ]
 
 // Slideshow of actual documents shipped in the libraries
@@ -71,8 +71,8 @@ const buyerPersonas = [
   {
     icon: Database,
     label: 'Data platform teams',
-    headline: 'Building Snowflake-native document pipelines',
-    description: 'RCA Extract runs as a Snowflake Native App (listing GZSUZU1HJP). Patient data never leaves your account. Your existing Snowflake RBAC and audit logs apply to every page processed.',
+    headline: 'Deploying document extraction inside your own environment',
+    description: 'RCA Extract ships as a self-hosted Docker container that runs in your cloud or on-prem. Zero data egress. Customer-managed compute, customer-managed costs. Your existing RBAC and audit policies apply.',
   },
 ]
 
@@ -270,7 +270,7 @@ export default function HomePage() {
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 border border-white/20 rounded-full text-sm text-white/90 mb-6 animate-fade-in">
                 <span className="w-2 h-2 rounded-full bg-[#10B981]" />
-                Synthetic libraries shipping. RCA Extract on Snowflake Marketplace.
+                Built and shipped from Sydney by Jack Webb
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight text-balance mb-6 animate-fade-in-up">
@@ -594,15 +594,13 @@ export default function HomePage() {
                 Request a preview pack
                 <ChevronRight size={16} />
               </Link>
-              <a
-                href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/products/rca-extract"
                 className="flex items-center gap-2 px-8 py-3.5 bg-white/10 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/20 transition-colors"
               >
-                Browse RCA Extract on Snowflake
-                <ExternalLink size={16} />
-              </a>
+                Talk to us about deployment
+                <ArrowRight size={16} />
+              </Link>
             </div>
             <p className="text-white/60 text-sm mt-10 leading-relaxed">
               Built by Jack Webb in Sydney.{' '}

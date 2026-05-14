@@ -8,7 +8,6 @@ const productLinks = [
   { label: 'RCA Medical Library', href: '/libraries/medical' },
   { label: 'RCA Benchmark Packs', href: '/libraries/benchmark-packs' },
   { label: 'RCA Custom Libraries', href: '/contact?service=custom-library' },
-  { label: 'Snowflake Marketplace', href: 'https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/', external: true },
 ]
 
 const companyLinks = [

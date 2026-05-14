@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, X, ExternalLink } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -109,17 +109,14 @@ export default function Navigation() {
                     : 'border-white/60 text-white hover:bg-white/10'
                 }`}
               >
-                Contact Us
+                Contact
               </Link>
-              <a
-                href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact?pack=preview"
                 className="flex items-center gap-1.5 px-4 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-[#0D9488] to-[#0B7D73] hover:from-[#0B7D73] hover:to-[#0a6b62] transition-all shadow-sm"
               >
-                Snowflake Marketplace
-                <ExternalLink size={14} />
-              </a>
+                Request a preview pack
+              </Link>
             </div>
 
             <button
@@ -192,17 +189,14 @@ export default function Navigation() {
                 href="/contact"
                 className="w-full text-center px-4 py-2.5 rounded-lg text-sm font-medium border border-[#1E3A8A] text-[#1E3A8A] hover:bg-[#1E3A8A] hover:text-white transition-colors"
               >
-                Contact Us
+                Contact
               </Link>
-              <a
-                href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full text-center flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-[#0D9488] to-[#0B7D73]"
+              <Link
+                href="/contact?pack=preview"
+                className="w-full text-center px-4 py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-[#0D9488] to-[#0B7D73]"
               >
-                Snowflake Marketplace
-                <ExternalLink size={14} />
-              </a>
+                Request a preview pack
+              </Link>
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import {
-  Mail, ExternalLink, ChevronDown, ChevronUp, Book, LifeBuoy,
+  Mail, ChevronDown, ChevronUp, Book, LifeBuoy,
   Zap, Shield, DollarSign, Database, ArrowRight, Library
 } from 'lucide-react'
 import Navigation from '@/components/navigation'
@@ -38,7 +38,7 @@ const faqs: FaqCategory[] = [
     items: [
       {
         question: 'How do I deploy RCA Extract?',
-        answer: 'RCA Extract is available on the Snowflake Marketplace (listing GZSUZU1HJP). Search for "RCA Extract" or "MEDISCAN" in the Marketplace, click Install, and follow the guided setup. RCA Extract installs as a Snowflake Native App, so your data stays in your existing environment.',
+        answer: 'RCA Extract ships as a self-hosted Docker container. Pull the image from a private registry, run it with a license key on any Docker-compatible host in your cloud or on-prem environment, and POST PDFs to its REST API. Contact us at jack.webb@rootcauseanalytics.com.au to scope a deployment and receive credentials.',
       },
       {
         question: 'What do I need to get started?',
@@ -50,7 +50,7 @@ const faqs: FaqCategory[] = [
       },
       {
         question: 'What was MEDISCAN renamed to?',
-        answer: 'MEDISCAN is now RCA Extract. The product itself is unchanged: same Snowflake Native App, same Marketplace listing (GZSUZU1HJP), same supported document types. The rename reflects the broader Root Cause Analytics product line, which now includes synthetic training document libraries (RCA Insurance Library, RCA Medical Library) alongside the extraction product.',
+        answer: 'MEDISCAN is now RCA Extract. Same product, same supported document types. The rename reflects the broader Root Cause Analytics product line, which now includes synthetic training document libraries (RCA Insurance Library, RCA Medical Library) alongside the extraction product. RCA Extract is also moving to a self-hosted Docker container deployment model so customers run extraction inside their own environment.',
       },
     ],
   },
@@ -90,7 +90,7 @@ const faqs: FaqCategory[] = [
       },
       {
         question: 'How is billing handled?',
-        answer: 'RCA Extract billing is managed through the Snowflake Marketplace. Charges appear on your regular Snowflake invoice. There is no separate billing relationship or credit card required.',
+        answer: 'RCA Extract is licensed per-seat or per-month for the self-hosted container. You run it on your own compute, so there is no per-page metering and no surprise compute bill. Invoiced directly. Contact us for a quote.',
       },
       {
         question: 'How are the synthetic libraries priced?',
@@ -221,23 +221,20 @@ export default function SupportPage() {
                 </div>
               </a>
 
-              <a
-                href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact?service=rca-extract"
                 className="flex items-center gap-4 p-5 bg-gradient-to-br from-[#1E3A8A] to-[#0D9488] rounded-xl hover:shadow-md transition-all group"
               >
                 <div className="w-11 h-11 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
-                  <ExternalLink size={20} className="text-white" />
+                  <ArrowRight size={20} className="text-white" />
                 </div>
                 <div>
                   <div className="font-semibold text-white text-sm flex items-center gap-1">
-                    Open on Snowflake Marketplace
-                    <ExternalLink size={12} />
+                    Talk to us about deployment
                   </div>
-                  <div className="text-xs text-white/70 mt-0.5">Listing GZSUZU1HJP</div>
+                  <div className="text-xs text-white/70 mt-0.5">Self-hosted container, on-prem or cloud</div>
                 </div>
-              </a>
+              </Link>
 
               <Link
                 href="/contact"
@@ -318,18 +315,16 @@ export default function SupportPage() {
               Ready to deploy RCA Extract?
             </h2>
             <p className="text-white/70 mb-8 leading-relaxed">
-              Browse the listing on the Snowflake Marketplace, or talk to our Sydney-based team to discuss your specific deployment.
+              Self-hosted container in your cloud or on-prem. Talk to our Sydney-based team to scope your deployment.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact?service=rca-extract"
                 className="flex items-center gap-2 px-8 py-3.5 bg-[#10B981] text-white rounded-lg font-semibold hover:bg-[#059669] transition-colors"
               >
-                Open on Snowflake Marketplace
-                <ExternalLink size={16} />
-              </a>
+                Talk to us about deployment
+                <ArrowRight size={16} />
+              </Link>
               <Link
                 href="/contact"
                 className="flex items-center gap-2 px-8 py-3.5 bg-white/10 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/20 transition-colors"
