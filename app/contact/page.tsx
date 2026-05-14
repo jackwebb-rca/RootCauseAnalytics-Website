@@ -1,6 +1,7 @@
 'use client'
 
 import { Suspense, useEffect, useState } from 'react'
+import Link from 'next/link'
 import {
   Mail, MapPin, Send, CheckCircle, ChevronDown, User, Building, MessageSquare, Library
 } from 'lucide-react'
