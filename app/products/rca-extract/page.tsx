@@ -21,8 +21,8 @@ function useScrollAnimation() {
 }
 
 const keyStats = [
-  { value: '5', label: 'Document types supported today' },
-  { value: 'Snowflake', label: 'Native deployment shape' },
+  { value: 'Snowflake', label: 'Native App deployment' },
+  { value: 'AU', label: 'Healthcare conventions' },
   { value: '10 Min', label: 'Marketplace install time' },
   { value: 'Zero', label: 'Data egress' },
 ]
@@ -190,7 +190,7 @@ export default function RCAExtractPage() {
                 Supported document types
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                Five document types ship today. These match the documents in the RCA Medical Library case bank.
+                The current production set covers high-volume Australian healthcare document types. Each is evaluated end-to-end against the matching family in the RCA Medical Library, so extraction quality can be scored against known ground truth. Additional document types ship on request.
               </p>
             </div>
 
