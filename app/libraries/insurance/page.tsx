@@ -43,22 +43,50 @@ const redFlagCategories = [
 ]
 
 const styleProfiles = [
-  'broker_formal',
-  'broker_modern',
-  'broker_email_printout',
-  'insurer_legacy_system',
-  'underwriting_agency_clean',
-  'bordereaux_like',
-  'spreadsheet_export',
-  'claims_system_export',
+  { name: 'Formal broker submission',  desc: 'Polished broker template, classic typography, full attachments' },
+  { name: 'Modern broker PDF',         desc: 'Contemporary layout, brand colour, compact disclosure block' },
+  { name: 'Broker email printout',     desc: 'Submission rendered as printed email with inline attachments' },
+  { name: 'Insurer legacy system',     desc: 'Mainframe-style fixed-width export with header banners' },
+  { name: 'Underwriting agency',       desc: 'Agency-template policy schedule with stamped signature block' },
+  { name: 'Bordereaux-style export',   desc: 'Spreadsheet-grid loss bordereaux with quarterly subtotals' },
+  { name: 'Spreadsheet export',        desc: 'Excel-to-PDF export with sheet tabs, gridlines, frozen panes' },
+  { name: 'Claims system export',      desc: 'Claims management system bordereaux with system IDs and audit columns' },
 ]
 
-const pricing = [
-  { tier: 'Free preview', scale: '2 packs', price: 'Free', delivery: 'Same day on request' },
-  { tier: 'QA Sprint Pack', scale: '10 packs + red flag summary + 30-min handover', price: 'AUD $2,500', delivery: '48 to 72 hours', highlight: true },
-  { tier: 'QA library', scale: '25, 100, 500 packs', price: 'On request', delivery: 'Scoped per order' },
-  { tier: 'Bulk training library', scale: '5,000+ packs', price: 'On request', delivery: 'Scoped per order' },
-  { tier: 'Custom variants', scale: 'Your document types or red flag set', price: 'On request', delivery: 'Scoped per order' },
+type PricingRow = { tier: string; scale: string; price: string; delivery: string; highlight?: boolean }
+
+const pricing: PricingRow[] = [
+  {
+    tier: 'Free preview',
+    scale: '2 complete packs (about 13 PDFs) with ground truth, bboxes and scanned variants',
+    price: 'Free',
+    delivery: 'Same-day on request',
+  },
+  {
+    tier: 'QA Sprint Pack',
+    scale: '10 complete packs (about 67 PDFs) plus engineered red flag summary and a 30-minute handover call',
+    price: 'AUD $2,500',
+    delivery: '48 to 72 hours',
+    highlight: true,
+  },
+  {
+    tier: 'QA library',
+    scale: '25 complete packs (about 160 PDFs). Suitable for a controlled regression suite',
+    price: 'On request',
+    delivery: '1 to 2 weeks',
+  },
+  {
+    tier: 'Production library',
+    scale: '100 to 500 complete packs (700 to 3,500 PDFs) with train / val / test splits',
+    price: 'On request',
+    delivery: '2 to 4 weeks',
+  },
+  {
+    tier: 'Training library',
+    scale: '5,000+ packs (35,000+ PDFs) for model fine-tuning at scale',
+    price: 'On request',
+    delivery: 'Scoped per order',
+  },
 ]
 
 export default function InsuranceLibraryPage() {
@@ -267,10 +295,10 @@ export default function InsuranceLibraryPage() {
                 <tbody>
                   {pricing.map((row) => (
                     <tr key={row.tier} className={`border-b border-slate-200 ${row.highlight ? 'bg-[#CCFBF1]/40' : ''}`}>
-                      <td className="px-4 py-3 text-sm font-semibold text-slate-800">{row.tier}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">{row.scale}</td>
-                      <td className={`px-4 py-3 text-sm font-semibold ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">{row.delivery}</td>
+                      <td className="px-4 py-3 text-sm font-semibold text-slate-800 align-top whitespace-nowrap">{row.tier}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-xl">{row.scale}</td>
+                      <td className={`px-4 py-3 text-sm font-semibold align-top whitespace-nowrap ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600 align-top whitespace-nowrap">{row.delivery}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -349,11 +377,12 @@ export default function InsuranceLibraryPage() {
             <p className="text-slate-600 leading-relaxed mb-6">
               Each PDF is rendered with a deterministically chosen style profile, each modelled on a real underwriting-inbox archetype:
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
               {styleProfiles.map((sp) => (
-                <span key={sp} className="text-xs font-mono bg-white border border-slate-200 rounded-md px-3 py-2 text-slate-700 text-center">
-                  {sp}
-                </span>
+                <div key={sp.name} className="bg-white border border-slate-200 rounded-lg p-3">
+                  <div className="text-sm font-semibold text-slate-800 mb-1">{sp.name}</div>
+                  <div className="text-xs text-slate-500 leading-relaxed">{sp.desc}</div>
+                </div>
               ))}
             </div>
             <p className="text-slate-600 leading-relaxed text-sm">

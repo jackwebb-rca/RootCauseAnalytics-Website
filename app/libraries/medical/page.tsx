@@ -98,12 +98,40 @@ const styleProfiles = [
   'faxed_external_correspondence',
 ]
 
-const pricing = [
-  { tier: 'Free review pack', scale: '25 to 35 documents', price: 'Free for qualified prospects', delivery: 'Same day on request', highlight: true },
-  { tier: 'QA library', scale: '200 documents', price: 'On request', delivery: 'Scoped per order' },
-  { tier: 'Training library', scale: '500, 5,000+ documents', price: 'On request', delivery: 'Scoped per order' },
-  { tier: 'Pilot Pack', scale: '100 to 200 docs scoped to your use case', price: 'On request', delivery: 'Scoped per order' },
-  { tier: 'Custom variants', scale: 'New document types, new case archetypes', price: 'On request', delivery: 'Scoped per order' },
+type PricingRow = { tier: string; scale: string; price: string; delivery: string; highlight?: boolean }
+
+const pricing: PricingRow[] = [
+  {
+    tier: 'Free review pack',
+    scale: '25 to 35 representative documents across the major types, with ground truth, bboxes and scanned variants',
+    price: 'Free for qualified prospects',
+    delivery: 'Same-day on request',
+    highlight: true,
+  },
+  {
+    tier: 'Pilot Pack',
+    scale: '100 to 200 documents scoped to your specialty (discharge-heavy, pathology-heavy, or a specific clinical area)',
+    price: 'On request',
+    delivery: '1 to 2 weeks',
+  },
+  {
+    tier: 'QA library',
+    scale: '200 documents across 40+ document types. Suitable for a controlled regression suite',
+    price: 'On request',
+    delivery: '1 to 2 weeks',
+  },
+  {
+    tier: 'Production library',
+    scale: '500 to 2,000 documents with train / val / test splits',
+    price: 'On request',
+    delivery: '2 to 4 weeks',
+  },
+  {
+    tier: 'Training library',
+    scale: '5,000+ documents for model fine-tuning at scale',
+    price: 'On request',
+    delivery: 'Scoped per order',
+  },
 ]
 
 export default function MedicalLibraryPage() {
@@ -267,10 +295,10 @@ export default function MedicalLibraryPage() {
                 <tbody>
                   {pricing.map((row) => (
                     <tr key={row.tier} className={`border-b border-slate-200 ${row.highlight ? 'bg-[#CCFBF1]/40' : ''}`}>
-                      <td className="px-4 py-3 text-sm font-semibold text-slate-800">{row.tier}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">{row.scale}</td>
-                      <td className={`px-4 py-3 text-sm font-semibold ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">{row.delivery}</td>
+                      <td className="px-4 py-3 text-sm font-semibold text-slate-800 align-top whitespace-nowrap">{row.tier}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-xl">{row.scale}</td>
+                      <td className={`px-4 py-3 text-sm font-semibold align-top whitespace-nowrap ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600 align-top whitespace-nowrap">{row.delivery}</td>
                     </tr>
                   ))}
                 </tbody>

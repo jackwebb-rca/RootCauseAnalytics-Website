@@ -139,12 +139,40 @@ const shippingChecklist = [
   'Insurance packs additionally ship red_flags_summary.csv with where_to_review pointers',
 ]
 
-const pricing = [
-  { tier: 'Insurance 2-pack preview', price: 'Free', delivery: 'Same day on request' },
-  { tier: 'Insurance QA Sprint Pack', price: 'AUD $2,500', delivery: '48 to 72 hours', highlight: true },
-  { tier: 'Insurance Procurement Pack', price: 'On request', delivery: 'Scoped per order' },
-  { tier: 'Medical 25-doc review pack', price: 'Free for qualified prospects', delivery: 'Same day on request' },
-  { tier: 'Medical Pilot Pack', price: 'On request', delivery: 'Scoped per order' },
+type PricingRow = { tier: string; scope: string; price: string; delivery: string; highlight?: boolean }
+
+const pricing: PricingRow[] = [
+  {
+    tier: 'Insurance 2-pack preview',
+    scope: '2 complete submission packs (about 13 PDFs)',
+    price: 'Free',
+    delivery: 'Same-day on request',
+  },
+  {
+    tier: 'Insurance QA Sprint Pack',
+    scope: '10 complete packs (about 67 PDFs) + engineered red flag summary + 30-minute handover call',
+    price: 'AUD $2,500',
+    delivery: '48 to 72 hours',
+    highlight: true,
+  },
+  {
+    tier: 'Insurance Procurement Pack',
+    scope: '5 to 10 packs scoped for a vendor bake-off. All vendors score on the same documents',
+    price: 'On request',
+    delivery: '1 to 2 weeks',
+  },
+  {
+    tier: 'Medical 25-doc review pack',
+    scope: '25 to 35 representative medical documents with a five-minute review path',
+    price: 'Free for qualified prospects',
+    delivery: 'Same-day on request',
+  },
+  {
+    tier: 'Medical Pilot Pack',
+    scope: '100 to 200 documents scoped to your specialty (discharge, pathology, or a specific clinical area)',
+    price: 'On request',
+    delivery: '1 to 2 weeks',
+  },
 ]
 
 export default function BenchmarkPacksPage() {
@@ -318,6 +346,7 @@ export default function BenchmarkPacksPage() {
                 <thead>
                   <tr className="bg-white border-b border-slate-200">
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Pack</th>
+                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">What is in it</th>
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Price</th>
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Delivery</th>
                   </tr>
@@ -325,9 +354,10 @@ export default function BenchmarkPacksPage() {
                 <tbody>
                   {pricing.map((row) => (
                     <tr key={row.tier} className={`border-b border-slate-200 bg-white ${row.highlight ? 'bg-[#CCFBF1]/40' : ''}`}>
-                      <td className="px-4 py-3 text-sm font-semibold text-slate-800">{row.tier}</td>
-                      <td className={`px-4 py-3 text-sm font-semibold ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">{row.delivery}</td>
+                      <td className="px-4 py-3 text-sm font-semibold text-slate-800 align-top">{row.tier}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-xl">{row.scope}</td>
+                      <td className={`px-4 py-3 text-sm font-semibold align-top whitespace-nowrap ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600 align-top whitespace-nowrap">{row.delivery}</td>
                     </tr>
                   ))}
                 </tbody>
