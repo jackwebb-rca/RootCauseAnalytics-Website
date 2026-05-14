@@ -35,16 +35,23 @@ const stats = [
 ]
 
 // Slideshow of actual documents shipped in the libraries
-const sampleSlides = [
-  { src: '/samples/insurance_broker_email.png',         library: 'Insurance', label: 'Broker submission email' },
-  { src: '/samples/insurance_loss_run_clean.png',       library: 'Insurance', label: 'Loss run report' },
-  { src: '/samples/insurance_sov_clean.png',            library: 'Insurance', label: 'Statement of values' },
-  { src: '/samples/insurance_policy_schedule.png',      library: 'Insurance', label: 'Policy schedule' },
-  { src: '/samples/insurance_fnol.png',                 library: 'Insurance', label: 'First notice of loss' },
-  { src: '/samples/medical_discharge_summary_clean.png', library: 'Medical',  label: 'Discharge summary' },
-  { src: '/samples/medical_ed_assessment.png',          library: 'Medical',  label: 'ED assessment' },
-  { src: '/samples/medical_referral_letter.png',        library: 'Medical',  label: 'Referral letter' },
-  { src: '/samples/medical_pathology_report.png',       library: 'Medical',  label: 'Pathology report' },
+type Slide = { src: string; label: string }
+type Library = 'Insurance' | 'Medical'
+
+const insuranceSlides: Slide[] = [
+  { src: '/samples/insurance_broker_email.png',    label: 'Broker submission email' },
+  { src: '/samples/insurance_loss_run_clean.png',  label: 'Loss run report' },
+  { src: '/samples/insurance_sov_clean.png',       label: 'Statement of values' },
+  { src: '/samples/insurance_policy_schedule.png', label: 'Policy schedule' },
+  { src: '/samples/insurance_fnol.png',            label: 'First notice of loss' },
+]
+
+const medicalSlides: Slide[] = [
+  { src: '/samples/medical_discharge_summary_clean.png', label: 'Discharge summary' },
+  { src: '/samples/medical_ed_assessment.png',           label: 'ED assessment' },
+  { src: '/samples/medical_referral_letter.png',         label: 'Referral letter' },
+  { src: '/samples/medical_imaging_report_clean.png',    label: 'Imaging report' },
+  { src: '/samples/medical_pathology_report.png',        label: 'Pathology report' },
 ]
 
 const trustBadges = [
@@ -167,33 +174,34 @@ const safetyTiles = [
   { label: 'Direct delivery, no third parties', icon: FileText, color: '#10B981' },
 ]
 
-function SampleSlideshow() {
+function SampleSlideshow({ slides, libraryName }: { slides: Slide[]; libraryName: Library }) {
   const [idx, setIdx] = useState(0)
-  const total = sampleSlides.length
+  const total = slides.length
 
   useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % total), 6000)
     return () => clearInterval(t)
   }, [total])
 
-  const slide = sampleSlides[idx]
+  const slide = slides[idx]
   const prev = () => setIdx((i) => (i - 1 + total) % total)
   const next = () => setIdx((i) => (i + 1) % total)
 
+  const badgeClass = libraryName === 'Insurance'
+    ? 'bg-[#1E3A8A]/5 text-[#1E3A8A] border-[#1E3A8A]/20'
+    : 'bg-[#0D9488]/10 text-[#0D9488] border-[#0D9488]/30'
+  const activeDotClass = libraryName === 'Insurance' ? 'bg-[#1E3A8A]' : 'bg-[#0D9488]'
+
   return (
     <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-      <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
-        <div className="flex items-center gap-3">
-          <span className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${
-            slide.library === 'Insurance'
-              ? 'bg-[#1E3A8A]/5 text-[#1E3A8A] border-[#1E3A8A]/20'
-              : 'bg-[#0D9488]/10 text-[#0D9488] border-[#0D9488]/30'
-          }`}>
-            RCA {slide.library} Library
+      <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50 gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <span className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border shrink-0 ${badgeClass}`}>
+            RCA {libraryName} Library
           </span>
-          <span className="text-sm font-semibold text-slate-700">{slide.label}</span>
+          <span className="text-sm font-semibold text-slate-700 truncate">{slide.label}</span>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <span className="text-xs text-slate-400 font-mono">{idx + 1} / {total}</span>
           <div className="flex items-center gap-1">
             <button
@@ -218,13 +226,13 @@ function SampleSlideshow() {
 
       {/* Slide stage - fixed aspect ratio so layout doesn't jump between slides */}
       <div className="relative bg-slate-100 aspect-[707/1000]">
-        {sampleSlides.map((s, i) => (
+        {slides.map((s, i) => (
           <Image
             key={s.src}
             src={s.src}
-            alt={`${s.library} library sample: ${s.label}`}
+            alt={`RCA ${libraryName} Library sample: ${s.label}`}
             fill
-            sizes="(min-width: 1024px) 700px, 100vw"
+            sizes="(min-width: 1024px) 560px, 100vw"
             priority={i === 0}
             className={`object-contain transition-opacity duration-500 ${i === idx ? 'opacity-100' : 'opacity-0'}`}
           />
@@ -233,14 +241,14 @@ function SampleSlideshow() {
 
       {/* Dot indicators */}
       <div className="flex items-center justify-center gap-1.5 px-5 py-3 border-t border-slate-200 bg-slate-50">
-        {sampleSlides.map((s, i) => (
+        {slides.map((s, i) => (
           <button
             key={s.src}
             type="button"
             onClick={() => setIdx(i)}
             aria-label={`Go to slide ${i + 1}: ${s.label}`}
             className={`h-1.5 rounded-full transition-all ${
-              i === idx ? 'w-6 bg-[#0D9488]' : 'w-1.5 bg-slate-300 hover:bg-slate-400'
+              i === idx ? `w-6 ${activeDotClass}` : 'w-1.5 bg-slate-300 hover:bg-slate-400'
             }`}
           />
         ))}
@@ -382,12 +390,13 @@ export default function HomePage() {
                 A few pages from the libraries
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                Nine real pages from the RCA Insurance and Medical libraries. Same generator stack, different document types. Every page ships with ground truth, bounding boxes, a scanned variant, and a visible synthetic disclaimer.
+                Real pages from the RCA Insurance and Medical libraries. Same generator stack, different document types. Every page ships with ground truth, bounding boxes, a scanned variant, and a visible synthetic disclaimer.
               </p>
             </div>
 
-            <div className="animate-on-scroll">
-              <SampleSlideshow />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-on-scroll">
+              <SampleSlideshow slides={insuranceSlides} libraryName="Insurance" />
+              <SampleSlideshow slides={medicalSlides} libraryName="Medical" />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 animate-on-scroll">
