@@ -169,7 +169,7 @@ export default function AboutPage() {
         </section>
 
         {/* TEAM */}
-        <section className="py-20 bg-white" aria-label="Our team">
+        <section className="py-20 bg-white" aria-label="About the founder">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
@@ -256,7 +256,7 @@ export default function AboutPage() {
         <section className="py-16 bg-gradient-to-br from-[#0D9488] to-[#1E3A8A]" aria-label="CTA">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
             <h2 className="text-3xl font-bold text-white mb-4 text-balance">
-              Talk to the team
+              Get in touch
             </h2>
             <p className="text-white/80 mb-8 leading-relaxed">
               Request a free preview pack from one of the libraries, talk to us about deploying RCA Extract in your environment, or reach out about a custom library scoped to your document types.

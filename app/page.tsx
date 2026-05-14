@@ -270,7 +270,7 @@ export default function HomePage() {
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 border border-white/20 rounded-full text-sm text-white/90 mb-6 animate-fade-in">
                 <span className="w-2 h-2 rounded-full bg-[#10B981]" />
-                Built and shipped from Sydney by Jack Webb
+                Founder-led. Built in Sydney.
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight text-balance mb-6 animate-fade-in-up">
@@ -603,7 +603,7 @@ export default function HomePage() {
               </Link>
             </div>
             <p className="text-white/60 text-sm mt-10 leading-relaxed">
-              Built by Jack Webb in Sydney.{' '}
+              Built and supported from Sydney, Australia.{' '}
               <Link href="/about" className="text-white underline underline-offset-2 hover:no-underline">
                 More about Root Cause Analytics
               </Link>

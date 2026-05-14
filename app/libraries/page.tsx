@@ -158,7 +158,7 @@ export default function LibrariesPage() {
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 border border-white/20 rounded-full text-sm text-white/90 mb-6">
                 <span className="w-2 h-2 rounded-full bg-[#10B981]" />
-                Pre-labelled. Pre-bbox'd. Pre-scanned.
+                Ground truth, bounding boxes, scanned variants.
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 text-balance">
                 Pre-labelled synthetic document libraries
@@ -412,7 +412,7 @@ export default function LibrariesPage() {
               Two-pack insurance preview, or a 25 to 35 document medical review pack.
             </p>
             <p className="text-white/60 text-sm mb-8 leading-relaxed">
-              Same-day delivery. Sent by Jack directly from Sydney.
+              Same-day delivery. Direct from Sydney, Australia.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

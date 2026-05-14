@@ -60,7 +60,7 @@ const faqs: FaqCategory[] = [
       },
       {
         question: 'What extraction quality can I expect?',
-        answer: 'Extraction quality depends on document type, document quality and scanning. We publish per-document-type evaluation alongside benchmark releases. Contact our team for document-specific benchmarks relevant to your use case. If you want to verify quality before committing, we can ship you a free preview pack from the RCA Medical Library so you can score extraction against the same ground truth we test against.',
+        answer: 'Extraction quality depends on document type, document quality and scanning. We publish per-document-type evaluation alongside benchmark releases. Contact us for document-specific benchmarks relevant to your use case. If you want to verify quality before committing, we can ship you a free preview pack from the RCA Medical Library so you can score extraction against the same ground truth we test against.',
       },
       {
         question: 'What clinical entities does RCA Extract extract?',
@@ -195,7 +195,7 @@ export default function SupportPage() {
               Support Centre
             </h1>
             <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Answers to common questions about RCA Extract and the RCA training document libraries. Browse the FAQ or reach out to our team in Sydney.
+              Answers to common questions about RCA Extract and the RCA training document libraries. Browse the FAQ or get in touch directly.
             </p>
           </div>
         </section>
@@ -240,8 +240,8 @@ export default function SupportPage() {
                   <LifeBuoy size={20} className="text-[#0D9488]" />
                 </div>
                 <div>
-                  <div className="font-semibold text-slate-800 group-hover:text-[#0D9488] transition-colors text-sm">Talk to an expert</div>
-                  <div className="text-xs text-slate-500 mt-0.5">Sydney-based team</div>
+                  <div className="font-semibold text-slate-800 group-hover:text-[#0D9488] transition-colors text-sm">Get in touch</div>
+                  <div className="text-xs text-slate-500 mt-0.5">Sydney, Australia</div>
                 </div>
               </Link>
             </div>
@@ -256,7 +256,7 @@ export default function SupportPage() {
                 Frequently asked questions
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                Browse answers to the most common questions, or reach out to our Sydney team for personalised support.
+                Browse answers to the most common questions, or get in touch directly.
               </p>
             </div>
 
@@ -311,7 +311,7 @@ export default function SupportPage() {
               Ready to deploy RCA Extract?
             </h2>
             <p className="text-white/70 mb-8 leading-relaxed">
-              Self-hosted container in your cloud or on-prem. Talk to our Sydney-based team to scope your deployment.
+              Self-hosted container in your cloud or on-prem. Get in touch to scope your deployment.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

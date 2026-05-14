@@ -131,7 +131,7 @@ function ContactPageInner() {
               Get in touch
             </h1>
             <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Our Sydney-based team handles enquiries for RCA Extract deployments and the RCA training document libraries. Use the form below or email us directly.
+              Root Cause Analytics is Sydney-based and founder-led. Use the form below or email us directly. Replies within one business day (AEST).
             </p>
           </div>
         </section>
@@ -200,10 +200,10 @@ function ContactPageInner() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="animate-on-scroll">
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                  Talk to our team
+                  Get in touch
                 </h2>
                 <p className="text-slate-600 leading-relaxed mb-8">
-                  Whether you are scoping a self-hosted RCA Extract deployment, requesting a free preview pack from one of the synthetic training document libraries, or building a custom library, our Sydney-based team handles it. Use the form, mention the pack or service in the message, and we will respond within one business day (AEST).
+                  Whether you are scoping a self-hosted RCA Extract deployment, requesting a free preview pack from one of the synthetic training document libraries, or building a custom library, send a note. Use the form, mention the pack or service in the message, and we will respond within one business day (AEST).
                 </p>
 
                 <div className="flex flex-col gap-5">
@@ -240,7 +240,7 @@ function ContactPageInner() {
                 <div className="mt-8 p-5 bg-white border border-slate-200 rounded-xl">
                   <p className="text-sm font-semibold text-slate-700 mb-1">Response time</p>
                   <p className="text-sm text-slate-600 leading-relaxed">
-                    Our Australian team typically responds within one business day (AEST). For urgent technical issues, email{' '}
+                    We typically respond within one business day (AEST). For urgent technical issues, email{' '}
                     <a href="mailto:jack.webb@rootcauseanalytics.com.au" className="text-[#0D9488] hover:underline">
                       jack.webb@rootcauseanalytics.com.au
                     </a>{' '}
@@ -257,7 +257,7 @@ function ContactPageInner() {
                     </div>
                     <h3 className="text-xl font-bold text-slate-800 mb-2">Message received</h3>
                     <p className="text-slate-600 leading-relaxed mb-6">
-                      Thank you for your enquiry. Our Australian team will review your message and respond within one business day (AEST).
+                      Thank you for your enquiry. We will respond within one business day (AEST).
                     </p>
                     <button
                       onClick={() => {
