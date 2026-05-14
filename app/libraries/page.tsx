@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
-  CheckCircle, ArrowRight, Briefcase, Stethoscope, Layers, Cog, ChevronRight
+  ArrowRight, Briefcase, Stethoscope, Layers, Cog, ChevronRight, ChevronLeft
 } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
@@ -23,8 +24,8 @@ const libraries = [
   {
     icon: Briefcase,
     name: 'RCA Insurance Library',
-    useCase: 'Commercial P&C submission extraction QA and training',
-    scale: '25, 100, 500, 5,000+ packs',
+    blurb: 'Complete commercial P&C submission packs. Broker emails, loss runs, statements of values, policy schedules, certificates of currency, applications, FNOL forms, claim reports.',
+    proof: 'Per-row labels on loss run and SOV. Engineered cross-document red flags.',
     href: '/libraries/insurance',
     color: '#1E3A8A',
     highlight: true,
@@ -32,51 +33,95 @@ const libraries = [
   {
     icon: Stethoscope,
     name: 'RCA Medical Library',
-    useCase: 'Healthcare document extraction QA and training',
-    scale: '200, 500, 5,000+ documents',
+    blurb: 'Synthetic Australian medical records. 40+ document types: discharge, ED, referral, imaging, pathology and 35+ specialist types.',
+    proof: 'NSW conventions: postcodes, Medicare format, provider postnominals, AU clinician names.',
     href: '/libraries/medical',
     color: '#0D9488',
   },
   {
     icon: Layers,
     name: 'RCA Benchmark Packs',
-    useCase: 'Procurement evaluation, vendor bake-off, pre-rollout QA',
-    scale: 'Smaller curated subsets',
+    blurb: 'Smaller paid packs for procurement evaluation, vendor bake-offs, and pre-rollout QA.',
+    proof: 'Insurance QA Sprint Pack ships at AUD $2,500 with 48 to 72 hour delivery.',
     href: '/libraries/benchmark-packs',
     color: '#1E3A8A',
   },
   {
     icon: Cog,
     name: 'RCA Custom Libraries',
-    useCase: 'Your document types, your schema, your style profiles',
-    scale: 'Scope-dependent',
+    blurb: 'Your document types, your field schema, your style profiles. Built deterministically and shipped with ground truth and bboxes.',
+    proof: 'Scoped per order. Same delivery shape as the standard libraries.',
     href: '/contact?service=custom-library',
     color: '#10B981',
   },
 ]
 
-const shippingChecklist = [
-  'A PDF in pdfs/ (clean, born-digital)',
-  'A scanned variant in pdfs_scanned/ (rotation, noise, JPEG artefacts)',
-  'A ground truth row in CSV (ground_truth.csv) and JSONL (ground_truth.jsonl)',
-  'A bounding box record in bboxes.jsonl with page index and field coordinates',
-  'A visible synthetic disclaimer rendered on every page',
+const sampleSlides = [
+  { src: '/samples/insurance_broker_email.png',          library: 'Insurance', label: 'Broker submission email' },
+  { src: '/samples/insurance_loss_run_clean.png',        library: 'Insurance', label: 'Loss run report' },
+  { src: '/samples/insurance_sov_clean.png',             library: 'Insurance', label: 'Statement of values' },
+  { src: '/samples/insurance_policy_schedule.png',       library: 'Insurance', label: 'Policy schedule' },
+  { src: '/samples/insurance_fnol.png',                  library: 'Insurance', label: 'First notice of loss' },
+  { src: '/samples/medical_discharge_summary_clean.png', library: 'Medical',   label: 'Discharge summary' },
+  { src: '/samples/medical_ed_assessment.png',           library: 'Medical',   label: 'ED assessment' },
+  { src: '/samples/medical_referral_letter.png',         library: 'Medical',   label: 'Referral letter' },
+  { src: '/samples/medical_pathology_report.png',        library: 'Medical',   label: 'Pathology report' },
 ]
 
-const libraryChecklist = [
-  'A library-level manifest.json documenting document type distribution, pack composition (insurance), case mix (medical), red flag inventory (insurance), and per-document metadata',
-  'A splits.json with train / val / test allocation by document_id (ships with libraries above the standard QA scale)',
-  'A README.md explaining schema, regeneration commands, and the synthetic safety statement',
-  'A validation_summary.md confirming PDF / ground truth / bbox / scan integrity',
-]
+function SampleSlideshow() {
+  const [idx, setIdx] = useState(0)
+  const total = sampleSlides.length
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % total), 6000)
+    return () => clearInterval(t)
+  }, [total])
+  const slide = sampleSlides[idx]
+  const prev = () => setIdx((i) => (i - 1 + total) % total)
+  const next = () => setIdx((i) => (i + 1) % total)
 
-const useCases = [
-  'Train, fine-tune, evaluate or QA document AI models',
-  'Stress-test extraction pipelines against varied layouts and scanned input',
-  'Demonstrate an internal extraction system to stakeholders using safe data',
-  'Run a procurement evaluation: shortlist vendors against the same ground truth',
-  'Build a regression suite for an existing extraction pipeline that is currently un-tested',
-]
+  return (
+    <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
+        <div className="flex items-center gap-3">
+          <span className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${
+            slide.library === 'Insurance'
+              ? 'bg-[#1E3A8A]/5 text-[#1E3A8A] border-[#1E3A8A]/20'
+              : 'bg-[#0D9488]/10 text-[#0D9488] border-[#0D9488]/30'
+          }`}>
+            RCA {slide.library} Library
+          </span>
+          <span className="text-sm font-semibold text-slate-700">{slide.label}</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-xs text-slate-400 font-mono">{idx + 1} / {total}</span>
+          <div className="flex items-center gap-1">
+            <button type="button" onClick={prev} aria-label="Previous sample"
+              className="w-7 h-7 rounded-md border border-slate-200 hover:border-[#0D9488] hover:text-[#0D9488] text-slate-500 flex items-center justify-center transition-colors">
+              <ChevronLeft size={14} />
+            </button>
+            <button type="button" onClick={next} aria-label="Next sample"
+              className="w-7 h-7 rounded-md border border-slate-200 hover:border-[#0D9488] hover:text-[#0D9488] text-slate-500 flex items-center justify-center transition-colors">
+              <ChevronRight size={14} />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="relative bg-slate-100 aspect-[707/1000]">
+        {sampleSlides.map((s, i) => (
+          <Image key={s.src} src={s.src} alt={`${s.library} library sample: ${s.label}`}
+            fill sizes="(min-width: 1024px) 700px, 100vw" priority={i === 0}
+            className={`object-contain transition-opacity duration-500 ${i === idx ? 'opacity-100' : 'opacity-0'}`} />
+        ))}
+      </div>
+      <div className="flex items-center justify-center gap-1.5 px-5 py-3 border-t border-slate-200 bg-slate-50">
+        {sampleSlides.map((s, i) => (
+          <button key={s.src} type="button" onClick={() => setIdx(i)} aria-label={`Go to slide ${i + 1}: ${s.label}`}
+            className={`h-1.5 rounded-full transition-all ${i === idx ? 'w-6 bg-[#0D9488]' : 'w-1.5 bg-slate-300 hover:bg-slate-400'}`} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function LibrariesPage() {
   useScrollAnimation()
@@ -100,10 +145,10 @@ export default function LibrariesPage() {
                 Pre-labelled. Pre-bbox'd. Pre-scanned.
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 text-balance">
-                Pre-labelled synthetic document libraries for document AI teams
+                Pre-labelled synthetic document libraries
               </h1>
               <p className="text-lg text-white/80 leading-relaxed mb-8 max-w-2xl">
-                Real-looking PDFs at scale, with ground truth, bounding boxes and scanned variants shipped alongside every document. Built by Root Cause Analytics in Sydney.
+                Real-looking PDFs at scale. Ground truth, bounding boxes and scanned variants shipped alongside every document. Built by Root Cause Analytics in Sydney.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -114,13 +159,33 @@ export default function LibrariesPage() {
                   <ChevronRight size={16} />
                 </Link>
                 <Link
-                  href="/libraries/insurance"
+                  href="#samples"
                   className="flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/20 transition-colors"
                 >
-                  See the Insurance Library
+                  See the documents
                   <ArrowRight size={16} />
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SAMPLES - real documents first */}
+        <section id="samples" className="py-20 bg-slate-50 border-b border-slate-200" aria-label="Real samples">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-10 animate-on-scroll">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#CCFBF1] text-[#0D9488] rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                Real samples
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
+                Nine real pages from the libraries
+              </h2>
+              <p className="text-slate-600 leading-relaxed">
+                Browse representative documents from the RCA Insurance and Medical libraries. Same generator stack, different document types. Every page ships with ground truth, bounding boxes, a scanned variant, and a visible synthetic disclaimer.
+              </p>
+            </div>
+            <div className="animate-on-scroll">
+              <SampleSlideshow />
             </div>
           </div>
         </section>
@@ -130,10 +195,10 @@ export default function LibrariesPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                The product lines
+                The four product lines
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                Three libraries from the same generator stack, plus benchmark packs and custom builds.
+                Same generator stack. Different domain, different field schema, different style profile.
               </p>
             </div>
 
@@ -157,11 +222,11 @@ export default function LibrariesPage() {
                     >
                       <Icon size={22} style={{ color: p.color }} />
                     </div>
-                    <h3 className="font-semibold text-slate-800 mb-1 text-lg">{p.name}</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed mb-3">{p.useCase}</p>
-                    <p className="text-xs text-slate-500 mb-3">Scale: {p.scale}</p>
+                    <h3 className="font-semibold text-slate-800 mb-2 text-lg">{p.name}</h3>
+                    <p className="text-sm text-slate-600 leading-relaxed mb-2">{p.blurb}</p>
+                    <p className="text-xs text-[#0D9488] font-medium mb-3 leading-relaxed">{p.proof}</p>
                     <span className="text-sm font-medium text-[#0D9488] inline-flex items-center gap-1">
-                      Learn more
+                      Open the page
                       <ArrowRight size={14} />
                     </span>
                   </Link>
@@ -171,81 +236,37 @@ export default function LibrariesPage() {
           </div>
         </section>
 
-        {/* WHAT EVERY DOCUMENT SHIPS WITH */}
-        <section className="py-20 bg-slate-50" aria-label="What every document ships with">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-              <div className="animate-on-scroll">
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                  What every document ships with
-                </h2>
-                <ul className="flex flex-col gap-3">
-                  {shippingChecklist.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-slate-700">
-                      <CheckCircle size={16} className="text-[#0D9488] mt-0.5 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-sm text-slate-600 leading-relaxed mt-4">
-                  Insurance documents additionally ship per-claim row bboxes (from claim_rows_json) and per-location row bboxes (from location_rows_json). Reviewers can click through to individual rows on the loss run and statement of values, not just the document-level bbox.
-                </p>
-              </div>
-
-              <div className="animate-on-scroll">
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                  What every library ships with
-                </h2>
-                <ul className="flex flex-col gap-3">
-                  {libraryChecklist.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-slate-700">
-                      <CheckCircle size={16} className="text-[#0D9488] mt-0.5 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        {/* WHAT SHIPS - compressed into a single section */}
+        <section className="py-16 bg-slate-50 border-y border-slate-200" aria-label="What ships">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-10 animate-on-scroll">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-3 text-balance">
+                What ships with every order
+              </h2>
+              <p className="text-slate-600 leading-relaxed">
+                Every PDF lands with its labels. Every library lands with its manifest.
+              </p>
             </div>
-          </div>
-        </section>
 
-        {/* HOW LIBRARIES ARE BUILT */}
-        <section className="py-20 bg-white" aria-label="How libraries are built">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-              How libraries are built
-            </h2>
-            <p className="text-slate-600 leading-relaxed mb-4">
-              A deterministic Python generator. Cases are curated by hand, not LLM-generated. Phrase banks supply narrative variety. Style profiles and template families control visual variety so models trained on the library cannot memorise a single layout. Seeds are reproducible: the same seed produces the same PDFs every time.
-            </p>
-          </div>
-        </section>
-
-        {/* WHAT YOU CAN DO */}
-        <section className="py-16 bg-slate-50 border-y border-slate-200" aria-label="What you can do with the libraries">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-              <div className="animate-on-scroll">
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                  What you can do
-                </h2>
-                <ul className="flex flex-col gap-3">
-                  {useCases.map((u) => (
-                    <li key={u} className="flex items-start gap-3 text-sm text-slate-700">
-                      <CheckCircle size={16} className="text-[#0D9488] mt-0.5 shrink-0" />
-                      {u}
-                    </li>
-                  ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-on-scroll">
+              <div className="bg-white border border-slate-200 rounded-xl p-6">
+                <div className="text-xs font-semibold uppercase tracking-wider text-[#0D9488] mb-3">Per document</div>
+                <ul className="flex flex-col gap-2 text-sm text-slate-700">
+                  <li>Clean PDF in pdfs/</li>
+                  <li>Scanned variant in pdfs_scanned/ (rotation, noise, JPEG)</li>
+                  <li>Ground truth row in CSV and JSONL</li>
+                  <li>Bounding box record in bboxes.jsonl</li>
+                  <li>Visible synthetic disclaimer on every page</li>
                 </ul>
               </div>
-              <div className="animate-on-scroll">
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                  What libraries are not
-                </h2>
-                <ul className="flex flex-col gap-3 text-sm text-slate-700">
-                  <li>They are not real patient or claimant data. They are not de-identified records. Nothing here is real.</li>
-                  <li>They are not validated for clinical care, claims handling, underwriting, accounting, regulatory or legal use.</li>
-                  <li>They are not statistically representative of any specific hospital, broker, insurer book or jurisdiction beyond the conventions documented in the README.</li>
+              <div className="bg-white border border-slate-200 rounded-xl p-6">
+                <div className="text-xs font-semibold uppercase tracking-wider text-[#0D9488] mb-3">Per library</div>
+                <ul className="flex flex-col gap-2 text-sm text-slate-700">
+                  <li>manifest.json with document-type distribution and metadata</li>
+                  <li>splits.json with train / val / test allocation</li>
+                  <li>README.md with schema and regeneration commands</li>
+                  <li>validation_summary.md confirming integrity checks</li>
+                  <li>license_summary.md confirming the synthetic-only restriction</li>
                 </ul>
               </div>
             </div>
@@ -256,10 +277,13 @@ export default function LibrariesPage() {
         <section className="py-20 bg-gradient-to-br from-[#0D9488] to-[#1E3A8A]" aria-label="Call to action">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 text-balance">
-              Get a free preview pack
+              Try a free preview pack
             </h2>
-            <p className="text-white/80 text-lg mb-8 leading-relaxed">
-              Two-pack insurance preview, or a 25 to 35 document medical review pack. Five-minute review path documented in the pack README.
+            <p className="text-white/80 text-lg mb-2 leading-relaxed">
+              Two-pack insurance preview, or a 25 to 35 document medical review pack.
+            </p>
+            <p className="text-white/60 text-sm mb-8 leading-relaxed">
+              Same-day on request. Sent by Jack directly from Sydney.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
@@ -273,7 +297,7 @@ export default function LibrariesPage() {
                 href="/libraries/benchmark-packs"
                 className="flex items-center gap-2 px-8 py-3.5 bg-white/10 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/20 transition-colors"
               >
-                See Benchmark Packs
+                See paid pack pricing
                 <ArrowRight size={16} />
               </Link>
             </div>

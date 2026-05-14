@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { CheckCircle, ArrowRight, ChevronRight, Briefcase, Stethoscope, Target, Package } from 'lucide-react'
+import Image from 'next/image'
+import { CheckCircle, ArrowRight, ChevronRight, ChevronLeft, Briefcase, Stethoscope, Target, Package } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 
@@ -15,6 +16,59 @@ function useScrollAnimation() {
     document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [])
+}
+
+const sampleSlides = [
+  { src: '/samples/insurance_broker_email.png',          library: 'Insurance', label: 'Broker submission email' },
+  { src: '/samples/insurance_loss_run_clean.png',        library: 'Insurance', label: 'Loss run report' },
+  { src: '/samples/insurance_sov_clean.png',             library: 'Insurance', label: 'Statement of values' },
+  { src: '/samples/insurance_policy_schedule.png',       library: 'Insurance', label: 'Policy schedule' },
+  { src: '/samples/insurance_fnol.png',                  library: 'Insurance', label: 'First notice of loss' },
+  { src: '/samples/medical_discharge_summary_clean.png', library: 'Medical',   label: 'Discharge summary' },
+  { src: '/samples/medical_ed_assessment.png',           library: 'Medical',   label: 'ED assessment' },
+  { src: '/samples/medical_referral_letter.png',         library: 'Medical',   label: 'Referral letter' },
+  { src: '/samples/medical_pathology_report.png',        library: 'Medical',   label: 'Pathology report' },
+]
+
+function SampleSlideshow() {
+  const [idx, setIdx] = useState(0)
+  const total = sampleSlides.length
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % total), 6000)
+    return () => clearInterval(t)
+  }, [total])
+  const slide = sampleSlides[idx]
+  const prev = () => setIdx((i) => (i - 1 + total) % total)
+  const next = () => setIdx((i) => (i + 1) % total)
+  return (
+    <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
+        <div className="flex items-center gap-3">
+          <span className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${slide.library === 'Insurance' ? 'bg-[#1E3A8A]/5 text-[#1E3A8A] border-[#1E3A8A]/20' : 'bg-[#0D9488]/10 text-[#0D9488] border-[#0D9488]/30'}`}>
+            RCA {slide.library} Library
+          </span>
+          <span className="text-sm font-semibold text-slate-700">{slide.label}</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-xs text-slate-400 font-mono">{idx + 1} / {total}</span>
+          <div className="flex items-center gap-1">
+            <button type="button" onClick={prev} aria-label="Previous sample" className="w-7 h-7 rounded-md border border-slate-200 hover:border-[#0D9488] hover:text-[#0D9488] text-slate-500 flex items-center justify-center transition-colors"><ChevronLeft size={14} /></button>
+            <button type="button" onClick={next} aria-label="Next sample" className="w-7 h-7 rounded-md border border-slate-200 hover:border-[#0D9488] hover:text-[#0D9488] text-slate-500 flex items-center justify-center transition-colors"><ChevronRight size={14} /></button>
+          </div>
+        </div>
+      </div>
+      <div className="relative bg-slate-100 aspect-[707/1000]">
+        {sampleSlides.map((s, i) => (
+          <Image key={s.src} src={s.src} alt={`${s.library} library sample: ${s.label}`} fill sizes="(min-width: 1024px) 700px, 100vw" priority={i === 0} className={`object-contain transition-opacity duration-500 ${i === idx ? 'opacity-100' : 'opacity-0'}`} />
+        ))}
+      </div>
+      <div className="flex items-center justify-center gap-1.5 px-5 py-3 border-t border-slate-200 bg-slate-50">
+        {sampleSlides.map((s, i) => (
+          <button key={s.src} type="button" onClick={() => setIdx(i)} aria-label={`Go to slide ${i + 1}: ${s.label}`} className={`h-1.5 rounded-full transition-all ${i === idx ? 'w-6 bg-[#0D9488]' : 'w-1.5 bg-slate-300 hover:bg-slate-400'}`} />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 const packs = [
@@ -139,6 +193,26 @@ export default function BenchmarkPacksPage() {
                   <ArrowRight size={16} />
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SAMPLE SLIDESHOW */}
+        <section id="samples" className="py-20 bg-slate-50 border-b border-slate-200" aria-label="Pack contents preview">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-10 animate-on-scroll">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#CCFBF1] text-[#0D9488] rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                What is in a pack
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
+                Real pages from the libraries
+              </h2>
+              <p className="text-slate-600 leading-relaxed">
+                Every Benchmark Pack is curated from one of the full libraries. Browse representative pages here. Each pack ships with ground truth, bounding boxes, scanned variants, and a recommended review path.
+              </p>
+            </div>
+            <div className="animate-on-scroll">
+              <SampleSlideshow />
             </div>
           </div>
         </section>

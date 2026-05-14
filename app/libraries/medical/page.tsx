@@ -156,51 +156,6 @@ export default function MedicalLibraryPage() {
           </div>
         </section>
 
-        {/* DOCUMENT TYPES */}
-        <section id="document-types" className="py-20 bg-white" aria-label="Document types">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-12 animate-on-scroll">
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                40+ document types
-              </h2>
-              <p className="text-slate-600 leading-relaxed">
-                Three groups. The five document types covered by RCA Extract are starred.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {docGroups.map((g) => {
-                const Icon = g.icon
-                return (
-                  <div key={g.title} className="animate-on-scroll bg-slate-50 border border-slate-200 rounded-xl p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-lg bg-[#CCFBF1] flex items-center justify-center">
-                        <Icon size={18} className="text-[#0D9488]" />
-                      </div>
-                      <h3 className="font-semibold text-slate-800">{g.title}</h3>
-                    </div>
-                    <ul className="flex flex-col gap-1.5">
-                      {g.docs.map((d) => (
-                        <li key={d.name} className="flex items-start gap-2 text-sm text-slate-700">
-                          <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${d.extract ? 'bg-[#10B981]' : 'bg-slate-300'}`} />
-                          <span>
-                            {d.name}
-                            {d.extract && <span className="ml-1 text-[#10B981] text-xs font-semibold">RCA Extract</span>}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )
-              })}
-            </div>
-
-            <p className="text-center text-sm text-slate-500 mt-8 animate-on-scroll">
-              Full list with document_type weights documented in the library manifest.json.
-            </p>
-          </div>
-        </section>
-
         {/* WHAT YOU ACTUALLY GET - REAL SAMPLE */}
         <section className="py-20 bg-white border-t border-slate-200" aria-label="Real sample">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -290,6 +245,85 @@ export default function MedicalLibraryPage() {
           </div>
         </section>
 
+        {/* PRICING */}
+        <section className="py-20 bg-white" aria-label="Pricing">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-12 animate-on-scroll">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
+                Pricing
+              </h2>
+            </div>
+
+            <div className="overflow-x-auto animate-on-scroll">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="bg-slate-100 border-b border-slate-200">
+                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Tier</th>
+                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Scale</th>
+                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Price</th>
+                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Delivery</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pricing.map((row) => (
+                    <tr key={row.tier} className={`border-b border-slate-200 ${row.highlight ? 'bg-[#CCFBF1]/40' : ''}`}>
+                      <td className="px-4 py-3 text-sm font-semibold text-slate-800">{row.tier}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600">{row.scale}</td>
+                      <td className={`px-4 py-3 text-sm font-semibold ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600">{row.delivery}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* DOCUMENT TYPES */}
+        <section id="document-types" className="py-20 bg-white" aria-label="Document types">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-12 animate-on-scroll">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
+                40+ document types
+              </h2>
+              <p className="text-slate-600 leading-relaxed">
+                Three groups. The five document types covered by RCA Extract are starred.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {docGroups.map((g) => {
+                const Icon = g.icon
+                return (
+                  <div key={g.title} className="animate-on-scroll bg-slate-50 border border-slate-200 rounded-xl p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-lg bg-[#CCFBF1] flex items-center justify-center">
+                        <Icon size={18} className="text-[#0D9488]" />
+                      </div>
+                      <h3 className="font-semibold text-slate-800">{g.title}</h3>
+                    </div>
+                    <ul className="flex flex-col gap-1.5">
+                      {g.docs.map((d) => (
+                        <li key={d.name} className="flex items-start gap-2 text-sm text-slate-700">
+                          <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${d.extract ? 'bg-[#10B981]' : 'bg-slate-300'}`} />
+                          <span>
+                            {d.name}
+                            {d.extract && <span className="ml-1 text-[#10B981] text-xs font-semibold">RCA Extract</span>}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              })}
+            </div>
+
+            <p className="text-center text-sm text-slate-500 mt-8 animate-on-scroll">
+              Full list with document_type weights documented in the library manifest.json.
+            </p>
+          </div>
+        </section>
+
         {/* AU REALISM */}
         <section className="py-20 bg-slate-50 border-y border-slate-200" aria-label="AU-specific realism">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll">
@@ -344,40 +378,6 @@ export default function MedicalLibraryPage() {
             <p className="text-slate-600 leading-relaxed text-sm">
               Each document type has three named template families that vary header / footer / section ordering without changing field labels or ground truth values. Visible synthetic disclaimer placement varies per document: footer line, top banner, boxed notice, or pale strip.
             </p>
-          </div>
-        </section>
-
-        {/* PRICING */}
-        <section className="py-20 bg-white" aria-label="Pricing">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-12 animate-on-scroll">
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                Pricing
-              </h2>
-            </div>
-
-            <div className="overflow-x-auto animate-on-scroll">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-slate-100 border-b border-slate-200">
-                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Tier</th>
-                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Scale</th>
-                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Price</th>
-                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Delivery</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pricing.map((row) => (
-                    <tr key={row.tier} className={`border-b border-slate-200 ${row.highlight ? 'bg-[#CCFBF1]/40' : ''}`}>
-                      <td className="px-4 py-3 text-sm font-semibold text-slate-800">{row.tier}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">{row.scale}</td>
-                      <td className={`px-4 py-3 text-sm font-semibold ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">{row.delivery}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
           </div>
         </section>
 

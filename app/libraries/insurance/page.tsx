@@ -111,79 +111,21 @@ export default function InsuranceLibraryPage() {
           </div>
         </section>
 
-        {/* DOCUMENT TYPES */}
-        <section className="py-20 bg-white" aria-label="Document types">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-12 animate-on-scroll">
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                What is in the library
-              </h2>
-              <p className="text-slate-600 leading-relaxed">
-                Each submission pack is a complete broker submission as you would receive it in a real underwriting inbox: cover note, attachments, supporting forms. Pack composition varies by submission type (new business, renewal with claims, FNOL).
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {docTypes.map((d) => {
-                const Icon = d.icon
-                return (
-                  <div key={d.name} className="animate-on-scroll bg-slate-50 border border-slate-200 rounded-xl p-5 hover:border-[#0D9488]/40 transition-colors">
-                    <div className="w-10 h-10 rounded-lg bg-[#CCFBF1] flex items-center justify-center mb-3">
-                      <Icon size={18} className="text-[#0D9488]" />
-                    </div>
-                    <h3 className="font-semibold text-slate-800 text-sm mb-1">{d.name}</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">{d.desc}</p>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* RED FLAGS */}
-        <section className="py-20 bg-[#1E3A8A]" aria-label="Engineered red flags">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-12 animate-on-scroll">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 text-balance">
-                Engineered red flags
-              </h2>
-              <p className="text-white/80 leading-relaxed">
-                A subset of packs are deliberately broken: cross-document inconsistencies we have seen in real submissions, engineered in at known positions so your extraction or validation pipeline has a controlled target to flag.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl">
-              {redFlagCategories.map((rf) => (
-                <div key={rf.name} className="animate-on-scroll bg-white/5 border border-white/15 rounded-xl p-4">
-                  <div className="flex items-start gap-2 mb-2">
-                    <AlertTriangle size={16} className="text-[#10B981] mt-0.5 shrink-0" />
-                    <h3 className="font-semibold text-white text-sm">{rf.name}</h3>
-                  </div>
-                  <p className="text-xs text-white/70 leading-relaxed ml-6">{rf.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-10 max-w-3xl mx-auto text-center animate-on-scroll">
-              <p className="text-white/80 leading-relaxed text-sm">
-                Red flag inventory ships as red_flags_summary.csv with each pack. The CSV includes a where_to_review column pointing to the two documents to compare. This file is the most useful artefact for QA workflows.
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* BBOX STRUCTURE */}
-        <section className="py-20 bg-white" aria-label="Bbox structure">
+        <section className="py-20 bg-white" aria-label="Inside a submission pack">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="animate-on-scroll mb-10 max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#CCFBF1] text-[#0D9488] rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                Real pages from a real pack
+              </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-6 text-balance">
-                Bbox structure: per-row, not just per-document
+                Per-row labels, not just per-document
               </h2>
               <p className="text-slate-600 leading-relaxed mb-4">
-                Most synthetic libraries return one bounding box per document. The RCA Insurance Library returns a bbox for every labelled field in the document, plus a per-row bbox for every claim in <span className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">claim_rows_json</span> and every location in <span className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">location_rows_json</span>.
+                Other synthetic libraries give you one box per document. The RCA Insurance Library labels every field on the page, plus every individual claim row on a loss run and every individual location row on a statement of values.
               </p>
               <p className="text-slate-600 leading-relaxed">
-                A LayoutLMv3 or Donut fine-tune learns per-claim and per-location supervision. A reviewer can click any row in the structured ground truth and highlight the exact pixels on the rendered PDF.
+                That means a row-level extractor gets row-level supervision. A reviewer can click any row in the ground truth and highlight the exact pixels on the rendered PDF. A vendor bake-off scores every extractor on the same row-level target.
               </p>
             </div>
 
@@ -303,28 +245,6 @@ export default function InsuranceLibraryPage() {
           </div>
         </section>
 
-        {/* DIVERSITY CONTROLS */}
-        <section className="py-16 bg-slate-50 border-y border-slate-200" aria-label="Diversity controls">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4 text-balance">
-              Diversity controls
-            </h2>
-            <p className="text-slate-600 leading-relaxed mb-6">
-              Each PDF is rendered with a deterministically chosen style profile, each modelled on a real underwriting-inbox archetype:
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
-              {styleProfiles.map((sp) => (
-                <span key={sp} className="text-xs font-mono bg-white border border-slate-200 rounded-md px-3 py-2 text-slate-700 text-center">
-                  {sp}
-                </span>
-              ))}
-            </div>
-            <p className="text-slate-600 leading-relaxed text-sm">
-              Each document type has three named template families that vary header / footer / section ordering without changing field labels or ground truth values. The chosen profile and family are recorded per row in the ground truth.
-            </p>
-          </div>
-        </section>
-
         {/* PRICING */}
         <section className="py-20 bg-white" aria-label="Pricing">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -356,6 +276,89 @@ export default function InsuranceLibraryPage() {
                 </tbody>
               </table>
             </div>
+          </div>
+        </section>
+
+        {/* DOCUMENT TYPES */}
+        <section className="py-20 bg-white" aria-label="Document types">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-12 animate-on-scroll">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
+                What is in the library
+              </h2>
+              <p className="text-slate-600 leading-relaxed">
+                Each submission pack is a complete broker submission as you would receive it in a real underwriting inbox: cover note, attachments, supporting forms. Pack composition varies by submission type (new business, renewal with claims, FNOL).
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {docTypes.map((d) => {
+                const Icon = d.icon
+                return (
+                  <div key={d.name} className="animate-on-scroll bg-slate-50 border border-slate-200 rounded-xl p-5 hover:border-[#0D9488]/40 transition-colors">
+                    <div className="w-10 h-10 rounded-lg bg-[#CCFBF1] flex items-center justify-center mb-3">
+                      <Icon size={18} className="text-[#0D9488]" />
+                    </div>
+                    <h3 className="font-semibold text-slate-800 text-sm mb-1">{d.name}</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">{d.desc}</p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* RED FLAGS */}
+        <section className="py-20 bg-[#1E3A8A]" aria-label="Engineered red flags">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-12 animate-on-scroll">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 text-balance">
+                Engineered red flags
+              </h2>
+              <p className="text-white/80 leading-relaxed">
+                A subset of packs are deliberately broken: cross-document inconsistencies we have seen in real submissions, engineered in at known positions so your extraction or validation pipeline has a controlled target to flag.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl">
+              {redFlagCategories.map((rf) => (
+                <div key={rf.name} className="animate-on-scroll bg-white/5 border border-white/15 rounded-xl p-4">
+                  <div className="flex items-start gap-2 mb-2">
+                    <AlertTriangle size={16} className="text-[#10B981] mt-0.5 shrink-0" />
+                    <h3 className="font-semibold text-white text-sm">{rf.name}</h3>
+                  </div>
+                  <p className="text-xs text-white/70 leading-relaxed ml-6">{rf.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 max-w-3xl mx-auto text-center animate-on-scroll">
+              <p className="text-white/80 leading-relaxed text-sm">
+                Red flag inventory ships as red_flags_summary.csv with each pack. The CSV includes a where_to_review column pointing to the two documents to compare. This file is the most useful artefact for QA workflows.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* DIVERSITY CONTROLS */}
+        <section className="py-16 bg-slate-50 border-y border-slate-200" aria-label="Diversity controls">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4 text-balance">
+              Diversity controls
+            </h2>
+            <p className="text-slate-600 leading-relaxed mb-6">
+              Each PDF is rendered with a deterministically chosen style profile, each modelled on a real underwriting-inbox archetype:
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
+              {styleProfiles.map((sp) => (
+                <span key={sp} className="text-xs font-mono bg-white border border-slate-200 rounded-md px-3 py-2 text-slate-700 text-center">
+                  {sp}
+                </span>
+              ))}
+            </div>
+            <p className="text-slate-600 leading-relaxed text-sm">
+              Each document type has three named template families that vary header / footer / section ordering without changing field labels or ground truth values. The chosen profile and family are recorded per row in the ground truth.
+            </p>
           </div>
         </section>
 
