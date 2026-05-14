@@ -1,12 +1,12 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
   FileText, Shield, CheckCircle, ArrowRight, ExternalLink, Database,
   Layers, Library, Briefcase, Stethoscope, Cog, ChevronRight, Code,
-  Repeat, Eye, Search, Box, Hash, Scan
+  Repeat, Eye, Search, Box, Hash, Scan, ChevronLeft
 } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
@@ -28,10 +28,23 @@ function useScrollAnimation() {
 }
 
 const stats = [
-  { value: '30+', label: 'Medical document types' },
-  { value: '8', label: 'Insurance document types' },
+  { value: '40+', label: 'Medical document types' },
+  { value: 'Ground truth', label: 'Per document, every document' },
   { value: 'Australian', label: 'Healthcare conventions' },
   { value: 'AUD $2,500', label: 'Insurance QA Sprint Pack' },
+]
+
+// Slideshow of actual documents shipped in the libraries
+const sampleSlides = [
+  { src: '/samples/insurance_broker_email.png',         library: 'Insurance', label: 'Broker submission email' },
+  { src: '/samples/insurance_loss_run_clean.png',       library: 'Insurance', label: 'Loss run report' },
+  { src: '/samples/insurance_sov_clean.png',            library: 'Insurance', label: 'Statement of values' },
+  { src: '/samples/insurance_policy_schedule.png',      library: 'Insurance', label: 'Policy schedule' },
+  { src: '/samples/insurance_fnol.png',                 library: 'Insurance', label: 'First notice of loss' },
+  { src: '/samples/medical_discharge_summary_clean.png', library: 'Medical',  label: 'Discharge summary' },
+  { src: '/samples/medical_ed_assessment.png',          library: 'Medical',  label: 'ED assessment' },
+  { src: '/samples/medical_referral_letter.png',        library: 'Medical',  label: 'Referral letter' },
+  { src: '/samples/medical_pathology_report.png',       library: 'Medical',  label: 'Pathology report' },
 ]
 
 const trustBadges = [
@@ -84,7 +97,7 @@ const productLines = [
   {
     icon: Library,
     name: 'RCA Medical Library',
-    blurb: 'Synthetic Australian medical training documents. 30+ document types across hospital, ED, GP clinic, pathology, imaging and specialist correspondence. NSW postcodes, Medicare format, provider postnominals.',
+    blurb: 'Synthetic Australian medical training documents. 40+ document types across hospital, ED, GP clinic, pathology, imaging and specialist correspondence. NSW postcodes, Medicare format, provider postnominals.',
     href: '/libraries/medical',
     cta: 'Browse the document types',
     color: '#0D9488',
@@ -153,6 +166,88 @@ const safetyTiles = [
   { label: 'RCA Extract runs in your Snowflake account', icon: Shield, color: '#0D9488' },
   { label: 'Direct delivery, no third parties', icon: FileText, color: '#10B981' },
 ]
+
+function SampleSlideshow() {
+  const [idx, setIdx] = useState(0)
+  const total = sampleSlides.length
+
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % total), 6000)
+    return () => clearInterval(t)
+  }, [total])
+
+  const slide = sampleSlides[idx]
+  const prev = () => setIdx((i) => (i - 1 + total) % total)
+  const next = () => setIdx((i) => (i + 1) % total)
+
+  return (
+    <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
+        <div className="flex items-center gap-3">
+          <span className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${
+            slide.library === 'Insurance'
+              ? 'bg-[#1E3A8A]/5 text-[#1E3A8A] border-[#1E3A8A]/20'
+              : 'bg-[#0D9488]/10 text-[#0D9488] border-[#0D9488]/30'
+          }`}>
+            RCA {slide.library} Library
+          </span>
+          <span className="text-sm font-semibold text-slate-700">{slide.label}</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-xs text-slate-400 font-mono">{idx + 1} / {total}</span>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Previous sample"
+              className="w-7 h-7 rounded-md border border-slate-200 hover:border-[#0D9488] hover:text-[#0D9488] text-slate-500 flex items-center justify-center transition-colors"
+            >
+              <ChevronLeft size={14} />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Next sample"
+              className="w-7 h-7 rounded-md border border-slate-200 hover:border-[#0D9488] hover:text-[#0D9488] text-slate-500 flex items-center justify-center transition-colors"
+            >
+              <ChevronRight size={14} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Slide stage - fixed aspect ratio so layout doesn't jump between slides */}
+      <div className="relative bg-slate-100 aspect-[707/1000]">
+        {sampleSlides.map((s, i) => (
+          <Image
+            key={s.src}
+            src={s.src}
+            alt={`${s.library} library sample: ${s.label}`}
+            fill
+            sizes="(min-width: 1024px) 700px, 100vw"
+            priority={i === 0}
+            className={`object-contain transition-opacity duration-500 ${i === idx ? 'opacity-100' : 'opacity-0'}`}
+          />
+        ))}
+      </div>
+
+      {/* Dot indicators */}
+      <div className="flex items-center justify-center gap-1.5 px-5 py-3 border-t border-slate-200 bg-slate-50">
+        {sampleSlides.map((s, i) => (
+          <button
+            key={s.src}
+            type="button"
+            onClick={() => setIdx(i)}
+            aria-label={`Go to slide ${i + 1}: ${s.label}`}
+            className={`h-1.5 rounded-full transition-all ${
+              i === idx ? 'w-6 bg-[#0D9488]' : 'w-1.5 bg-slate-300 hover:bg-slate-400'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function HomePage() {
   useScrollAnimation()
@@ -276,91 +371,50 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* WHAT YOU ACTUALLY GET (sample) */}
+        {/* WHAT YOU ACTUALLY GET (slideshow) */}
         <section id="sample" className="py-20 bg-slate-50 border-y border-slate-200" aria-label="What you actually get">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-10 animate-on-scroll">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#CCFBF1] text-[#0D9488] rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
-                Real sample, not a mock-up
+                Real samples, not mock-ups
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                What you actually get
+                A few pages from the libraries
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                The images below are real pages from the RCA Insurance Library: a loss run report from PACK000004 in clean form, then the same page with every labelled field outlined. This is exactly what arrives when you request a preview pack.
+                Nine real pages from the RCA Insurance and Medical libraries. Same generator stack, different document types. Every page ships with ground truth, bounding boxes, a scanned variant, and a visible synthetic disclaimer.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-on-scroll">
-              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
-                  <div className="flex items-center gap-2">
-                    <FileText size={14} className="text-[#0D9488]" />
-                    <span className="text-xs font-semibold text-slate-700 font-mono">
-                      PACK000004_02_loss_run_report.pdf
-                    </span>
-                  </div>
-                  <span className="text-xs text-slate-400">clean</span>
-                </div>
-                <div className="bg-slate-100">
-                  <Image
-                    src="/samples/insurance_loss_run_clean.png"
-                    alt="A real synthetic loss run report from PACK000004, showing the insured business, policy details and four claim rows. Visible synthetic disclaimer in the page header and footer."
-                    width={1191}
-                    height={1684}
-                    className="w-full h-auto"
-                    priority
-                  />
-                </div>
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
-                  <div className="flex items-center gap-2">
-                    <Hash size={14} className="text-[#10B981]" />
-                    <span className="text-xs font-semibold text-slate-700 font-mono">
-                      same PDF, labelled fields
-                    </span>
-                  </div>
-                  <span className="text-xs text-slate-400">66 bboxes</span>
-                </div>
-                <div className="bg-slate-100">
-                  <Image
-                    src="/samples/insurance_loss_run_bboxes.png"
-                    alt="The same loss run report with every labelled field outlined. Red outlines mark document-level scalars (insured business, ABN, policy number, period dates, totals). Teal outlines mark per-row entries from claim_rows_json (one per claim, with sub-keys for claim_no, loss_date, category, paid, reserve, incurred)."
-                    width={1191}
-                    height={1684}
-                    className="w-full h-auto"
-                  />
-                </div>
-              </div>
+            <div className="animate-on-scroll">
+              <SampleSlideshow />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 animate-on-scroll">
               <div className="bg-white border border-slate-200 rounded-lg p-4 text-sm">
-                <div className="text-[10px] uppercase tracking-wider text-[#0D9488] font-semibold mb-1">Red outlines</div>
-                <div className="text-slate-700 leading-relaxed">Document-level scalar fields: insured business name, ABN, policy number, period dates, displayed totals.</div>
+                <div className="text-[10px] uppercase tracking-wider text-[#0D9488] font-semibold mb-1">RCA Insurance Library</div>
+                <div className="text-slate-700 leading-relaxed">Complete commercial P&amp;C submission packs. Broker email, loss run, statement of values, policy schedule, COC, application, FNOL, claim report.</div>
               </div>
               <div className="bg-white border border-slate-200 rounded-lg p-4 text-sm">
-                <div className="text-[10px] uppercase tracking-wider text-[#10B981] font-semibold mb-1">Teal outlines</div>
-                <div className="text-slate-700 leading-relaxed">Per-row entries from claim_rows_json. Each claim has eight sub-keys with row_index preserved.</div>
+                <div className="text-[10px] uppercase tracking-wider text-[#1E3A8A] font-semibold mb-1">RCA Medical Library</div>
+                <div className="text-slate-700 leading-relaxed">Forty-plus document types across hospital, ED, GP clinic, pathology, imaging and specialist correspondence. NSW conventions throughout.</div>
               </div>
               <div className="bg-white border border-slate-200 rounded-lg p-4 text-sm">
-                <div className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1">Ships alongside</div>
-                <div className="text-slate-700 leading-relaxed">CSV + JSONL ground truth, bboxes.jsonl, manifest, plus a scanned variant of every PDF.</div>
+                <div className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1">Ships alongside every PDF</div>
+                <div className="text-slate-700 leading-relaxed">CSV + JSONL ground truth, bboxes.jsonl with labelled fields, manifest, scanned variant.</div>
               </div>
             </div>
 
             <div className="text-center mt-10 animate-on-scroll">
               <Link
-                href="/contact?pack=insurance-2-preview"
+                href="/contact?pack=preview"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-[#1E3A8A] text-white rounded-lg font-semibold hover:bg-[#172d6b] transition-colors shadow-sm"
               >
-                Request the full 2-pack preview
+                Request a preview pack
                 <ChevronRight size={16} />
               </Link>
               <p className="text-xs text-slate-500 mt-3">
-                Free. Same-day delivery on request. Two complete submission packs, ground truth, bboxes and scanned variants.
+                Free. Same-day delivery on request. Two complete insurance packs or 25 to 35 medical documents, with ground truth and scanned variants.
               </p>
             </div>
           </div>

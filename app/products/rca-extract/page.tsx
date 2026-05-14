@@ -232,7 +232,7 @@ export default function RCAExtractPage() {
               </p>
               <ul className="flex flex-col gap-3 mb-6">
                 {[
-                  'A controlled test set across 30+ document types where ground truth is known by construction.',
+                  'A controlled test set across 40+ document types where ground truth is known by construction.',
                   'A scanned-variant test set for photocopy and JPEG-noise robustness.',
                   'Versioned releases. Each release of RCA Extract is pinned to a generator seed and library version.',
                   'Transparent evaluation. If you want to verify our extraction quality before committing, we can ship you the same documents and you score against the same ground truth.',

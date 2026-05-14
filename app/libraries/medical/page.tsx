@@ -134,7 +134,7 @@ export default function MedicalLibraryPage() {
                 Synthetic Australian medical training documents
               </p>
               <p className="text-lg text-white/80 leading-relaxed mb-8 max-w-2xl">
-                30+ document types across hospital, ED, GP clinic, pathology, imaging and specialist correspondence. Ground truth, bounding boxes and scanned variants shipped with every document.
+                40+ document types across hospital, ED, GP clinic, pathology, imaging and specialist correspondence. Ground truth, bounding boxes and scanned variants shipped with every document.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -161,7 +161,7 @@ export default function MedicalLibraryPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-12 animate-on-scroll">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                30+ document types
+                40+ document types
               </h2>
               <p className="text-slate-600 leading-relaxed">
                 Three groups. The five document types covered by RCA Extract are starred.

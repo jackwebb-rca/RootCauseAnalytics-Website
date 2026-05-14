@@ -62,7 +62,7 @@ const capabilities = [
 
 const propositionTiles = [
   { label: 'Extraction product', value: 'RCA Extract', color: '#0D9488', description: 'Snowflake Native App. Listing GZSUZU1HJP. Runs in your Snowflake account.' },
-  { label: 'Medical library', value: '30+ types', color: '#1E3A8A', description: 'Discharge, ED, referral, imaging, pathology, plus 25+ specialist types.' },
+  { label: 'Medical library', value: '40+ types', color: '#1E3A8A', description: 'Discharge, ED, referral, imaging, pathology, plus 35+ specialist types.' },
   { label: 'Insurance library', value: 'Per-row bboxes', color: '#10B981', description: 'Per-claim and per-location row bbox structure for granular extraction QA.' },
   { label: 'Sydney-based', value: 'AU conventions', color: '#0D9488', description: 'NSW postcodes, Medicare format, AU provider postnominals built in.' },
 ]
