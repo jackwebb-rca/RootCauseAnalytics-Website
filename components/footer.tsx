@@ -2,7 +2,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ExternalLink, MapPin, Mail, Shield, Lock } from 'lucide-react'
 
-const productLinks = [
+type FooterLink = { label: string; href: string; external?: boolean }
+
+const productLinks: FooterLink[] = [
   { label: 'RCA Extract', href: '/products/rca-extract' },
   { label: 'RCA Insurance Library', href: '/libraries/insurance' },
   { label: 'RCA Medical Library', href: '/libraries/medical' },
