@@ -92,7 +92,7 @@ const packs = [
     icon: Target,
     name: 'Insurance Procurement Pack',
     bullets: [
-      '5 to 10 packs scoped for vendor bake-off',
+      '5 to 10 packs scoped for vendor evaluation',
       'All vendors get the same PDFs and the same ground truth',
       'You score them against the same baseline',
       'Pricing on request, depending on scope and number of vendors',
@@ -157,7 +157,7 @@ const pricing: PricingRow[] = [
   },
   {
     tier: 'Insurance Procurement Pack',
-    scope: '5 to 10 packs scoped for a vendor bake-off. All vendors score on the same documents',
+    scope: '5 to 10 packs scoped for vendor evaluation. All vendors score against the same documents',
     price: 'On request',
     delivery: '1 to 2 weeks',
   },
@@ -324,7 +324,7 @@ export default function BenchmarkPacksPage() {
               Why packs and not just libraries
             </h2>
             <p className="text-slate-600 leading-relaxed mb-4">
-              A library is for ML training and bulk QA. A Benchmark Pack is for a specific human-led evaluation: a review, a vendor bake-off, a pre-rollout QA, a stakeholder demo. Smaller, more curated, faster to consume, and shipped with a recommended review path.
+              A library is for ML training and bulk QA. A Benchmark Pack is for a specific human-led evaluation: a review, a vendor comparison, a pre-rollout QA, a stakeholder demo. Smaller, more curated, faster to consume, and shipped with a recommended review path.
             </p>
             <p className="text-slate-600 leading-relaxed">
               If your use case is "we want to evaluate three vendors against the same baseline", a pack is the right unit. If your use case is "we need 500 labelled discharge summaries to train a model", a library is the right unit.

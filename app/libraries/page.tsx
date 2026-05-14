@@ -41,7 +41,7 @@ const libraries = [
   {
     icon: Layers,
     name: 'RCA Benchmark Packs',
-    blurb: 'Smaller paid packs for procurement evaluation, vendor bake-offs, and pre-rollout QA.',
+    blurb: 'Smaller paid packs sized for procurement evaluation, pipeline QA, and pre-rollout review.',
     proof: 'Insurance QA Sprint Pack ships at AUD $2,500 with 48 to 72 hour delivery.',
     href: '/libraries/benchmark-packs',
     color: '#1E3A8A',
@@ -54,6 +54,22 @@ const libraries = [
     href: '/contact?service=custom-library',
     color: '#10B981',
   },
+]
+
+type PricingRow = { tier: string; size: string; bestFor: string; price: string; delivery: string; highlight?: boolean }
+
+const insurancePricing: PricingRow[] = [
+  { tier: 'Free sample', size: '2 submission packs', bestFor: 'First look. Review the schema and disclaimer.', price: 'Free', delivery: 'Same-day' },
+  { tier: 'QA Sprint Pack', size: '10 submission packs + red flag summary + 30-min handover', bestFor: 'Pipeline QA. Vendor evaluation.', price: 'AUD $2,500', delivery: '48 to 72 hours', highlight: true },
+  { tier: 'Production library', size: '100+ submission packs', bestFor: 'Production regression suite. Internal QA at scale.', price: 'On request', delivery: '1 to 2 weeks' },
+  { tier: 'Training library', size: '1,000+ submission packs with train / val / test splits', bestFor: 'ML model fine-tuning at scale.', price: 'On request', delivery: '2 to 4 weeks' },
+]
+
+const medicalPricing: PricingRow[] = [
+  { tier: 'Free sample', size: '25 to 35 documents', bestFor: 'First look. Review the schema, AU conventions and disclaimer.', price: 'Free', delivery: 'Same-day', highlight: true },
+  { tier: 'Pilot pack', size: '100 to 200 documents scoped to your specialty', bestFor: 'Internal pilot. Specialty-focused review.', price: 'On request', delivery: '1 to 2 weeks' },
+  { tier: 'Production library', size: '500 to 1,000 documents across 40+ types', bestFor: 'Production regression suite. Internal QA at scale.', price: 'On request', delivery: '2 to 3 weeks' },
+  { tier: 'Training library', size: '5,000+ documents with train / val / test splits', bestFor: 'ML model fine-tuning at scale.', price: 'On request', delivery: '4 to 6 weeks' },
 ]
 
 const sampleSlides = [
@@ -233,6 +249,123 @@ export default function LibrariesPage() {
                 )
               })}
             </div>
+          </div>
+        </section>
+
+        {/* PRICING - visible on the overview page, no clicking through */}
+        <section id="pricing" className="py-20 bg-white" aria-label="Pricing">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
+                Pricing
+              </h2>
+              <p className="text-slate-600 leading-relaxed">
+                Same four tiers per library: free sample, paid Sprint or Pilot pack, production library, training library. Only the QA Sprint Pack carries a fixed public price; everything else is quoted on request against your specific scope.
+              </p>
+            </div>
+
+            {/* Insurance pricing */}
+            <div className="mb-10 animate-on-scroll">
+              <div className="flex items-center gap-3 mb-4">
+                <Briefcase size={20} className="text-[#1E3A8A]" />
+                <h3 className="text-xl font-bold text-[#1E3A8A]">RCA Insurance Library</h3>
+              </div>
+              <div className="overflow-x-auto border border-slate-200 rounded-xl">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-slate-100 border-b border-slate-200">
+                      <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Tier</th>
+                      <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Size</th>
+                      <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Best for</th>
+                      <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Price</th>
+                      <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Delivery</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {insurancePricing.map((row) => (
+                      <tr key={row.tier} className={`border-b border-slate-200 last:border-0 ${row.highlight ? 'bg-[#CCFBF1]/40' : ''}`}>
+                        <td className="px-4 py-3 text-sm font-semibold text-slate-800 align-top whitespace-nowrap">{row.tier}</td>
+                        <td className="px-4 py-3 text-sm text-slate-700 align-top">{row.size}</td>
+                        <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-md">{row.bestFor}</td>
+                        <td className={`px-4 py-3 text-sm font-semibold align-top whitespace-nowrap ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
+                        <td className="px-4 py-3 text-sm text-slate-600 align-top whitespace-nowrap">{row.delivery}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <Link
+                  href="/contact?pack=insurance-2-preview"
+                  className="text-sm font-medium text-[#0D9488] hover:text-[#1E3A8A] inline-flex items-center gap-1"
+                >
+                  Request the free 2-pack sample
+                  <ArrowRight size={14} />
+                </Link>
+                <span className="text-slate-300">|</span>
+                <Link
+                  href="/contact?pack=insurance-qa-sprint"
+                  className="text-sm font-medium text-[#0D9488] hover:text-[#1E3A8A] inline-flex items-center gap-1"
+                >
+                  Order the Insurance QA Sprint Pack
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </div>
+
+            {/* Medical pricing */}
+            <div className="animate-on-scroll">
+              <div className="flex items-center gap-3 mb-4">
+                <Stethoscope size={20} className="text-[#0D9488]" />
+                <h3 className="text-xl font-bold text-[#1E3A8A]">RCA Medical Library</h3>
+              </div>
+              <div className="overflow-x-auto border border-slate-200 rounded-xl">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-slate-100 border-b border-slate-200">
+                      <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Tier</th>
+                      <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Size</th>
+                      <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Best for</th>
+                      <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Price</th>
+                      <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Delivery</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {medicalPricing.map((row) => (
+                      <tr key={row.tier} className={`border-b border-slate-200 last:border-0 ${row.highlight ? 'bg-[#CCFBF1]/40' : ''}`}>
+                        <td className="px-4 py-3 text-sm font-semibold text-slate-800 align-top whitespace-nowrap">{row.tier}</td>
+                        <td className="px-4 py-3 text-sm text-slate-700 align-top">{row.size}</td>
+                        <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-md">{row.bestFor}</td>
+                        <td className={`px-4 py-3 text-sm font-semibold align-top whitespace-nowrap ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
+                        <td className="px-4 py-3 text-sm text-slate-600 align-top whitespace-nowrap">{row.delivery}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <Link
+                  href="/contact?pack=medical-review"
+                  className="text-sm font-medium text-[#0D9488] hover:text-[#1E3A8A] inline-flex items-center gap-1"
+                >
+                  Request the free 25-doc sample
+                  <ArrowRight size={14} />
+                </Link>
+                <span className="text-slate-300">|</span>
+                <Link
+                  href="/contact?service=medical-library"
+                  className="text-sm font-medium text-[#0D9488] hover:text-[#1E3A8A] inline-flex items-center gap-1"
+                >
+                  Get a quote for a larger Medical library
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </div>
+
+            <p className="text-xs text-slate-500 mt-8 text-center max-w-2xl mx-auto leading-relaxed">
+              All deliveries include ground truth (CSV + JSONL), bounding box records, scanned variants, and a manifest. Production and Training libraries include train / val / test splits. Custom document types or schemas are quoted on request via{' '}
+              <Link href="/contact?service=custom-library" className="text-[#0D9488] underline underline-offset-2">RCA Custom Libraries</Link>.
+            </p>
           </div>
         </section>
 

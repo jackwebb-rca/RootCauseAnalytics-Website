@@ -53,39 +53,37 @@ const styleProfiles = [
   { name: 'Claims system export',      desc: 'Claims management system bordereaux with system IDs and audit columns' },
 ]
 
-type PricingRow = { tier: string; scale: string; price: string; delivery: string; highlight?: boolean }
+type PricingRow = { tier: string; size: string; bestFor: string; price: string; delivery: string; highlight?: boolean }
 
 const pricing: PricingRow[] = [
   {
-    tier: 'Free preview',
-    scale: '2 complete packs (about 13 PDFs) with ground truth, bboxes and scanned variants',
+    tier: 'Free sample',
+    size: '2 submission packs',
+    bestFor: 'First look. Review the schema, bboxes and disclaimer in real documents.',
     price: 'Free',
-    delivery: 'Same-day on request',
+    delivery: 'Same-day',
   },
   {
     tier: 'QA Sprint Pack',
-    scale: '10 complete packs (about 67 PDFs) plus engineered red flag summary and a 30-minute handover call',
+    size: '10 submission packs + engineered red flag summary + 30-minute handover call',
+    bestFor: 'Pipeline QA against a controlled, varied input set. Vendor evaluation.',
     price: 'AUD $2,500',
     delivery: '48 to 72 hours',
     highlight: true,
   },
   {
-    tier: 'QA library',
-    scale: '25 complete packs (about 160 PDFs). Suitable for a controlled regression suite',
+    tier: 'Production library',
+    size: '100+ submission packs',
+    bestFor: 'Production regression suite. Internal QA at scale.',
     price: 'On request',
     delivery: '1 to 2 weeks',
   },
   {
-    tier: 'Production library',
-    scale: '100 to 500 complete packs (700 to 3,500 PDFs) with train / val / test splits',
+    tier: 'Training library',
+    size: '1,000+ submission packs with train / val / test splits',
+    bestFor: 'ML model fine-tuning at scale. Layout-model training.',
     price: 'On request',
     delivery: '2 to 4 weeks',
-  },
-  {
-    tier: 'Training library',
-    scale: '5,000+ packs (35,000+ PDFs) for model fine-tuning at scale',
-    price: 'On request',
-    delivery: 'Scoped per order',
   },
 ]
 
@@ -153,7 +151,7 @@ export default function InsuranceLibraryPage() {
                 Other synthetic libraries give you one box per document. The RCA Insurance Library labels every field on the page, plus every individual claim row on a loss run and every individual location row on a statement of values.
               </p>
               <p className="text-slate-600 leading-relaxed">
-                That means a row-level extractor gets row-level supervision. A reviewer can click any row in the ground truth and highlight the exact pixels on the rendered PDF. A vendor bake-off scores every extractor on the same row-level target.
+                That means a row-level extractor gets row-level supervision. A reviewer can click any row in the ground truth and highlight the exact pixels on the rendered PDF. A vendor evaluation scores every extractor on the same row-level target.
               </p>
             </div>
 
@@ -287,7 +285,8 @@ export default function InsuranceLibraryPage() {
                 <thead>
                   <tr className="bg-slate-100 border-b border-slate-200">
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Tier</th>
-                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Scale</th>
+                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Size</th>
+                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Best for</th>
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Price</th>
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Delivery</th>
                   </tr>
@@ -296,7 +295,8 @@ export default function InsuranceLibraryPage() {
                   {pricing.map((row) => (
                     <tr key={row.tier} className={`border-b border-slate-200 ${row.highlight ? 'bg-[#CCFBF1]/40' : ''}`}>
                       <td className="px-4 py-3 text-sm font-semibold text-slate-800 align-top whitespace-nowrap">{row.tier}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-xl">{row.scale}</td>
+                      <td className="px-4 py-3 text-sm text-slate-700 align-top">{row.size}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-md">{row.bestFor}</td>
                       <td className={`px-4 py-3 text-sm font-semibold align-top whitespace-nowrap ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
                       <td className="px-4 py-3 text-sm text-slate-600 align-top whitespace-nowrap">{row.delivery}</td>
                     </tr>

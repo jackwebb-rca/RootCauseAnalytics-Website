@@ -98,39 +98,37 @@ const styleProfiles = [
   'faxed_external_correspondence',
 ]
 
-type PricingRow = { tier: string; scale: string; price: string; delivery: string; highlight?: boolean }
+type PricingRow = { tier: string; size: string; bestFor: string; price: string; delivery: string; highlight?: boolean }
 
 const pricing: PricingRow[] = [
   {
-    tier: 'Free review pack',
-    scale: '25 to 35 representative documents across the major types, with ground truth, bboxes and scanned variants',
-    price: 'Free for qualified prospects',
-    delivery: 'Same-day on request',
+    tier: 'Free sample',
+    size: '25 to 35 representative documents',
+    bestFor: 'First look. Review the schema, AU conventions and disclaimer.',
+    price: 'Free',
+    delivery: 'Same-day',
     highlight: true,
   },
   {
-    tier: 'Pilot Pack',
-    scale: '100 to 200 documents scoped to your specialty (discharge-heavy, pathology-heavy, or a specific clinical area)',
-    price: 'On request',
-    delivery: '1 to 2 weeks',
-  },
-  {
-    tier: 'QA library',
-    scale: '200 documents across 40+ document types. Suitable for a controlled regression suite',
+    tier: 'Pilot pack',
+    size: '100 to 200 documents scoped to your specialty',
+    bestFor: 'Internal pilot. Specialty-focused review (discharge, pathology, imaging, etc.).',
     price: 'On request',
     delivery: '1 to 2 weeks',
   },
   {
     tier: 'Production library',
-    scale: '500 to 2,000 documents with train / val / test splits',
+    size: '500 to 1,000 documents across 40+ types',
+    bestFor: 'Production regression suite. Internal QA at scale.',
     price: 'On request',
-    delivery: '2 to 4 weeks',
+    delivery: '2 to 3 weeks',
   },
   {
     tier: 'Training library',
-    scale: '5,000+ documents for model fine-tuning at scale',
+    size: '5,000+ documents with train / val / test splits',
+    bestFor: 'ML model fine-tuning at scale. Clinical-NLP training.',
     price: 'On request',
-    delivery: 'Scoped per order',
+    delivery: '4 to 6 weeks',
   },
 ]
 
@@ -287,7 +285,8 @@ export default function MedicalLibraryPage() {
                 <thead>
                   <tr className="bg-slate-100 border-b border-slate-200">
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Tier</th>
-                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Scale</th>
+                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Size</th>
+                    <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Best for</th>
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Price</th>
                     <th className="text-left px-4 py-3 text-sm font-semibold text-slate-700">Delivery</th>
                   </tr>
@@ -296,7 +295,8 @@ export default function MedicalLibraryPage() {
                   {pricing.map((row) => (
                     <tr key={row.tier} className={`border-b border-slate-200 ${row.highlight ? 'bg-[#CCFBF1]/40' : ''}`}>
                       <td className="px-4 py-3 text-sm font-semibold text-slate-800 align-top whitespace-nowrap">{row.tier}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-xl">{row.scale}</td>
+                      <td className="px-4 py-3 text-sm text-slate-700 align-top">{row.size}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600 align-top max-w-md">{row.bestFor}</td>
                       <td className={`px-4 py-3 text-sm font-semibold align-top whitespace-nowrap ${row.highlight ? 'text-[#0D9488]' : 'text-slate-700'}`}>{row.price}</td>
                       <td className="px-4 py-3 text-sm text-slate-600 align-top whitespace-nowrap">{row.delivery}</td>
                     </tr>
