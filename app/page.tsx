@@ -2,10 +2,11 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   FileText, Shield, CheckCircle, ArrowRight, ExternalLink, Database,
   Layers, Library, Briefcase, Stethoscope, Cog, ChevronRight, Code,
-  Repeat, Eye, Lock, Microscope, Activity, Search, Box, Hash, Scan
+  Repeat, Eye, Search, Box, Hash, Scan
 } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
@@ -280,99 +281,73 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#CCFBF1] text-[#0D9488] rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
-                Sample
+                Real sample, not a mock-up
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
                 What you actually get
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                Each pack ships a folder of PDFs plus the matching ground truth and bounding boxes. Below is a real excerpt from the RCA Insurance Library showing one loss run report and its labelled fields.
+                The images below are real pages from the RCA Insurance Library: a loss run report from PACK000004 in clean form, then the same page with every labelled field outlined. This is exactly what arrives when you request a preview pack.
               </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-on-scroll">
-              {/* PDF preview card */}
-              <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
                   <div className="flex items-center gap-2">
-                    <FileText size={16} className="text-[#0D9488]" />
-                    <span className="text-sm font-semibold text-slate-700">
-                      PACK000001_02_loss_run_report.pdf
+                    <FileText size={14} className="text-[#0D9488]" />
+                    <span className="text-xs font-semibold text-slate-700 font-mono">
+                      PACK000004_02_loss_run_report.pdf
                     </span>
                   </div>
-                  <span className="text-xs text-slate-400">loss_run_report</span>
+                  <span className="text-xs text-slate-400">clean</span>
                 </div>
-
-                <div className="border border-slate-200 rounded-lg p-5 bg-slate-50/50 font-mono text-xs text-slate-700 leading-relaxed">
-                  <div className="text-slate-900 font-semibold mb-1">[KARRI-CLM] LOSS RUN REPORT</div>
-                  <div className="text-slate-500 mb-3">Karri Specialty Underwriting Pty Ltd</div>
-                  <div className="text-[#0D9488] text-[10px] mb-4 uppercase tracking-wider">Synthetic Training Document</div>
-                  <div className="grid grid-cols-2 gap-2 mb-3">
-                    <div>Insured: <span className="text-slate-900">Ironworks Fabrication Pty Ltd</span></div>
-                    <div>ABN: <span className="text-slate-900">19 600 133 890</span></div>
-                    <div>Policy No: <span className="text-slate-900">KS-2026-271339</span></div>
-                    <div>Period: <span className="text-slate-900">2021-2025</span></div>
-                  </div>
-                  <hr className="border-slate-200 my-3" />
-                  <div className="text-xs text-slate-500 mb-2">CLAIMS</div>
-                  <div className="text-slate-700">
-                    <div className="font-semibold">CLM-2021-20458 | property damage | Closed</div>
-                    <div className="text-slate-500 italic">Damage to the front of house caused by a burst pipe.</div>
-                    <div className="grid grid-cols-3 gap-2 mt-1">
-                      <div>Paid: <span className="text-slate-900">AUD $21,465</span></div>
-                      <div>Reserve: <span className="text-slate-900">AUD $0</span></div>
-                      <div>Incurred: <span className="text-slate-900">AUD $21,465</span></div>
-                    </div>
-                  </div>
+                <div className="bg-slate-100">
+                  <Image
+                    src="/samples/insurance_loss_run_clean.png"
+                    alt="A real synthetic loss run report from PACK000004, showing the insured business, policy details and four claim rows. Visible synthetic disclaimer in the page header and footer."
+                    width={1191}
+                    height={1684}
+                    className="w-full h-auto"
+                    priority
+                  />
                 </div>
-                <p className="text-xs text-slate-500 mt-4 leading-relaxed">
-                  Every PDF carries a visible synthetic disclaimer. Names, ABNs, dollar values and dates are computer-generated.
-                </p>
               </div>
 
-              {/* Bbox + ground truth card */}
-              <div className="bg-[#0f172a] border border-slate-800 rounded-xl p-6 shadow-sm">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
                   <div className="flex items-center gap-2">
-                    <Code size={16} className="text-[#10B981]" />
-                    <span className="text-sm font-semibold text-white">
-                      bboxes.jsonl
+                    <Hash size={14} className="text-[#10B981]" />
+                    <span className="text-xs font-semibold text-slate-700 font-mono">
+                      same PDF, labelled fields
                     </span>
                   </div>
-                  <span className="text-xs text-slate-400">excerpt</span>
+                  <span className="text-xs text-slate-400">66 bboxes</span>
                 </div>
+                <div className="bg-slate-100">
+                  <Image
+                    src="/samples/insurance_loss_run_bboxes.png"
+                    alt="The same loss run report with every labelled field outlined. Red outlines mark document-level scalars (insured business, ABN, policy number, period dates, totals). Teal outlines mark per-row entries from claim_rows_json (one per claim, with sub-keys for claim_no, loss_date, category, paid, reserve, incurred)."
+                    width={1191}
+                    height={1684}
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
+            </div>
 
-                <pre className="text-xs text-slate-200 leading-relaxed font-mono overflow-x-auto whitespace-pre">
-{`{
-  "pdf_filename": "PACK000001_02_loss_run_report.pdf",
-  "document_type": "loss_run_report",
-  "document_id": "LR-PACK000001-6155",
-  "bboxes": {
-    "insured_business_name": {
-      "page": 0, "x": 102.3, "y": 87.1,
-      "width": 107.1, "height": 10.6
-    },
-    "policy_number": {
-      "page": 0, "x": 102.3, "y": 110.1,
-      "width": 71.4, "height": 10.6
-    },
-    "claim_rows_json[0].paid": {
-      "page": 0, "x": 510.1, "y": 189.4,
-      "width": 27, "height": 9.4,
-      "row_index": 0, "sub_key": "paid"
-    },
-    "claim_rows_json[0].reserve": {
-      "page": 0, "x": 438.2, "y": 189.4,
-      "width": 27, "height": 9.4,
-      "row_index": 0, "sub_key": "reserve"
-    }
-    /* ... 15 more labelled fields ... */
-  }
-}`}
-                </pre>
-                <p className="text-xs text-slate-400 mt-4 leading-relaxed">
-                  Per-claim row entries (<span className="font-mono text-[#10B981]">claim_rows_json[0].paid</span>) let a LayoutLMv3 or DocVQA fine-tune learn per-row supervision, not just document-level scalars.
-                </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 animate-on-scroll">
+              <div className="bg-white border border-slate-200 rounded-lg p-4 text-sm">
+                <div className="text-[10px] uppercase tracking-wider text-[#0D9488] font-semibold mb-1">Red outlines</div>
+                <div className="text-slate-700 leading-relaxed">Document-level scalar fields: insured business name, ABN, policy number, period dates, displayed totals.</div>
+              </div>
+              <div className="bg-white border border-slate-200 rounded-lg p-4 text-sm">
+                <div className="text-[10px] uppercase tracking-wider text-[#10B981] font-semibold mb-1">Teal outlines</div>
+                <div className="text-slate-700 leading-relaxed">Per-row entries from claim_rows_json. Each claim has eight sub-keys with row_index preserved.</div>
+              </div>
+              <div className="bg-white border border-slate-200 rounded-lg p-4 text-sm">
+                <div className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1">Ships alongside</div>
+                <div className="text-slate-700 leading-relaxed">CSV + JSONL ground truth, bboxes.jsonl, manifest, plus a scanned variant of every PDF.</div>
               </div>
             </div>
 
@@ -385,7 +360,7 @@ export default function HomePage() {
                 <ChevronRight size={16} />
               </Link>
               <p className="text-xs text-slate-500 mt-3">
-                Free. Same-day delivery on request. PDFs, ground truth, bboxes and scanned variants for two complete submission packs.
+                Free. Same-day delivery on request. Two complete submission packs, ground truth, bboxes and scanned variants.
               </p>
             </div>
           </div>

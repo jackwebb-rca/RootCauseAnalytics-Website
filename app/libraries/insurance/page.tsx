@@ -2,8 +2,9 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
-  CheckCircle, ArrowRight, AlertTriangle, FileText, ChevronRight, Mail, ScrollText, FileCheck
+  CheckCircle, ArrowRight, AlertTriangle, FileText, ChevronRight, Mail, ScrollText, FileCheck, Hash
 } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
@@ -173,74 +174,132 @@ export default function InsuranceLibraryPage() {
 
         {/* BBOX STRUCTURE */}
         <section className="py-20 bg-white" aria-label="Bbox structure">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="animate-on-scroll mb-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="animate-on-scroll mb-10 max-w-3xl">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-6 text-balance">
                 Bbox structure: per-row, not just per-document
               </h2>
               <p className="text-slate-600 leading-relaxed mb-4">
-                Most synthetic libraries return one bounding box per document. The RCA Insurance Library returns a bbox for every labelled field in the document plus a per-row bbox for every claim in <span className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">claim_rows_json</span> and every location in <span className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">location_rows_json</span>.
+                Most synthetic libraries return one bounding box per document. The RCA Insurance Library returns a bbox for every labelled field in the document, plus a per-row bbox for every claim in <span className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">claim_rows_json</span> and every location in <span className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">location_rows_json</span>.
               </p>
               <p className="text-slate-600 leading-relaxed">
-                That means a LayoutLMv3 or Donut fine-tune learns per-claim and per-location supervision. A reviewer can click any row in the structured ground truth and highlight the exact pixels on the rendered PDF. A vendor bake-off scores extractors on the same row-level target.
+                A LayoutLMv3 or Donut fine-tune learns per-claim and per-location supervision. A reviewer can click any row in the structured ground truth and highlight the exact pixels on the rendered PDF.
               </p>
             </div>
 
-            <div className="bg-[#0f172a] border border-slate-800 rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-              <div className="flex items-center justify-between px-5 py-3 bg-slate-900 border-b border-slate-800">
-                <div className="flex items-center gap-2">
-                  <div className="flex gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400/60" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/60" />
+            {/* Loss run report visual pair */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-on-scroll">
+              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
+                  <div className="flex items-center gap-2">
+                    <FileText size={14} className="text-[#0D9488]" />
+                    <span className="text-xs font-semibold text-slate-700 font-mono">
+                      loss_run_report
+                    </span>
                   </div>
-                  <span className="text-xs font-mono text-slate-400 ml-2">
-                    bboxes_sample.jsonl
-                  </span>
+                  <span className="text-xs text-slate-400">clean PDF</span>
                 </div>
-                <span className="text-xs text-slate-500">PACK000004 loss_run_report</span>
+                <div className="bg-slate-100">
+                  <Image
+                    src="/samples/insurance_loss_run_clean.png"
+                    alt="Clean synthetic loss run report PDF showing the insured business, ABN, policy number, period dates, displayed totals, and four claim rows with category, description, status, paid, reserve and incurred columns. Visible synthetic disclaimer in the header and footer."
+                    width={1191}
+                    height={1684}
+                    className="w-full h-auto"
+                  />
+                </div>
               </div>
-              <pre className="px-5 py-5 text-xs text-slate-200 leading-relaxed font-mono overflow-x-auto whitespace-pre">
-{`{
-  "pdf_filename": "PACK000004_02_loss_run_report.pdf",
-  "document_type": "loss_run_report",
-  "document_id":   "LR-PACK000004-7382",
-  "bboxes": {
 
-    // --- document-level scalars ---------------------
-    "insured_business_name": {
-      "page": 0, "x": 102.3, "y":  87.1, "width": 107.1, "height": 10.6
-    },
-    "insured_abn":           { "page": 0, "x": 266.8, "y":  87.1, "width":  71.4, "height": 10.6 },
-    "policy_number":         { "page": 0, "x": 102.3, "y": 110.1, "width":  71.4, "height": 10.6 },
-    "policy_period_start":   { "page": 0, "x": 212.9, "y": 170.9, "width":  42.5, "height": 11.7 },
-    "policy_period_end":     { "page": 0, "x": 262.9, "y": 170.9, "width":  42.5, "height": 11.7 },
-    "total_paid":            { "page": 0, "x": 510.1, "y": 189.4, "width":  27.0, "height":  9.4 },
-    "total_incurred":        { "page": 0, "x": 510.1, "y": 189.4, "width":  27.0, "height":  9.4 },
-
-    // --- per-claim row entries from claim_rows_json -
-    "claim_rows_json[0].claim_no":    { "page": 0, "x":  55.0, "y": 366.3, "width": 37.0, "height": 23.6, "row_index": 0, "sub_key": "claim_no" },
-    "claim_rows_json[0].loss_date":   { "page": 0, "x": 104.3, "y": 366.3, "width": 25.0, "height": 23.6, "row_index": 0, "sub_key": "loss_date" },
-    "claim_rows_json[0].category":    { "page": 0, "x": 173.4, "y": 366.3, "width": 23.0, "height": 12.4, "row_index": 0, "sub_key": "category" },
-    "claim_rows_json[0].description": { "page": 0, "x": 222.7, "y": 366.3, "width":103.0, "height": 12.4, "row_index": 0, "sub_key": "description" },
-    "claim_rows_json[0].status":      { "page": 0, "x": 355.9, "y": 366.3, "width": 23.0, "height": 23.6, "row_index": 0, "sub_key": "status" },
-    "claim_rows_json[0].paid":        { "page": 0, "x": 390.4, "y": 366.3, "width": 39.0, "height": 23.6, "row_index": 0, "sub_key": "paid" },
-    "claim_rows_json[0].reserve":     { "page": 0, "x": 439.7, "y": 366.3, "width": 31.5, "height": 12.4, "row_index": 0, "sub_key": "reserve" },
-    "claim_rows_json[0].incurred":    { "page": 0, "x": 515.6, "y": 366.3, "width": 22.5, "height": 12.4, "row_index": 0, "sub_key": "incurred" },
-
-    "claim_rows_json[1].claim_no":    { "page": 0, "x":  55.0, "y": 394.8, "width": 37.0, "height": 23.6, "row_index": 1, "sub_key": "claim_no" },
-    "claim_rows_json[1].description": { "page": 0, "x": 222.7, "y": 394.8, "width": 91.0, "height": 12.4, "row_index": 1, "sub_key": "description" },
-    "claim_rows_json[1].paid":        { "page": 0, "x": 390.4, "y": 394.8, "width": 39.0, "height": 23.6, "row_index": 1, "sub_key": "paid" },
-    "claim_rows_json[1].reserve":     { "page": 0, "x": 439.7, "y": 394.8, "width": 39.0, "height": 23.6, "row_index": 1, "sub_key": "reserve" },
-    "claim_rows_json[1].incurred":    { "page": 0, "x": 489.1, "y": 394.8, "width": 49.0, "height": 23.6, "row_index": 1, "sub_key": "incurred" }
-    /* ... 4 more claim rows ... */
-  }
-}`}
-              </pre>
+              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
+                  <div className="flex items-center gap-2">
+                    <Hash size={14} className="text-[#10B981]" />
+                    <span className="text-xs font-semibold text-slate-700 font-mono">
+                      labelled fields overlay
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-400">66 bboxes</span>
+                </div>
+                <div className="bg-slate-100">
+                  <Image
+                    src="/samples/insurance_loss_run_bboxes.png"
+                    alt="The same loss run report with every labelled field outlined. Red outlines mark document-level scalars. Teal outlines mark per-row entries from claim_rows_json. Each of the four claim rows has its own eight sub-key bboxes."
+                    width={1191}
+                    height={1684}
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
             </div>
-            <p className="text-xs text-slate-500 mt-4 leading-relaxed animate-on-scroll">
-              <strong className="text-slate-700">Note</strong>: bbox coordinates are in PDF points (origin top-left after the extractor's coordinate normalisation). When a value wraps across two lines in a narrow table cell, the bbox spans both lines using a word-grouped fallback. Total field bboxes per loss run report average 38 across the library.
-            </p>
+
+            {/* Statement of values pair */}
+            <div className="mt-10 max-w-3xl animate-on-scroll">
+              <h3 className="text-xl font-semibold text-[#1E3A8A] mb-3">
+                Same shape on statements of values
+              </h3>
+              <p className="text-slate-600 leading-relaxed">
+                Per-location rows from <span className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">location_rows_json</span> get the same treatment. Each address, occupancy, building value, contents value, stock value and BI value lands as its own bbox keyed by row index. A statement of values with five sites ships roughly 41 labelled-field bboxes.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 animate-on-scroll">
+              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
+                  <div className="flex items-center gap-2">
+                    <FileText size={14} className="text-[#0D9488]" />
+                    <span className="text-xs font-semibold text-slate-700 font-mono">
+                      statement_of_values
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-400">clean PDF</span>
+                </div>
+                <div className="bg-slate-100">
+                  <Image
+                    src="/samples/insurance_sov_clean.png"
+                    alt="Clean synthetic statement of values PDF showing the insured business and four location rows with address, occupancy, building value, contents value, stock value, BI value and declared total per site."
+                    width={1191}
+                    height={1684}
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
+
+              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
+                  <div className="flex items-center gap-2">
+                    <Hash size={14} className="text-[#10B981]" />
+                    <span className="text-xs font-semibold text-slate-700 font-mono">
+                      labelled fields overlay
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-400">41 bboxes</span>
+                </div>
+                <div className="bg-slate-100">
+                  <Image
+                    src="/samples/insurance_sov_bboxes.png"
+                    alt="The same statement of values PDF with every labelled field outlined in red and teal. Per-location entries from location_rows_json each have their own bbox per sub-key (address, occupancy, building_value, contents_value, stock_value, business_interruption_value)."
+                    width={1191}
+                    height={1684}
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 animate-on-scroll">
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm">
+                <div className="text-[10px] uppercase tracking-wider text-[#0D9488] font-semibold mb-1">Red outlines</div>
+                <div className="text-slate-700 leading-relaxed">Document-level scalar fields: identity, policy, period dates, displayed totals.</div>
+              </div>
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm">
+                <div className="text-[10px] uppercase tracking-wider text-[#10B981] font-semibold mb-1">Teal outlines</div>
+                <div className="text-slate-700 leading-relaxed">Per-row entries from <span className="font-mono">claim_rows_json</span> and <span className="font-mono">location_rows_json</span>. Each row has its sub-keys preserved with <span className="font-mono">row_index</span>.</div>
+              </div>
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm">
+                <div className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1">Footnote</div>
+                <div className="text-slate-700 leading-relaxed">Bbox coordinates are PDF points. When a value wraps across two lines in a narrow table cell, the bbox spans both lines using a word-grouped fallback.</div>
+              </div>
+            </div>
           </div>
         </section>
 

@@ -2,8 +2,9 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
-  CheckCircle, ArrowRight, ChevronRight, Stethoscope, Pill, Microscope, Activity, Heart
+  CheckCircle, ArrowRight, ChevronRight, Stethoscope, Microscope, Heart, FileText, Hash
 } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
@@ -197,6 +198,95 @@ export default function MedicalLibraryPage() {
             <p className="text-center text-sm text-slate-500 mt-8 animate-on-scroll">
               Full list with document_type weights documented in the library manifest.json.
             </p>
+          </div>
+        </section>
+
+        {/* WHAT YOU ACTUALLY GET - REAL SAMPLE */}
+        <section className="py-20 bg-white border-t border-slate-200" aria-label="Real sample">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#CCFBF1] text-[#0D9488] rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                Real sample, not a mock-up
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
+                What you actually get
+              </h2>
+              <p className="text-slate-600 leading-relaxed">
+                Below is a real discharge summary from the RCA Medical Library: NSW hospital header, AU patient name conventions, Medicare format, NSW Local Health District, AU consultant postnominals, and a medications table. Same page rendered clean and with every labelled field outlined.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-on-scroll">
+              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
+                  <div className="flex items-center gap-2">
+                    <FileText size={14} className="text-[#0D9488]" />
+                    <span className="text-xs font-semibold text-slate-700 font-mono">
+                      discharge_summary
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-400">clean PDF</span>
+                </div>
+                <div className="bg-slate-100">
+                  <Image
+                    src="/samples/medical_discharge_summary_clean.png"
+                    alt="Clean synthetic discharge summary from a fictional NSW hospital. Patient demographics with AU name and NSW address, Medicare number in the displayed AU format, ward, consultant, principal diagnosis, additional diagnoses list, hospital course narrative, and medications table. Visible synthetic disclaimer at the bottom."
+                    width={1191}
+                    height={1684}
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
+
+              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
+                  <div className="flex items-center gap-2">
+                    <Hash size={14} className="text-[#10B981]" />
+                    <span className="text-xs font-semibold text-slate-700 font-mono">
+                      labelled fields overlay
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-400">24 bboxes</span>
+                </div>
+                <div className="bg-slate-100">
+                  <Image
+                    src="/samples/medical_discharge_summary_bboxes.png"
+                    alt="The same discharge summary with every labelled field outlined: patient name, date of birth, MRN, Medicare number, NOK, allergies, admission and discharge dates, ward, consultant, principal diagnosis. Each box maps directly to a column in ground_truth.csv."
+                    width={1191}
+                    height={1684}
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 animate-on-scroll">
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm">
+                <div className="text-[10px] uppercase tracking-wider text-[#0D9488] font-semibold mb-1">Field outlines</div>
+                <div className="text-slate-700 leading-relaxed">Each red rectangle maps to one column in ground_truth.csv. Mean: 15 fields per document across the library.</div>
+              </div>
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm">
+                <div className="text-[10px] uppercase tracking-wider text-[#10B981] font-semibold mb-1">AU conventions</div>
+                <div className="text-slate-700 leading-relaxed">NSW hospital name, NSW Local Health District, AU patient and consultant naming, displayed Medicare format, TRN-PROV-XXXXX provider numbers.</div>
+              </div>
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm">
+                <div className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1">Ships alongside</div>
+                <div className="text-slate-700 leading-relaxed">CSV + JSONL ground truth, bboxes.jsonl, manifest, plus a scanned variant of every PDF.</div>
+              </div>
+            </div>
+
+            <div className="text-center mt-10 animate-on-scroll">
+              <Link
+                href="/contact?pack=medical-review"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#1E3A8A] text-white rounded-lg font-semibold hover:bg-[#172d6b] transition-colors shadow-sm"
+              >
+                Request the free review pack
+                <ChevronRight size={16} />
+              </Link>
+              <p className="text-xs text-slate-500 mt-3">
+                25 to 35 representative documents. Same-day delivery on request. PDFs, ground truth, bboxes and scanned variants.
+              </p>
+            </div>
           </div>
         </section>
 
