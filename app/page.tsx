@@ -27,8 +27,8 @@ function useScrollAnimation() {
 
 const stats = [
   { value: '30+', label: 'Medical document types' },
-  { value: '8', label: 'Engineered red flag types' },
-  { value: '8', label: 'Style profiles per library' },
+  { value: '8', label: 'Insurance document types' },
+  { value: 'AU', label: 'Healthcare conventions' },
   { value: 'AUD $2,500', label: 'Insurance QA Sprint Pack' },
 ]
 

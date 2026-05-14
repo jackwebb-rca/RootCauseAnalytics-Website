@@ -148,10 +148,10 @@ export default function BenchmarkPacksPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-12 animate-on-scroll">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                The four packs available today
+                The current pack menu
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                A small, paid, curated pack designed for a specific evaluation use case. Smaller than a full library, larger than a preview.
+                Each pack is a small, paid, curated subset designed for a specific evaluation use case. Smaller than a full library, larger than a preview. New pack types are added as customer use cases emerge.
               </p>
             </div>
 

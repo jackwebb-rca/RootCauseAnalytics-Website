@@ -118,7 +118,7 @@ export default function InsuranceLibraryPage() {
                 What is in the library
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                Each submission pack is a complete broker submission as you would receive it in a real underwriting inbox. Eight document types ship today.
+                Each submission pack is a complete broker submission as you would receive it in a real underwriting inbox: cover note, attachments, supporting forms. Pack composition varies by submission type (new business, renewal with claims, FNOL).
               </p>
             </div>
 
@@ -147,7 +147,7 @@ export default function InsuranceLibraryPage() {
                 Engineered red flags
               </h2>
               <p className="text-white/80 leading-relaxed">
-                A subset of packs contain engineered cross-document inconsistencies. Eight categories ship today.
+                A subset of packs are deliberately broken: cross-document inconsistencies we have seen in real submissions, engineered in at known positions so your extraction or validation pipeline has a controlled target to flag.
               </p>
             </div>
 
@@ -198,7 +198,7 @@ export default function InsuranceLibraryPage() {
               Diversity controls
             </h2>
             <p className="text-slate-600 leading-relaxed mb-6">
-              Each PDF is rendered with a deterministically chosen style profile. Eight profiles ship today:
+              Each PDF is rendered with a deterministically chosen style profile, each modelled on a real underwriting-inbox archetype:
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
               {styleProfiles.map((sp) => (

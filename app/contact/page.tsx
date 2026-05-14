@@ -291,7 +291,7 @@ function ContactPageInner() {
                       <div className="mb-5 px-4 py-3 bg-[#CCFBF1]/60 border border-[#0D9488]/30 rounded-lg flex items-start gap-2">
                         <Library size={16} className="text-[#0D9488] mt-0.5 shrink-0" />
                         <p className="text-xs text-slate-700 leading-relaxed">
-                          Enquiry pre-filled from your selected option: <strong>{form.pack}</strong>. Add any details below.
+                          Enquiry pre-filled: <strong>{form.enquiryType}</strong>. Add any details below.
                         </p>
                       </div>
                     )}

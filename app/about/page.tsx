@@ -61,10 +61,10 @@ const capabilities = [
 ]
 
 const propositionTiles = [
-  { label: 'Deployment', value: 'Snowflake Native', color: '#0D9488', description: 'Runs inside your existing Snowflake account' },
-  { label: 'Data Location', value: 'Your account', color: '#1E3A8A', description: 'Zero data movement - extraction inside your environment' },
-  { label: 'Synthetic data', value: 'Built-in', color: '#10B981', description: 'Sister product is the library we test against' },
-  { label: 'Disclaimer', value: 'On every page', color: '#0D9488', description: 'Library outputs are safe to share inside your company' },
+  { label: 'Extraction product', value: 'RCA Extract', color: '#0D9488', description: 'Snowflake Native App. Listing GZSUZU1HJP. Runs in your Snowflake account.' },
+  { label: 'Medical library', value: '30+ types', color: '#1E3A8A', description: 'Discharge, ED, referral, imaging, pathology, plus 25+ specialist types.' },
+  { label: 'Insurance library', value: 'Per-row bboxes', color: '#10B981', description: 'Per-claim and per-location row bbox structure for granular extraction QA.' },
+  { label: 'Sydney-based', value: 'AU conventions', color: '#0D9488', description: 'NSW postcodes, Medicare format, AU provider postnominals built in.' },
 ]
 
 export default function AboutPage() {
@@ -123,10 +123,10 @@ export default function AboutPage() {
               <div className="animate-on-scroll grid grid-cols-1 gap-4">
                 {propositionTiles.map(({ label, value, color, description }) => (
                   <div key={label} className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
-                    <div className="text-xl font-bold shrink-0 w-32" style={{ color }}>{value}</div>
-                    <div>
+                    <div className="text-lg font-bold shrink-0 w-40 leading-tight" style={{ color }}>{value}</div>
+                    <div className="min-w-0">
                       <div className="font-semibold text-slate-800 text-sm">{label}</div>
-                      <div className="text-xs text-slate-500 mt-0.5">{description}</div>
+                      <div className="text-xs text-slate-500 mt-0.5 leading-relaxed">{description}</div>
                     </div>
                   </div>
                 ))}
