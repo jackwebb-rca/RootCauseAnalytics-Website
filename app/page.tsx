@@ -1,26 +1,20 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import Link from 'next/link'
 import {
-  FileText, Zap, Shield, Clock, TrendingDown, CheckCircle, ArrowRight,
-  ExternalLink, Database, Brain, Lock, BarChart3, Layers, ChevronRight
+  FileText, Shield, CheckCircle, ArrowRight, ExternalLink, Database,
+  Layers, Library, Briefcase, Stethoscope, Cog, ChevronRight, Code
 } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
-import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell
-} from 'recharts'
 
-// ----- Scroll animation hook -----
 function useScrollAnimation() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
+          if (entry.isIntersecting) entry.target.classList.add('visible')
         })
       },
       { threshold: 0.1 }
@@ -31,144 +25,80 @@ function useScrollAnimation() {
   }, [])
 }
 
-// ----- Stat Counter -----
-interface StatCounterProps {
-  value: number
-  suffix?: string
-  prefix?: string
-  label: string
-  highlight?: boolean
-}
-function StatCounter({ value, suffix = '', prefix = '', label, highlight = false }: StatCounterProps) {
-  const [count, setCount] = useState(0)
-  const ref = useRef<HTMLDivElement>(null)
-  const animated = useRef(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !animated.current) {
-          animated.current = true
-          let start = 0
-          const end = value
-          const duration = 1200
-          const step = (end / duration) * 16
-          const timer = setInterval(() => {
-            start += step
-            if (start >= end) {
-              setCount(end)
-              clearInterval(timer)
-            } else {
-              setCount(Math.floor(start))
-            }
-          }, 16)
-        }
-      },
-      { threshold: 0.5 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [value])
-
-  return (
-    <div ref={ref} className="text-center">
-      <div className={`text-3xl lg:text-4xl font-bold ${highlight ? 'text-[#10B981]' : 'text-white'}`}>
-        {prefix}{count}{suffix}
-      </div>
-      <div className="text-sm text-white/70 mt-1">{label}</div>
-    </div>
-  )
-}
-
-// ----- Cost comparison chart data -----
-const costData = [
-  { method: 'Manual Entry', cost: 12.00, fill: '#DC2626' },
-  { method: 'Outsourced', cost: 7.00, fill: '#F97316' },
-  { method: 'On-Prem OCR', cost: 1.80, fill: '#F59E0B' },
-  { method: 'MEDISCAN', cost: 0.10, fill: '#10B981' },
+const stats = [
+  { value: '30+', label: 'Medical document types' },
+  { value: '8', label: 'Engineered red flag types' },
+  { value: '8', label: 'Style profiles per library' },
+  { value: 'AUD $2,500', label: 'Insurance QA Sprint Pack' },
 ]
 
-const CustomTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3">
-        <p className="font-semibold text-slate-800 text-sm">{label}</p>
-        <p className="text-[#0D9488] font-bold">${payload[0].value.toFixed(2)} per page</p>
-      </div>
-    )
-  }
-  return null
-}
+const trustBadges = [
+  'Deterministic by seed',
+  'Ground truth + bounding boxes',
+  'Scanned variants for every PDF',
+  'Visible synthetic disclaimer on every page',
+  'AU document conventions',
+]
 
-// ----- Benefits -----
-const benefits = [
+const productLines = [
   {
-    icon: Brain,
-    title: 'AI-Powered Accuracy',
-    description: 'Advanced OCR and NLP models trained on healthcare documents deliver 97-99% extraction accuracy on clean, high-quality printed documents.',
-    stat: '97-99%',
-    statLabel: 'Extraction Accuracy',
+    icon: Stethoscope,
+    name: 'RCA Extract',
+    blurb: 'Hosted document extraction for healthcare PDFs. Discharge summaries, ED assessments, referrals, imaging and pathology reports. Snowflake Native App today. Built and tested against the RCA Medical Library.',
+    href: '/products/rca-extract',
     color: '#0D9488',
   },
   {
-    icon: TrendingDown,
-    title: 'Dramatically Lower Costs',
-    description: 'At just $0.10 per page processed, MEDISCAN reduces healthcare document processing costs by up to 80% compared to manual methods.',
-    stat: '80%',
-    statLabel: 'Cost Reduction',
-    color: '#10B981',
+    icon: Briefcase,
+    name: 'RCA Insurance Library',
+    blurb: 'Synthetic commercial P&C submission packs. Broker emails, loss runs, statements of values, policy schedules, certificates of currency, applications, FNOL forms, claim reports. Eight engineered red flag categories. Per-claim and per-location bbox rows.',
+    href: '/libraries/insurance',
+    color: '#1E3A8A',
     highlight: true,
   },
   {
-    icon: Clock,
-    title: 'Instant Deployment',
-    description: 'Deploy directly from the Snowflake Marketplace with zero infrastructure setup. Start processing documents in minutes, not months.',
-    stat: '10 Minutes',
-    statLabel: 'Deployment Time',
-    color: '#1E3A8A',
-  },
-  {
-    icon: Shield,
-    title: 'Enterprise Security',
-    description: 'MEDISCAN runs as a Snowflake Native App inside your own Snowflake account. Patient data never leaves your environment, and your existing Snowflake security controls, audit logs, and access policies apply to every document processed.',
-    stat: '100%',
-    statLabel: 'Data Stays in Snowflake',
-    color: '#1E3A8A',
-  },
-]
-
-// ----- Features -----
-const features = [
-  {
-    icon: FileText,
-    title: 'Intelligent Document Parsing',
-    description: 'Automatically classify and extract structured data from discharge summaries, referral letters, pathology reports, and more.',
-  },
-  {
-    icon: Brain,
-    title: 'Clinical NLP',
-    description: 'Identify medical entities, diagnoses, medications, and procedures using healthcare-specific language models.',
-  },
-  {
-    icon: Database,
-    title: 'Native Snowflake Integration',
-    description: 'Results land directly in your Snowflake tables. No ETL pipelines, no data movement, no additional infrastructure.',
+    icon: Library,
+    name: 'RCA Medical Library',
+    blurb: 'Synthetic Australian medical training documents. 30+ document types across hospital, ED, GP clinic, pathology, imaging and specialist correspondence. NSW postcodes, Medicare format, provider postnominals.',
+    href: '/libraries/medical',
+    color: '#0D9488',
   },
   {
     icon: Layers,
-    title: 'Multi-Format Support',
-    description: 'Process PDFs, scanned images, handwritten notes, and structured forms - all through a single unified pipeline.',
+    name: 'RCA Benchmark Packs',
+    blurb: 'Smaller paid review packs, QA packs and pilot packs that sit on top of the libraries. Use them for procurement evaluation, vendor bake-offs or pre-rollout QA. Insurance QA Sprint Pack ships at AUD $2,500.',
+    href: '/libraries/benchmark-packs',
+    color: '#1E3A8A',
   },
   {
-    icon: BarChart3,
-    title: 'Analytics-Ready Output',
-    description: 'Structured output schemas optimised for downstream analytics, reporting, and population health workloads.',
+    icon: Cog,
+    name: 'RCA Custom Libraries',
+    blurb: 'Your document types. Your field schema. Your style profiles. Built deterministically and shipped with ground truth and bboxes.',
+    href: '/contact?service=custom-library',
+    color: '#10B981',
   },
-  {
-    icon: Lock,
-    title: 'Runs Inside Your Snowflake Account',
-    description: 'Zero data egress. MEDISCAN processes every document inside your own Snowflake environment, inheriting your existing security controls, RBAC, and audit logging.',
-  },
+]
+
+const whyBullets = [
+  'Real-looking PDFs at any scale. Visually varied across style profiles and template families, not the same template rendered twenty times.',
+  'Ground truth shipped with every document, as CSV and JSONL. Bounding boxes for labeled fields. Insurance bboxes include per-claim row entries from claim_rows_json and per-location row entries from location_rows_json.',
+  'Scanned variants for the photocopy and JPEG-noise path.',
+  'Reproducible by seed. The same seed produces the same PDFs every time. Useful for versioned QA.',
+  'Safe to share inside your company. Every page carries a visible synthetic disclaimer. Nothing is real patient, claimant, broker, or policyholder data.',
+]
+
+const howSteps = [
+  { step: '01', title: 'Curated case files', description: 'Hand-authored case archetypes. Phrase banks. Field schemas defined up front.' },
+  { step: '02', title: 'Deterministic generator', description: 'A Python pipeline turns a case file plus a seed into a fully-rendered PDF. No LLM calls in the default pipeline.' },
+  { step: '03', title: 'Labels generated alongside', description: 'Ground truth, bounding boxes and scanned variants are produced in the same pass as the PDFs.' },
+  { step: '04', title: 'Library packaging', description: 'Library ships with manifest, splits, README and a written synthetic safety statement.' },
+]
+
+const safetyTiles = [
+  { label: 'Synthetic disclaimer on every page', icon: Shield, color: '#0D9488' },
+  { label: 'No real customer data anywhere', icon: Database, color: '#1E3A8A' },
+  { label: 'RCA Extract runs in your Snowflake account', icon: Shield, color: '#0D9488' },
+  { label: 'Direct delivery, no third parties', icon: FileText, color: '#10B981' },
 ]
 
 export default function HomePage() {
@@ -178,12 +108,11 @@ export default function HomePage() {
     <>
       <Navigation />
       <main id="main-content">
-        {/* ===== HERO ===== */}
+        {/* HERO */}
         <section
           className="relative min-h-screen flex flex-col justify-center bg-gradient-to-br from-[#1E3A8A] via-[#1a3278] to-[#0D9488] overflow-hidden"
           aria-label="Hero section"
         >
-          {/* Background pattern */}
           <div className="absolute inset-0 opacity-10 pointer-events-none" aria-hidden="true">
             <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-white/20 blur-3xl" />
             <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-[#0D9488]/30 blur-3xl" />
@@ -191,37 +120,34 @@ export default function HomePage() {
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
             <div className="max-w-3xl">
-              {/* Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 border border-white/20 rounded-full text-sm text-white/90 mb-6 animate-fade-in">
                 <span className="w-2 h-2 rounded-full bg-[#10B981]" />
-                Available on Snowflake Marketplace
+                Synthetic libraries shipping. RCA Extract on Snowflake Marketplace.
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight text-balance mb-6 animate-fade-in-up">
-                Healthcare Document Processing,{' '}
-                <span className="text-[#CCFBF1]">Reimagined</span>
+                Document AI tools and synthetic training document libraries{' '}
+                <span className="text-[#CCFBF1]">for regulated industries</span>
               </h1>
 
               <p className="text-lg sm:text-xl text-white/80 leading-relaxed mb-8 max-w-2xl animate-fade-in-up delay-100">
-                MEDISCAN uses AI-powered OCR and NLP to transform unstructured medical documents into structured, analytics-ready data - directly within your Snowflake environment. 10 Minute Deployment Time. $0.10 per page.
+                Root Cause Analytics builds document extraction products and pre-labelled synthetic document libraries for teams working with healthcare, insurance and other privacy-sensitive documents.
               </p>
 
               <div className="flex flex-wrap gap-4 animate-fade-in-up delay-200">
-                <a
-                  href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/libraries"
                   className="flex items-center gap-2 px-6 py-3 bg-white text-[#1E3A8A] rounded-lg font-semibold hover:bg-white/90 transition-colors shadow-lg"
                 >
-                  Get Started on Snowflake
-                  <ExternalLink size={16} />
-                </a>
+                  See the libraries
+                  <ArrowRight size={16} />
+                </Link>
                 <Link
-                  href="/mediscan"
+                  href="/contact"
                   className="flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/20 transition-colors"
                 >
-                  See How It Works
-                  <ArrowRight size={16} />
+                  Talk to the founder
+                  <ChevronRight size={16} />
                 </Link>
               </div>
             </div>
@@ -231,23 +157,22 @@ export default function HomePage() {
           <div className="relative bg-white/10 backdrop-blur-sm border-t border-white/20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <StatCounter value={99} suffix="%" label="Average OCR Accuracy" highlight />
-                <StatCounter value={80} suffix="%" label="Cost Reduction" highlight />
-                <StatCounter value={10} suffix=" Min" label="Deployment Time" />
-                <StatCounter value={100} suffix="%" label="Data Stays in Snowflake" />
+                {stats.map((s) => (
+                  <div key={s.label} className="text-center">
+                    <div className="text-2xl lg:text-3xl font-bold text-white">{s.value}</div>
+                    <div className="text-sm text-white/70 mt-1">{s.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* ===== TRUST LOGOS ===== */}
+        {/* TRUST STRIP */}
         <section className="py-10 bg-slate-50 border-b border-slate-200" aria-label="Trust indicators">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-center text-sm font-medium text-slate-500 uppercase tracking-wider mb-6">
-              Trusted by healthcare organisations across Australia
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-8">
-              {['Runs in Your Snowflake Account', 'Zero Data Egress', 'Snowflake Native App', 'FHIR Compatible', 'HL7 Ready'].map((badge) => (
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+              {trustBadges.map((badge) => (
                 <div
                   key={badge}
                   className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-slate-200 shadow-sm"
@@ -260,234 +185,94 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== BENEFITS ===== */}
-        <section className="py-20 bg-white" aria-label="Key benefits">
+        {/* WHAT WE SHIP */}
+        <section className="py-20 bg-white" aria-label="Product lines">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                Why Healthcare Organisations Choose MEDISCAN
+                What we ship
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                Built specifically for healthcare data challenges, MEDISCAN combines enterprise-grade accuracy with the simplicity of a cloud-native deployment.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {benefits.map((benefit, i) => {
-                const Icon = benefit.icon
-                return (
-                  <div
-                    key={benefit.title}
-                    className={`animate-on-scroll p-6 rounded-xl border transition-shadow hover:shadow-md ${
-                      benefit.highlight
-                        ? 'bg-gradient-to-br from-[#CCFBF1] to-[#d1fae5] border-[#0D9488]/30'
-                        : 'bg-slate-50 border-slate-200'
-                    }`}
-                    style={{ transitionDelay: `${i * 100}ms` }}
-                  >
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                      style={{ backgroundColor: `${benefit.color}20` }}
-                    >
-                      <Icon size={22} style={{ color: benefit.color }} />
-                    </div>
-                    <div
-                      className="text-2xl font-bold mb-0.5"
-                      style={{ color: benefit.highlight ? '#10B981' : benefit.color }}
-                    >
-                      {benefit.stat}
-                    </div>
-                    <div className="text-xs text-slate-500 mb-3">{benefit.statLabel}</div>
-                    <h3 className="font-semibold text-slate-800 mb-2">{benefit.title}</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">{benefit.description}</p>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* ===== COST SAVINGS SECTION ===== */}
-        <section className="py-20 bg-[#1E3A8A]" aria-label="Cost savings">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 text-balance">
-                Reduce Document Processing Costs by{' '}
-                <span className="text-[#10B981]">Up to 80%</span>
-              </h2>
-              <p className="text-white/70 leading-relaxed">
-                At $0.10 per page, MEDISCAN delivers a fraction of the cost of manual entry or outsourced processing - with higher accuracy and faster turnaround.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              {/* Chart */}
-              <div className="animate-on-scroll bg-white/10 rounded-2xl p-6 border border-white/20">
-                <h3 className="text-white font-semibold mb-6 text-lg">Cost Per Page - Processing Methods</h3>
-                <ResponsiveContainer width="100%" height={280}>
-                  <BarChart data={costData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.15)" />
-                    <XAxis
-                      dataKey="method"
-                      tick={{ fill: 'rgba(255,255,255,0.75)', fontSize: 12 }}
-                      axisLine={false}
-                      tickLine={false}
-                    />
-                    <YAxis
-                      tickFormatter={(v) => `$${v}`}
-                      tick={{ fill: 'rgba(255,255,255,0.75)', fontSize: 12 }}
-                      axisLine={false}
-                      tickLine={false}
-                    />
-                    <Tooltip content={<CustomTooltip />} cursor={false} />
-                    <Bar dataKey="cost" radius={[6, 6, 0, 0]} stroke="white" strokeWidth={1}>
-                      {costData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.fill} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-
-              {/* Savings breakdown cards */}
-              <div className="flex flex-col gap-4 animate-on-scroll">
-                {[
-                  {
-                    label: 'Per Page Cost',
-                    mediscan: '$0.10',
-                    traditional: '$7.00',
-                    savings: '98% cheaper',
-                    color: '#10B981',
-                  },
-                  {
-                    label: 'Annual Cost (100k pages/yr)',
-                    mediscan: '$10,000',
-                    traditional: '$700,000',
-                    savings: 'Save $690,000',
-                    color: '#10B981',
-                  },
-                  {
-                    label: 'Accuracy',
-                    mediscan: '97-99%',
-                    traditional: '70-85% (legacy OCR)',
-                    savings: 'Higher accuracy',
-                    color: '#10B981',
-                  },
-                  {
-                    label: 'Deployment',
-                    mediscan: '10 Minutes',
-                    traditional: 'Weeks-months',
-                    savings: 'Instant start',
-                    color: '#10B981',
-                  },
-                ].map((row) => (
-                  <div
-                    key={row.label}
-                    className="bg-white/10 border border-white/20 rounded-xl p-4 flex items-center gap-4"
-                  >
-                    <div className="flex-1">
-                      <p className="text-white/60 text-xs mb-1">{row.label}</p>
-                      <div className="flex items-center gap-3">
-                        <span className="text-lg font-bold" style={{ color: row.color }}>
-                          {row.mediscan}
-                        </span>
-                        <span className="text-white/30 text-sm">vs</span>
-                        <span className="text-red-400 line-through text-sm">{row.traditional}</span>
-                      </div>
-                    </div>
-                    <span
-                      className="px-3 py-1.5 rounded-full text-xs font-semibold text-white"
-                      style={{ backgroundColor: `${row.color}30`, border: `1px solid ${row.color}50` }}
-                    >
-                      {row.savings}
-                    </span>
-                  </div>
-                ))}
-
-                <a
-                  href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2 flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#10B981] text-white rounded-lg font-semibold hover:bg-[#059669] transition-colors"
-                >
-                  Start Saving on Snowflake Marketplace
-                  <ExternalLink size={16} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== FEATURES ===== */}
-        <section className="py-20 bg-slate-50" aria-label="Features">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                Everything You Need for Healthcare Document Intelligence
-              </h2>
-              <p className="text-slate-600 leading-relaxed">
-                A complete document intelligence platform purpose-built for the complexity and security requirements of healthcare data.
+                Three product lines from the same generator stack, plus benchmark packs and custom libraries.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {features.map((feature, i) => {
-                const Icon = feature.icon
+              {productLines.map((p, i) => {
+                const Icon = p.icon
                 return (
-                  <div
-                    key={feature.title}
-                    className="animate-on-scroll bg-white p-6 rounded-xl border border-slate-200 hover:border-[#0D9488]/40 hover:shadow-md transition-all group"
+                  <Link
+                    key={p.name}
+                    href={p.href}
+                    className={`animate-on-scroll p-6 rounded-xl border transition-shadow hover:shadow-md block ${
+                      p.highlight
+                        ? 'bg-gradient-to-br from-[#CCFBF1] to-[#d1fae5] border-[#0D9488]/30'
+                        : 'bg-slate-50 border-slate-200'
+                    }`}
                     style={{ transitionDelay: `${i * 80}ms` }}
                   >
-                    <div className="w-11 h-11 rounded-lg bg-[#CCFBF1] flex items-center justify-center mb-4 group-hover:bg-[#0D9488] transition-colors">
-                      <Icon size={20} className="text-[#0D9488] group-hover:text-white transition-colors" />
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                      style={{ backgroundColor: `${p.color}20` }}
+                    >
+                      <Icon size={22} style={{ color: p.color }} />
                     </div>
-                    <h3 className="font-semibold text-slate-800 mb-2">{feature.title}</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">{feature.description}</p>
-                  </div>
+                    <h3 className="font-semibold text-slate-800 mb-2 text-lg">{p.name}</h3>
+                    <p className="text-sm text-slate-600 leading-relaxed mb-3">{p.blurb}</p>
+                    <span className="text-sm font-medium text-[#0D9488] inline-flex items-center gap-1">
+                      Learn more
+                      <ArrowRight size={14} />
+                    </span>
+                  </Link>
                 )
               })}
             </div>
           </div>
         </section>
 
-        {/* ===== HOW IT WORKS ===== */}
-        <section className="py-20 bg-white" aria-label="How MEDISCAN works">
+        {/* WHY TEAMS USE US */}
+        <section className="py-20 bg-[#1E3A8A]" aria-label="Why teams use the libraries">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 text-balance">
+                Why teams use the libraries
+              </h2>
+              <p className="text-white/70 leading-relaxed">
+                The properties that matter for QA, training and procurement evaluation.
+              </p>
+            </div>
+            <div className="max-w-3xl mx-auto">
+              <ul className="flex flex-col gap-4">
+                {whyBullets.map((bullet) => (
+                  <li
+                    key={bullet}
+                    className="animate-on-scroll flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-5"
+                  >
+                    <CheckCircle size={18} className="text-[#10B981] mt-0.5 shrink-0" />
+                    <span className="text-white/85 leading-relaxed text-sm sm:text-base">{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* HOW IT IS BUILT */}
+        <section className="py-20 bg-white" aria-label="How it is built">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                From Document to Insight in Minutes
+                How the libraries are built
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                MEDISCAN's native Snowflake architecture means zero data movement and instant analytics on extracted results.
+                A deterministic Python generator, curated case files and phrase banks. No LLM calls in the default pipeline.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              {[
-                {
-                  step: '01',
-                  title: 'Install from Marketplace',
-                  description: 'Find MEDISCAN on the Snowflake Marketplace and install with a single click. No infrastructure setup required.',
-                },
-                {
-                  step: '02',
-                  title: 'Upload Documents',
-                  description: 'Stage your medical documents - PDFs, scans, images - in your Snowflake internal stage or reference external storage.',
-                },
-                {
-                  step: '03',
-                  title: 'AI Extraction',
-                  description: 'MEDISCAN\'s OCR and NLP models process each document, extracting entities, values, and structured data at 97-99% accuracy.',
-                },
-                {
-                  step: '04',
-                  title: 'Query Results',
-                  description: 'Extracted data lands in your Snowflake tables immediately. Query, join, and analyse just like any other Snowflake data.',
-                },
-              ].map((step, i) => (
-                <div key={step.step} className="animate-on-scroll relative" style={{ transitionDelay: `${i * 100}ms` }}>
-                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center hover:border-[#0D9488]/40 transition-colors">
+              {howSteps.map((step, i) => (
+                <div key={step.step} className="animate-on-scroll" style={{ transitionDelay: `${i * 100}ms` }}>
+                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center hover:border-[#0D9488]/40 transition-colors h-full">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0D9488] to-[#1E3A8A] text-white font-bold flex items-center justify-center mx-auto mb-4 text-sm">
                       {step.step}
                     </div>
@@ -500,25 +285,24 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== SECURITY SECTION ===== */}
-        <section className="py-16 bg-slate-50 border-y border-slate-200" aria-label="Security and data residency">
+        {/* SECURITY AND SYNTHETIC SAFETY */}
+        <section className="py-16 bg-slate-50 border-y border-slate-200" aria-label="Synthetic safety">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
               <div className="animate-on-scroll">
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                  Built for Healthcare Data Security
+                  Synthetic by design. Safe to share.
                 </h2>
                 <p className="text-slate-600 leading-relaxed mb-6">
-                  MEDISCAN is architected as a Snowflake Native App so patient data never leaves your Snowflake environment. The app inherits the security and audit capabilities of your own Snowflake account.
+                  Every document we ship is computer-generated. The names, ABNs, Medicare numbers, addresses, phone numbers, policy numbers, claim numbers and dollar values are all synthetic. Every PDF page carries a visible synthetic disclaimer.
                 </p>
                 <ul className="flex flex-col gap-3">
                   {[
-                    'Runs entirely within your Snowflake account, no data egress',
-                    'Inherits your Snowflake security controls, RBAC, and access policies',
-                    'Full audit trail for every document processing operation',
-                    'No external API calls, no third-party data processors',
-                    'Encryption at rest and in transit, provided by Snowflake',
-                    'Runs on Snowflake infrastructure, with your existing Snowflake account controls',
+                    'Synthetic data only. Every PDF carries a visible synthetic disclaimer on every page.',
+                    'Not for clinical, claims, underwriting, regulatory, accounting or legal use.',
+                    'RCA Extract runs inside your own Snowflake account. Zero data egress. Inherits your Snowflake RBAC, audit and access policies.',
+                    'Library deliveries are direct downloads. No third-party data processors involved.',
+                    'No real customer or patient data is held, transmitted or stored anywhere in the generator or the libraries.',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm text-slate-700">
                       <CheckCircle size={16} className="text-[#0D9488] mt-0.5 shrink-0" />
@@ -529,12 +313,7 @@ export default function HomePage() {
               </div>
 
               <div className="animate-on-scroll grid grid-cols-2 gap-4">
-                {[
-                  { label: 'Runs in Your Snowflake Account', icon: Shield, color: '#0D9488' },
-                  { label: 'No Third-Party Processors', icon: Lock, color: '#1E3A8A' },
-                  { label: 'FHIR Compatible', icon: FileText, color: '#0D9488' },
-                  { label: 'Zero Data Movement', icon: Database, color: '#10B981' },
-                ].map(({ label, icon: Icon, color }) => (
+                {safetyTiles.map(({ label, icon: Icon, color }) => (
                   <div
                     key={label}
                     className="bg-white border border-slate-200 rounded-xl p-5 flex flex-col items-center gap-3 text-center hover:border-[#0D9488]/40 transition-colors"
@@ -550,35 +329,36 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== CTA BAND ===== */}
+        {/* CTA BAND */}
         <section
+          id="preview-pack"
           className="py-20 bg-gradient-to-br from-[#0D9488] to-[#1E3A8A]"
-          aria-label="Call to action"
+          aria-label="Request a free preview pack"
         >
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 text-balance">
-              Ready to Transform Your Healthcare Document Processing?
+              Try a free preview pack
             </h2>
             <p className="text-white/80 text-lg mb-8 leading-relaxed">
-              Join healthcare organisations using MEDISCAN to reduce costs, improve accuracy, and accelerate insights from medical documents. 10 Minute Deployment Time from the Snowflake Marketplace.
+              Two-pack insurance preview, or a 25 to 35 document medical review pack. No credit card. The pack ships with a README_START_HERE.md and a recommended five-minute review path.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                href="/contact?pack=preview"
+                className="flex items-center gap-2 px-8 py-3.5 bg-white text-[#1E3A8A] rounded-lg font-semibold hover:bg-white/90 transition-colors shadow-lg"
+              >
+                Request a preview pack
+                <ChevronRight size={16} />
+              </Link>
               <a
                 href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-8 py-3.5 bg-white text-[#1E3A8A] rounded-lg font-semibold hover:bg-white/90 transition-colors shadow-lg"
-              >
-                Deploy on Snowflake Marketplace
-                <ExternalLink size={16} />
-              </a>
-              <Link
-                href="/contact"
                 className="flex items-center gap-2 px-8 py-3.5 bg-white/10 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/20 transition-colors"
               >
-                Talk to Our Team
-                <ChevronRight size={16} />
-              </Link>
+                Browse RCA Extract on Snowflake
+                <ExternalLink size={16} />
+              </a>
             </div>
           </div>
         </section>

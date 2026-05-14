@@ -8,7 +8,8 @@ import { Menu, X, ExternalLink } from 'lucide-react'
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/mediscan', label: 'MEDISCAN' },
+  { href: '/products/rca-extract', label: 'RCA Extract' },
+  { href: '/libraries', label: 'Libraries' },
   { href: '/articles', label: 'Articles' },
   { href: '/about', label: 'About' },
   { href: '/support', label: 'Support' },
@@ -51,7 +52,6 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
             <Link
               href="/"
               className="flex items-center group"
@@ -74,7 +74,6 @@ export default function Navigation() {
               </span>
             </Link>
 
-            {/* Desktop nav */}
             <nav aria-label="Main navigation" className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href
@@ -82,7 +81,7 @@ export default function Navigation() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors relative group ${
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors relative group ${
                       isScrolled
                         ? isActive
                           ? 'text-[#0D9488]'
@@ -94,14 +93,13 @@ export default function Navigation() {
                   >
                     {link.label}
                     {isActive && (
-                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#0D9488] rounded-full" />
+                      <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-[#0D9488] rounded-full" />
                     )}
                   </Link>
                 )
               })}
             </nav>
 
-            {/* Desktop CTAs */}
             <div className="hidden md:flex items-center gap-3">
               <Link
                 href="/contact"
@@ -124,7 +122,6 @@ export default function Navigation() {
               </a>
             </div>
 
-            {/* Mobile menu button */}
             <button
               className={`md:hidden p-2 rounded-md transition-colors ${
                 isScrolled ? 'text-slate-700' : 'text-white'
@@ -139,7 +136,6 @@ export default function Navigation() {
         </div>
       </header>
 
-      {/* Mobile drawer overlay */}
       {mobileOpen && (
         <div
           className="fixed inset-0 z-50 md:hidden"

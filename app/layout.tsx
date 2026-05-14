@@ -7,8 +7,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.rootcauseanalytics.com.au'),
-  title: 'MEDISCAN - Healthcare Document Processing on Snowflake',
-  description: 'Extract structured data from medical documents directly in your Snowflake environment. $0.10 per page. Zero data egress. Built for Australian healthcare.',
+  title: 'Root Cause Analytics - Document AI tools and synthetic training document libraries',
+  description: 'Root Cause Analytics builds document extraction products and pre-labelled synthetic document libraries for teams working with healthcare, insurance and other privacy-sensitive documents. Based in Sydney, Australia.',
   authors: [{ name: 'Root Cause Analytics' }],
   alternates: {
     canonical: 'https://www.rootcauseanalytics.com.au',
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://www.rootcauseanalytics.com.au',
     siteName: 'Root Cause Analytics',
-    title: 'MEDISCAN - Healthcare Document Processing on Snowflake',
-    description: 'Extract structured data from medical documents directly in your Snowflake environment. $0.10 per page. Zero data egress. Built for Australian healthcare.',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MEDISCAN by Root Cause Analytics' }],
+    title: 'Root Cause Analytics - Document AI tools and synthetic training document libraries',
+    description: 'Document extraction products and pre-labelled synthetic document libraries for teams working with healthcare, insurance and other privacy-sensitive documents.',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Root Cause Analytics' }],
   },
 }
 
@@ -29,6 +29,7 @@ const orgSchema = {
   name: 'Root Cause Analytics',
   url: 'https://www.rootcauseanalytics.com.au',
   logo: 'https://www.rootcauseanalytics.com.au/logo-blue.png',
+  description: 'Document AI tools and synthetic training document libraries for regulated industries.',
   contactPoint: {
     '@type': 'ContactPoint',
     email: 'jack.webb@rootcauseanalytics.com.au',
@@ -71,7 +72,6 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        {/* Google Analytics GA4 */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ZMCESC0KQG"
           strategy="afterInteractive"

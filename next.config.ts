@@ -10,10 +10,16 @@ const nextConfig: NextConfig = {
         destination: 'https://www.rootcauseanalytics.com.au/:path*',
         permanent: true,
       },
-      // Redirect old /solution URL to /mediscan
+      // /mediscan moved to /products/rca-extract under the new brand architecture
+      {
+        source: '/mediscan',
+        destination: '/products/rca-extract',
+        permanent: true,
+      },
+      // Legacy /solution URL preserved through to the new RCA Extract page
       {
         source: '/solution',
-        destination: '/mediscan',
+        destination: '/products/rca-extract',
         permanent: true,
       },
     ]
