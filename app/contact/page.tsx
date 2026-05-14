@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import {
-  Mail, MapPin, ExternalLink, Send, CheckCircle, ChevronDown, User, Building, MessageSquare
+  Mail, MapPin, ExternalLink, Send, CheckCircle, ChevronDown, User, Building, MessageSquare, Library
 } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 
@@ -19,20 +20,26 @@ function useScrollAnimation() {
 }
 
 const roles = [
+  'Data / ML Engineering',
   'Clinical Informatics Lead',
-  'IT / Data Engineering',
+  'Procurement / Evaluation',
+  'Underwriting / Claims',
   'Health System Executive',
-  'Healthcare Analyst',
   'Vendor / Partner',
   'Other',
 ]
 
 const enquiryTypes = [
   'General Enquiry',
+  'Free preview pack',
+  'Insurance QA Sprint Pack (AUD $2,500)',
+  'Insurance Library (larger volume)',
+  'Medical Library (larger volume)',
+  'RCA Extract on Snowflake',
+  'Custom library',
   'Pricing & Licensing',
   'Technical Support',
-  'Deployment Assistance',
-  'Partnership Opportunities',
+  'Partnership',
 ]
 
 interface FormData {
@@ -42,18 +49,37 @@ interface FormData {
   role: string
   enquiryType: string
   message: string
+  pack: string
 }
 
-export default function ContactPage() {
+function packParamToEnquiry(pack: string | null, service: string | null): string {
+  if (pack === 'insurance-qa-sprint') return 'Insurance QA Sprint Pack (AUD $2,500)'
+  if (pack === 'insurance-2-preview') return 'Free preview pack'
+  if (pack === 'medical-review') return 'Free preview pack'
+  if (pack === 'preview') return 'Free preview pack'
+  if (pack === 'insurance-procurement') return 'Insurance Library (larger volume)'
+  if (pack === 'medical-pilot') return 'Medical Library (larger volume)'
+  if (service === 'custom-library' || service === 'custom-pack') return 'Custom library'
+  return 'General Enquiry'
+}
+
+function ContactPageInner() {
   useScrollAnimation()
+  const searchParams = useSearchParams()
+  const packParam = searchParams?.get('pack') ?? null
+  const serviceParam = searchParams?.get('service') ?? null
+
+  const initialEnquiry = packParamToEnquiry(packParam, serviceParam)
+  const packLabel = packParam ?? serviceParam ?? ''
 
   const [form, setForm] = useState<FormData>({
     name: '',
     email: '',
     organisation: '',
     role: '',
-    enquiryType: 'General Enquiry',
+    enquiryType: initialEnquiry,
     message: '',
+    pack: packLabel,
   })
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -77,6 +103,8 @@ export default function ContactPage() {
           email: form.email,
           message: form.message,
           enquiryType: form.enquiryType,
+          pack: form.pack,
+          role: form.role,
         }),
       })
       if (!res.ok) throw new Error('Failed')
@@ -92,33 +120,32 @@ export default function ContactPage() {
     <>
       <Navigation />
       <main id="main-content">
-        {/* ===== HERO ===== */}
+        {/* HERO */}
         <section
           className="pt-24 pb-12 bg-gradient-to-br from-[#1E3A8A] to-[#0D9488]"
           aria-label="Contact hero"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 text-balance">
-              Get in Touch
+              Get in touch
             </h1>
             <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Our Sydney-based team is ready to help you deploy MEDISCAN, answer technical questions, or discuss custom solutions for your organisation.
+              Our Sydney-based team handles enquiries for RCA Extract on Snowflake and for the RCA training document libraries. Use the form below or email us directly.
             </p>
           </div>
         </section>
 
-        {/* ===== CONTACT METHODS ===== */}
+        {/* CONTACT METHODS */}
         <section className="py-10 bg-white border-b border-slate-200" aria-label="Contact methods">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {/* Email */}
               <div className="p-6 bg-slate-50 border border-slate-200 rounded-xl">
                 <div className="w-11 h-11 rounded-lg bg-[#CCFBF1] flex items-center justify-center mb-4">
                   <Mail size={20} className="text-[#0D9488]" />
                 </div>
-                <h3 className="font-semibold text-slate-800 mb-1">Email Enquiries</h3>
+                <h3 className="font-semibold text-slate-800 mb-1">Email enquiries</h3>
                 <p className="text-sm text-slate-500 mb-3 leading-relaxed">
-                  For general enquiries and partnership discussions.
+                  For general enquiries, library orders, and partnership discussions.
                 </p>
                 <a
                   href="mailto:jack.webb@rootcauseanalytics.com.au"
@@ -128,14 +155,13 @@ export default function ContactPage() {
                 </a>
               </div>
 
-              {/* Snowflake Marketplace - featured */}
               <div className="p-6 bg-gradient-to-br from-[#1E3A8A] to-[#0D9488] rounded-xl">
                 <div className="w-11 h-11 rounded-lg bg-white/20 flex items-center justify-center mb-4">
                   <ExternalLink size={20} className="text-white" />
                 </div>
                 <h3 className="font-semibold text-white mb-1">Snowflake Marketplace</h3>
                 <p className="text-sm text-white/70 mb-3 leading-relaxed">
-                  Deploy MEDISCAN directly in 10 minutes. No sales process required.
+                  Browse RCA Extract directly on the Snowflake Marketplace (listing GZSUZU1HJP).
                 </p>
                 <a
                   href="https://app.snowflake.com/marketplace/listing/GZSUZU1HJP/"
@@ -148,7 +174,6 @@ export default function ContactPage() {
                 </a>
               </div>
 
-              {/* Location */}
               <div className="p-6 bg-slate-50 border border-slate-200 rounded-xl">
                 <div className="w-11 h-11 rounded-lg bg-[#CCFBF1] flex items-center justify-center mb-4">
                   <MapPin size={20} className="text-[#0D9488]" />
@@ -171,36 +196,35 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* ===== FORM + INFO ===== */}
+        {/* FORM + INFO */}
         <section className="py-20 bg-slate-50" aria-label="Contact form">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Left - info */}
               <div className="animate-on-scroll">
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                  Talk to Our Team
+                  Talk to our team
                 </h2>
                 <p className="text-slate-600 leading-relaxed mb-8">
-                  Whether you are evaluating MEDISCAN for the first time, need deployment assistance, or want to discuss a custom enterprise solution - our team is here to help.
+                  Whether you are evaluating RCA Extract on Snowflake, requesting a free preview pack from one of the synthetic training document libraries, or scoping a custom library, our Sydney-based team handles it. Use the form, mention the pack or service in the message, and we will respond within one business day (AEST).
                 </p>
 
                 <div className="flex flex-col gap-5">
                   {[
                     {
-                      title: 'Deployment Support',
-                      description: 'Get step-by-step guidance on installing and configuring MEDISCAN within your Snowflake environment.',
+                      title: 'Preview packs',
+                      description: 'Free 2-pack insurance preview, or a 25 to 35 document medical review pack. Same day on request.',
                     },
                     {
-                      title: 'Custom Enterprise Solutions',
-                      description: 'Discuss custom model fine-tuning, bespoke output schemas, and volume pricing for large health systems.',
+                      title: 'Insurance QA Sprint Pack',
+                      description: 'AUD $2,500 fixed. 10 packs with engineered red flags, ground truth and bboxes. 48 to 72 hour delivery. 30-minute handover call.',
                     },
                     {
-                      title: 'Technical Integration',
-                      description: 'Connect with our data engineering team for help integrating MEDISCAN output into your existing analytics stack.',
+                      title: 'RCA Extract on Snowflake',
+                      description: 'Browse the listing on the Snowflake Marketplace, or ask us about deployment, schema mapping, or evaluation against the RCA Medical Library.',
                     },
                     {
-                      title: 'Security Review',
-                      description: 'Request platform security details or arrange a technical review with our team.',
+                      title: 'Custom libraries',
+                      description: 'Your document types. Your field schema. Your style profiles. Scoped per order.',
                     },
                   ].map(({ title, description }) => (
                     <div key={title} className="flex items-start gap-3">
@@ -216,7 +240,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="mt-8 p-5 bg-white border border-slate-200 rounded-xl">
-                  <p className="text-sm font-semibold text-slate-700 mb-1">Response Time</p>
+                  <p className="text-sm font-semibold text-slate-700 mb-1">Response time</p>
                   <p className="text-sm text-slate-600 leading-relaxed">
                     Our Australian team typically responds within one business day (AEST). For urgent technical issues, email{' '}
                     <a href="mailto:jack.webb@rootcauseanalytics.com.au" className="text-[#0D9488] hover:underline">
@@ -227,14 +251,13 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Right - form */}
               <div className="animate-on-scroll">
                 {submitted ? (
                   <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center shadow-sm">
                     <div className="w-16 h-16 rounded-full bg-[#CCFBF1] flex items-center justify-center mx-auto mb-4">
                       <CheckCircle size={30} className="text-[#0D9488]" />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-800 mb-2">Message Received</h3>
+                    <h3 className="text-xl font-bold text-slate-800 mb-2">Message received</h3>
                     <p className="text-slate-600 leading-relaxed mb-6">
                       Thank you for your enquiry. Our Australian team will review your message and respond within one business day (AEST).
                     </p>
@@ -248,6 +271,7 @@ export default function ContactPage() {
                           role: '',
                           enquiryType: 'General Enquiry',
                           message: '',
+                          pack: '',
                         })
                       }}
                       className="text-sm text-[#0D9488] hover:underline"
@@ -261,14 +285,22 @@ export default function ContactPage() {
                     className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm"
                     noValidate
                   >
-                    <h3 className="text-lg font-semibold text-slate-800 mb-6">Send Us a Message</h3>
+                    <h3 className="text-lg font-semibold text-slate-800 mb-6">Send us a message</h3>
+
+                    {form.pack && (
+                      <div className="mb-5 px-4 py-3 bg-[#CCFBF1]/60 border border-[#0D9488]/30 rounded-lg flex items-start gap-2">
+                        <Library size={16} className="text-[#0D9488] mt-0.5 shrink-0" />
+                        <p className="text-xs text-slate-700 leading-relaxed">
+                          Enquiry pre-filled from your selected option: <strong>{form.pack}</strong>. Add any details below.
+                        </p>
+                      </div>
+                    )}
 
                     <div className="flex flex-col gap-5">
-                      {/* Name + Email */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1.5">
-                            Full Name <span className="text-red-500">*</span>
+                            Full name <span className="text-red-500">*</span>
                           </label>
                           <div className="relative">
                             <User size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -286,7 +318,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                           <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1.5">
-                            Email Address <span className="text-red-500">*</span>
+                            Work email <span className="text-red-500">*</span>
                           </label>
                           <div className="relative">
                             <Mail size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -297,14 +329,13 @@ export default function ContactPage() {
                               required
                               value={form.email}
                               onChange={handleChange}
-                              placeholder="jane@hospital.com.au"
+                              placeholder="jane@example.com.au"
                               className="w-full pl-9 pr-3 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-colors"
                             />
                           </div>
                         </div>
                       </div>
 
-                      {/* Organisation */}
                       <div>
                         <label htmlFor="organisation" className="block text-sm font-medium text-slate-700 mb-1.5">
                           Organisation
@@ -317,17 +348,16 @@ export default function ContactPage() {
                             type="text"
                             value={form.organisation}
                             onChange={handleChange}
-                            placeholder="St Vincent's Hospital"
+                            placeholder="Example Pty Ltd"
                             className="w-full pl-9 pr-3 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-colors"
                           />
                         </div>
                       </div>
 
-                      {/* Role + Enquiry Type */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label htmlFor="role" className="block text-sm font-medium text-slate-700 mb-1.5">
-                            Your Role
+                            Your role
                           </label>
                           <div className="relative">
                             <select
@@ -347,7 +377,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                           <label htmlFor="enquiryType" className="block text-sm font-medium text-slate-700 mb-1.5">
-                            Enquiry Type
+                            Enquiry type
                           </label>
                           <div className="relative">
                             <select
@@ -366,7 +396,6 @@ export default function ContactPage() {
                         </div>
                       </div>
 
-                      {/* Message */}
                       <div>
                         <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1.5">
                           Message <span className="text-red-500">*</span>
@@ -380,7 +409,7 @@ export default function ContactPage() {
                             rows={4}
                             value={form.message}
                             onChange={handleChange}
-                            placeholder="Tell us about your use case, document types, or any questions you have..."
+                            placeholder="Tell us about your use case, document types, volume estimate, or any questions you have..."
                             className="w-full pl-9 pr-3 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-colors resize-none"
                           />
                         </div>
@@ -398,7 +427,7 @@ export default function ContactPage() {
                           </>
                         ) : (
                           <>
-                            Send Message
+                            Send message
                             <Send size={16} />
                           </>
                         )}
@@ -417,5 +446,27 @@ export default function ContactPage() {
       </main>
       <Footer />
     </>
+  )
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={
+      <>
+        <Navigation />
+        <main id="main-content">
+          <section className="pt-24 pb-12 bg-gradient-to-br from-[#1E3A8A] to-[#0D9488]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 text-balance">
+                Get in touch
+              </h1>
+            </div>
+          </section>
+        </main>
+        <Footer />
+      </>
+    }>
+      <ContactPageInner />
+    </Suspense>
   )
 }

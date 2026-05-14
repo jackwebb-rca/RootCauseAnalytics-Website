@@ -24,9 +24,9 @@ const supportLinks = [
 ]
 
 const legalLinks = [
-  { label: 'Privacy Policy', href: '#' },
-  { label: 'Terms of Service', href: '#' },
-  { label: 'Security Notice', href: '#' },
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'Terms of Service', href: '/terms' },
+  { label: 'Security Notice', href: '/security' },
 ]
 
 export default function Footer() {

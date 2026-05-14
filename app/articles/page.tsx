@@ -10,8 +10,11 @@ import { getArticles } from '@/lib/sanity'
 const categoryColours: Record<string, string> = {
   'Medical Records': 'bg-blue-50 text-blue-700 border-blue-200',
   'Healthcare AI': 'bg-teal-50 text-teal-700 border-teal-200',
+  'Insurance': 'bg-indigo-50 text-indigo-700 border-indigo-200',
+  'Document AI': 'bg-emerald-50 text-emerald-700 border-emerald-200',
   'Snowflake': 'bg-sky-50 text-sky-700 border-sky-200',
   'Industry Insight': 'bg-purple-50 text-purple-700 border-purple-200',
+  'Synthetic Data': 'bg-amber-50 text-amber-700 border-amber-200',
 }
 
 function formatDate(dateStr: string) {
@@ -45,11 +48,10 @@ export default function ArticlesPage() {
                 Medical Records Intelligence Newsletter
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                Articles and Insights
+                Articles and insights
               </h1>
               <p className="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
-                Perspectives on healthcare document processing, medical record digitisation,
-                and the role of AI in improving health data quality.
+                Perspectives on document AI for regulated industries: healthcare document processing, insurance submission extraction, synthetic training data, and Snowflake-native deployment.
               </p>
               <a
                 href="https://www.linkedin.com/newsletters/medical-records-intelligence"
@@ -149,7 +151,7 @@ export default function ArticlesPage() {
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">Stay up to date</h2>
             <p className="text-slate-500 mb-8 leading-relaxed">
-              Follow the Medical Records Intelligence newsletter on LinkedIn for regular insights on healthcare document processing and AI in health data.
+              Follow the Medical Records Intelligence newsletter on LinkedIn for regular insights on document AI, healthcare and insurance document processing, and synthetic training data.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
