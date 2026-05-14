@@ -162,7 +162,7 @@ function ContactPageInner() {
                 </div>
                 <h3 className="font-semibold text-white mb-1">Free preview pack</h3>
                 <p className="text-sm text-white/70 mb-3 leading-relaxed">
-                  Same-day delivery on request. Two complete insurance packs or 25 to 35 medical documents, with ground truth and scanned variants.
+                  Same-day delivery. Two complete insurance packs or 25 to 35 medical documents, with ground truth and scanned variants.
                 </p>
                 <Link
                   href="/contact?pack=preview"
@@ -210,11 +210,11 @@ function ContactPageInner() {
                   {[
                     {
                       title: 'Preview packs',
-                      description: 'Free 2-pack insurance preview, or a 25 to 35 document medical review pack. Same day on request.',
+                      description: 'Free 2-pack insurance preview, or a 25 to 35 document medical review pack. Same-day delivery.',
                     },
                     {
                       title: 'Insurance QA Sprint Pack',
-                      description: 'AUD $2,500 fixed. 10 packs with engineered red flags, ground truth and bboxes. 48 to 72 hour delivery. 30-minute handover call.',
+                      description: 'AUD $2,500 fixed. 10 packs with engineered red flags, ground truth and bboxes. Same-day delivery. 30-minute handover call.',
                     },
                     {
                       title: 'RCA Extract deployment',
@@ -222,7 +222,7 @@ function ContactPageInner() {
                     },
                     {
                       title: 'Custom libraries',
-                      description: 'Your document types. Your field schema. Your style profiles. Scoped per order.',
+                      description: 'Your document types. Your field schema. Your style profiles. Built and delivered same-day.',
                     },
                   ].map(({ title, description }) => (
                     <div key={title} className="flex items-start gap-3">

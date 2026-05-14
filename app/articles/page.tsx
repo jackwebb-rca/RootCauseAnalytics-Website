@@ -12,7 +12,6 @@ const categoryColours: Record<string, string> = {
   'Healthcare AI': 'bg-teal-50 text-teal-700 border-teal-200',
   'Insurance': 'bg-indigo-50 text-indigo-700 border-indigo-200',
   'Document AI': 'bg-emerald-50 text-emerald-700 border-emerald-200',
-  'Snowflake': 'bg-sky-50 text-sky-700 border-sky-200',
   'Industry Insight': 'bg-purple-50 text-purple-700 border-purple-200',
   'Synthetic Data': 'bg-amber-50 text-amber-700 border-amber-200',
 }
@@ -51,7 +50,7 @@ export default function ArticlesPage() {
                 Articles and insights
               </h1>
               <p className="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
-                Perspectives on document AI for regulated industries: healthcare document processing, insurance submission extraction, synthetic training data, and Snowflake-native deployment.
+                Perspectives on document AI for regulated industries: healthcare document processing, insurance submission extraction, synthetic training data, and self-hosted deployment.
               </p>
               <a
                 href="https://www.linkedin.com/newsletters/medical-records-intelligence"

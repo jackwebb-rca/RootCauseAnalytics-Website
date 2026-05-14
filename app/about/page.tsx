@@ -46,7 +46,7 @@ const teamMembers = [
   {
     name: 'Jack Webb',
     role: 'Founder & Lead Data Engineer',
-    bio: 'Healthcare data specialist with extensive experience in clinical informatics and data platform architecture across Australian health systems.',
+    bio: 'Builds Root Cause Analytics from Sydney. Background in healthcare data engineering. Direct contact below.',
     email: 'jack.webb@rootcauseanalytics.com.au',
   },
 ]

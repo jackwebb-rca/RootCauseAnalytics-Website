@@ -261,7 +261,7 @@ export default function MedicalLibraryPage() {
                 <ChevronRight size={16} />
               </Link>
               <p className="text-xs text-slate-500 mt-3">
-                25 to 35 representative documents. Same-day delivery on request. PDFs, ground truth, bboxes and scanned variants.
+                25 to 35 representative documents. Same-day delivery. PDFs, ground truth, bboxes and scanned variants.
               </p>
             </div>
           </div>

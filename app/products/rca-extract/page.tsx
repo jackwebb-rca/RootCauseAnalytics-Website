@@ -271,7 +271,7 @@ export default function RCAExtractPage() {
                   <div className="flex items-start gap-3">
                     <Cloud size={16} className="text-[#1E3A8A] mt-0.5 shrink-0" />
                     <p className="text-xs text-slate-600 leading-relaxed">
-                      <span className="font-semibold text-slate-700">Other deployment shapes</span> (Snowflake Native App for existing Snowflake customers, managed API for teams without infrastructure) are available on request as part of an enterprise plan. Contact us to scope.
+                      <span className="font-semibold text-slate-700">Other deployment shapes</span> (managed API for teams without their own infrastructure, air-gapped builds for high-security environments) are available on request as part of an enterprise plan. Contact us to scope.
                     </p>
                   </div>
                 </div>
@@ -331,7 +331,7 @@ export default function RCAExtractPage() {
               Talk to us about deployment
             </h2>
             <p className="text-white/80 text-lg mb-8 leading-relaxed">
-              Self-hosted container in your cloud, on-prem, or air-gapped. Snowflake Native App available on enterprise plans.
+              Self-hosted container in your cloud, on-prem, or air-gapped. Managed API available on enterprise plans.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

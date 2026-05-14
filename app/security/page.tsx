@@ -44,18 +44,18 @@ export default function SecurityPage() {
                 Root Cause Analytics Pty Ltd ("we", "us", "our") takes security seriously. This notice describes how we secure the products we ship and the operational practices we follow. For privacy questions, see the <Link href="/privacy" className="text-[#0D9488] hover:underline">Privacy Policy</Link>.
               </p>
 
-              <h2 className="text-xl font-bold text-[#1E3A8A] mt-2 mb-4">RCA Extract on Snowflake</h2>
+              <h2 className="text-xl font-bold text-[#1E3A8A] mt-2 mb-4">RCA Extract</h2>
               <p className="text-slate-600 leading-relaxed mb-4">
-                RCA Extract is delivered as a Snowflake Native App through the Snowflake Marketplace (listing GZSUZU1HJP). The product runs entirely inside the customer's own Snowflake account.
+                RCA Extract is delivered as a self-hosted Docker container that runs inside the customer's own infrastructure (cloud, on-prem or air-gapped). The container is a stateless service that takes a PDF in and returns structured JSON.
               </p>
               <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-8">
                 <ul className="flex flex-col gap-3">
                   {[
-                    { icon: Shield, text: 'Patient data, documents and extracted output remain entirely within your Snowflake environment.' },
+                    { icon: Shield, text: 'Patient data, documents and extracted output remain entirely within your infrastructure.' },
                     { icon: Lock, text: 'Root Cause Analytics does not have access to your documents or the extracted data.' },
-                    { icon: CheckCircle, text: 'Your existing Snowflake security controls, audit logs and access policies apply to every document processed.' },
-                    { icon: Database, text: 'No external API calls. No third-party data processors involved in extraction.' },
-                    { icon: FileText, text: 'Encryption at rest and in transit, provided by Snowflake.' },
+                    { icon: CheckCircle, text: 'The container sits behind your existing ingress controls, RBAC, audit logs and network policies.' },
+                    { icon: Database, text: 'No external API calls during extraction. No third-party data processors involved.' },
+                    { icon: FileText, text: 'Encryption at rest and in transit, provided by your infrastructure.' },
                   ].map(({ icon: Icon, text }) => (
                     <li key={text} className="flex items-start gap-3 text-sm text-slate-700">
                       <Icon size={16} className="text-[#0D9488] mt-0.5 shrink-0" />
@@ -87,7 +87,7 @@ export default function SecurityPage() {
               <h2 className="text-xl font-bold text-[#1E3A8A] mt-10 mb-4">Operational practices</h2>
               <ul className="list-disc pl-6 text-slate-600 leading-relaxed mb-8 flex flex-col gap-1">
                 <li>Source code stored in a private GitHub repository under access controls.</li>
-                <li>Two-factor authentication enabled on all administrative accounts (GitHub, Vercel, Snowflake Marketplace publisher account, email).</li>
+                <li>Two-factor authentication enabled on all administrative accounts (GitHub, Vercel, container registry, email).</li>
                 <li>Production deployments are gated on the main branch and trigger an immediate auditable build on Vercel.</li>
                 <li>Credentials and secrets are managed via Vercel environment variables. None are committed to source.</li>
                 <li>No production access from personal mobile devices.</li>

@@ -40,16 +40,16 @@ export default function TermsPage() {
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <article className="prose-rca animate-on-scroll">
               <p className="text-slate-600 leading-relaxed mb-6">
-                These Terms of Service ("Terms") govern your use of the Root Cause Analytics website and the products and services made available by Root Cause Analytics Pty Ltd (we, us, our). By using this website, requesting a preview pack, ordering a library, or installing RCA Extract from the Snowflake Marketplace, you agree to these Terms.
+                These Terms of Service ("Terms") govern your use of the Root Cause Analytics website and the products and services made available by Root Cause Analytics Pty Ltd (we, us, our). By using this website, requesting a preview pack, ordering a library, or deploying RCA Extract in your environment, you agree to these Terms.
               </p>
 
               <h2 className="text-xl font-bold text-[#1E3A8A] mt-10 mb-3">1. Products covered by these Terms</h2>
               <ul className="list-disc pl-6 text-slate-600 leading-relaxed mb-6 flex flex-col gap-1">
-                <li><strong>RCA Extract</strong> - a Snowflake Native App for healthcare document extraction. Distributed through the Snowflake Marketplace (listing GZSUZU1HJP). Snowflake's terms also apply to RCA Extract usage and billing.</li>
+                <li><strong>RCA Extract</strong> - a self-hosted Docker container for healthcare document extraction. Runs inside your own infrastructure (cloud, on-prem or air-gapped).</li>
                 <li><strong>RCA Insurance Library</strong> - synthetic commercial P&amp;C submission packs.</li>
                 <li><strong>RCA Medical Library</strong> - synthetic Australian medical training documents.</li>
                 <li><strong>RCA Benchmark Packs</strong> - smaller curated paid packs (including the Insurance QA Sprint Pack).</li>
-                <li><strong>RCA Custom Libraries</strong> - bespoke synthetic libraries scoped per order.</li>
+                <li><strong>RCA Custom Libraries</strong> - bespoke synthetic libraries built from your document types and field schema.</li>
               </ul>
 
               <h2 className="text-xl font-bold text-[#1E3A8A] mt-10 mb-3">2. Synthetic-only restriction</h2>
@@ -87,17 +87,17 @@ export default function TermsPage() {
               <ul className="list-disc pl-6 text-slate-600 leading-relaxed mb-6 flex flex-col gap-1">
                 <li>The Insurance 2-pack preview is provided free of charge for qualified prospects.</li>
                 <li>The Medical 25-doc review pack is provided free of charge for qualified prospects.</li>
-                <li>The Insurance QA Sprint Pack is AUD $2,500 fixed, delivered within 48 to 72 hours of order confirmation.</li>
-                <li>Larger libraries (Insurance, Medical) and custom variants are priced per scope and invoiced separately.</li>
-                <li>RCA Extract pricing depends on volume, deployment shape, and SLA. Contact us for a quote. Billing for RCA Extract is handled through the Snowflake Marketplace.</li>
+                <li>The Insurance QA Sprint Pack is AUD $2,500 fixed, delivered same-day from order confirmation.</li>
+                <li>Larger Insurance and Medical libraries are priced per scope and invoiced separately. RCA Custom Libraries are a separate product line, scoped against your document types and field schema.</li>
+                <li>RCA Extract pricing depends on volume, deployment shape, and SLA. Contact us for a quote. Billing is invoiced directly.</li>
               </ul>
               <p className="text-slate-600 leading-relaxed mb-6">
                 Payment terms are stated on each invoice. Australian dollars (AUD) unless otherwise stated.
               </p>
 
-              <h2 className="text-xl font-bold text-[#1E3A8A] mt-10 mb-3">5. RCA Extract on the Snowflake Marketplace</h2>
+              <h2 className="text-xl font-bold text-[#1E3A8A] mt-10 mb-3">5. RCA Extract deployment</h2>
               <p className="text-slate-600 leading-relaxed mb-6">
-                RCA Extract is distributed as a Snowflake Native App through the Snowflake Marketplace. The Marketplace terms, Snowflake's privacy notice, and the relevant Snowflake Native App framework terms also apply. RCA Extract runs inside your own Snowflake account. Patient data and extracted output remain entirely within your Snowflake environment. Root Cause Analytics does not have access to your documents or extracted data.
+                RCA Extract is delivered as a self-hosted Docker container that runs inside your own infrastructure. Patient data, documents and extracted output remain entirely within your environment. Root Cause Analytics does not have access to your documents or extracted data, and there are no external API calls during extraction. Your use of the container is governed by these Terms and by the license terms shipped with each release.
               </p>
 
               <h2 className="text-xl font-bold text-[#1E3A8A] mt-10 mb-3">6. Intellectual property</h2>

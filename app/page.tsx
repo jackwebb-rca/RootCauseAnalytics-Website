@@ -28,7 +28,7 @@ function useScrollAnimation() {
 }
 
 const stats = [
-  { value: 'Free preview', label: 'Same-day on request' },
+  { value: 'Free preview', label: 'Same-day delivery' },
   { value: '40+', label: 'Medical document types' },
   { value: 'Per-row labels', label: 'Insurance bbox precision' },
   { value: 'Australian-built', label: 'Healthcare conventions' },
@@ -80,7 +80,7 @@ const productLines = [
   {
     icon: Stethoscope,
     name: 'RCA Extract',
-    blurb: 'Hosted document extraction for healthcare PDFs. Discharge summaries, ED assessments, referrals, imaging and pathology reports. Snowflake Native App today. Built and tested against the RCA Medical Library.',
+    blurb: 'Self-hosted document extraction for healthcare PDFs. Discharge summaries, ED assessments, referrals, imaging and pathology reports. Ships as a Docker container that runs in your cloud or on-prem. Built and tested against the RCA Medical Library.',
     href: '/products/rca-extract',
     cta: 'See the supported types',
     color: '#0D9488',
@@ -105,7 +105,7 @@ const productLines = [
   {
     icon: Layers,
     name: 'RCA Benchmark Packs',
-    blurb: 'Smaller paid review packs, QA packs and pilot packs that sit on top of the libraries. Use them for procurement evaluation, vendor bake-offs or pre-rollout QA. Insurance QA Sprint Pack ships at AUD $2,500.',
+    blurb: 'Smaller paid review packs, QA packs and pilot packs that sit on top of the libraries. Use them for procurement evaluation, vendor comparison or pre-rollout QA. Insurance QA Sprint Pack ships at AUD $2,500.',
     href: '/libraries/benchmark-packs',
     cta: 'See the pack menu',
     color: '#1E3A8A',
@@ -139,7 +139,7 @@ const whyCards = [
   {
     icon: Repeat,
     title: 'Reproducible by seed',
-    description: 'The same seed produces the same PDFs every time. Useful for versioned QA, regression suites, and procurement bake-offs.',
+    description: 'The same seed produces the same PDFs every time. Useful for versioned QA, regression suites, and procurement evaluation.',
   },
   {
     icon: Shield,
@@ -149,7 +149,7 @@ const whyCards = [
   {
     icon: Box,
     title: 'Direct delivery, no third parties',
-    description: 'Libraries ship as direct downloads. No third-party file-share processor unless requested. RCA Extract runs inside your Snowflake account with zero data egress.',
+    description: 'Libraries ship as direct downloads. No third-party file-share processor unless requested. RCA Extract runs as a self-hosted Docker container with zero data egress.',
   },
 ]
 
@@ -163,7 +163,7 @@ const howSteps = [
 const safetyTiles = [
   { label: 'Synthetic disclaimer on every page', icon: Shield, color: '#0D9488' },
   { label: 'No real customer data anywhere', icon: Database, color: '#1E3A8A' },
-  { label: 'RCA Extract runs in your Snowflake account', icon: Shield, color: '#0D9488' },
+  { label: 'RCA Extract runs in your own environment', icon: Shield, color: '#0D9488' },
   { label: 'Direct delivery, no third parties', icon: FileText, color: '#10B981' },
 ]
 
@@ -414,7 +414,7 @@ export default function HomePage() {
                 <ChevronRight size={16} />
               </Link>
               <p className="text-xs text-slate-500 mt-3">
-                Free. Same-day delivery on request. Two complete insurance packs or 25 to 35 medical documents, with ground truth and scanned variants.
+                Free. Same-day delivery. Two complete insurance packs or 25 to 35 medical documents, with ground truth and scanned variants.
               </p>
             </div>
           </div>
@@ -541,7 +541,7 @@ export default function HomePage() {
                   {[
                     'Synthetic data only. Every PDF carries a visible synthetic disclaimer on every page.',
                     'Not for clinical, claims, underwriting, regulatory, accounting or legal use.',
-                    'RCA Extract runs inside your own Snowflake account. Zero data egress. Inherits your Snowflake RBAC, audit and access policies.',
+                    'RCA Extract runs as a self-hosted Docker container inside your environment. Zero data egress. Inherits your existing RBAC, audit and access policies.',
                     'Library deliveries are direct downloads. No third-party data processors involved.',
                     'No real customer or patient data is held, transmitted or stored anywhere in the generator or the libraries.',
                   ].map((item) => (
@@ -584,7 +584,7 @@ export default function HomePage() {
               Request the free 2-pack insurance preview or a 25 to 35 document medical review pack.
             </p>
             <p className="text-white/60 text-sm mb-8 leading-relaxed">
-              No credit card. Same-day delivery on request. Each pack ships with a README_START_HERE.md and a recommended five-minute review path.
+              No credit card. Same-day delivery. Each pack ships with a README_START_HERE.md and a recommended five-minute review path.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

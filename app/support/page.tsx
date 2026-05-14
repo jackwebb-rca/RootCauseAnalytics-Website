@@ -42,11 +42,7 @@ const faqs: FaqCategory[] = [
       },
       {
         question: 'What do I need to get started?',
-        answer: 'You need an active Snowflake account with a supported edition. RCA Extract installs as a Snowflake Native App, so your data stays in your existing environment.',
-      },
-      {
-        question: 'Which Snowflake editions are supported?',
-        answer: "RCA Extract supports Snowflake Standard, Enterprise, and Business Critical editions. Choose the edition and access controls that match your organisation's security requirements.",
+        answer: 'You need a Docker-compatible host: a Linux VM, a Kubernetes cluster, or an on-prem server with Docker installed. AMD64 or ARM64 architectures are both supported. Contact jack.webb@rootcauseanalytics.com.au to scope a deployment and receive the container image and a license key.',
       },
       {
         question: 'What was MEDISCAN renamed to?',
@@ -60,7 +56,7 @@ const faqs: FaqCategory[] = [
     items: [
       {
         question: 'What document types does RCA Extract support?',
-        answer: 'RCA Extract supports PDF, TIFF, PNG, JPEG, and BMP formats. Multi-page PDFs are fully supported. Documents can be staged in Snowflake internal stages or referenced from external cloud storage (S3, Azure Blob, GCS).',
+        answer: 'RCA Extract supports PDF, TIFF, PNG, JPEG, and BMP formats. Multi-page PDFs are fully supported. POST individual documents to the container REST API, or mount a directory of input files for batch processing.',
       },
       {
         question: 'What extraction quality can I expect?',
@@ -94,7 +90,7 @@ const faqs: FaqCategory[] = [
       },
       {
         question: 'How are the synthetic libraries priced?',
-        answer: 'The Insurance 2-pack preview is free. The Insurance QA Sprint Pack ships at AUD $2,500 fixed price with 48 to 72 hour delivery. Medical review packs are free for qualified prospects. Larger libraries and custom variants are priced per scope. See the per-library pricing tables on the Libraries pages for the full menu.',
+        answer: 'The Insurance 2-pack preview is free. The Insurance QA Sprint Pack ships at AUD $2,500 fixed price with same-day delivery. Medical review packs are free for qualified prospects. Larger Insurance and Medical libraries are priced per scope. RCA Custom Libraries (your own document types and schema) are a separate product line. See the per-library pricing tables on the Libraries pages for the full menu.',
       },
     ],
   },
@@ -103,16 +99,16 @@ const faqs: FaqCategory[] = [
     icon: Shield,
     items: [
       {
-        question: 'Does RCA Extract keep data inside Snowflake?',
-        answer: 'RCA Extract runs as a Snowflake Native App inside your own Snowflake account. Patient data never leaves your environment, and your existing Snowflake security controls, audit logs and access policies apply to every document processed.',
+        question: 'Does RCA Extract keep our data inside our environment?',
+        answer: 'Yes. RCA Extract runs as a self-hosted Docker container inside your own infrastructure. Documents, intermediate state, and extracted output remain entirely within your environment. No external API calls during extraction.',
       },
       {
         question: 'What security controls apply?',
-        answer: 'RCA Extract inherits the security controls, audit logging and access policies in your Snowflake account. It runs inside your environment and does not introduce third-party data processors for document handling.',
+        answer: 'RCA Extract inherits the security controls, audit logging and access policies in your infrastructure. The container runs as a stateless service you can place behind your existing ingress controls, RBAC, network policies and audit logs.',
       },
       {
         question: 'Does Root Cause Analytics store or access our documents?',
-        answer: 'No. RCA Extract operates as a Snowflake Native App within your account. Documents and extracted data remain entirely within your Snowflake environment. Root Cause Analytics does not have access to your documents or processed data.',
+        answer: 'No. RCA Extract runs entirely inside your environment. Documents and extracted data remain within your infrastructure. Root Cause Analytics does not have access to your documents or extracted data, and there are no external API calls during extraction.',
       },
       {
         question: 'Are the synthetic libraries derived from real customer data?',
@@ -144,11 +140,11 @@ const faqs: FaqCategory[] = [
     items: [
       {
         question: 'What does the output data schema look like?',
-        answer: 'RCA Extract produces structured output tables in your Snowflake schema. Output includes document metadata, extracted entity tables (per document type), bounding box coordinates per labeled field, processing timestamps and audit logs. FHIR-aligned output schemas are available for the document types where the FHIR resource model applies.',
+        answer: 'RCA Extract returns structured JSON per document. The response includes extracted fields per document type, bounding box coordinates for labelled fields, document metadata, and processing timestamps. FHIR-aligned output schemas are available for the document types where the FHIR resource model applies.',
       },
       {
         question: 'Can I connect RCA Extract output to my BI tools?',
-        answer: 'Yes. Since output lands directly in Snowflake tables, you can connect any Snowflake-compatible BI tool, including Tableau, Power BI, Looker and Sigma. No additional data movement or ETL is required.',
+        answer: 'Yes. The container returns structured JSON. Write it to whatever warehouse, lake or database backs your BI stack (Snowflake, BigQuery, Postgres, S3, etc.) and connect Tableau, Power BI, Looker or any other BI tool from there. The container does extraction; you own the data path.',
       },
     ],
   },
@@ -199,7 +195,7 @@ export default function SupportPage() {
               Support Centre
             </h1>
             <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Answers to common questions about RCA Extract on Snowflake and the RCA training document libraries. Browse the FAQ or reach out to our team in Sydney.
+              Answers to common questions about RCA Extract and the RCA training document libraries. Browse the FAQ or reach out to our team in Sydney.
             </p>
           </div>
         </section>

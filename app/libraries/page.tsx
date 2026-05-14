@@ -42,7 +42,7 @@ const libraries = [
     icon: Layers,
     name: 'RCA Benchmark Packs',
     blurb: 'Smaller paid packs sized for procurement evaluation, pipeline QA, and pre-rollout review.',
-    proof: 'Insurance QA Sprint Pack ships at AUD $2,500 with 48 to 72 hour delivery.',
+    proof: 'Insurance QA Sprint Pack ships at AUD $2,500 with same-day delivery.',
     href: '/libraries/benchmark-packs',
     color: '#1E3A8A',
   },
@@ -50,7 +50,7 @@ const libraries = [
     icon: Cog,
     name: 'RCA Custom Libraries',
     blurb: 'Your document types, your field schema, your style profiles. Built deterministically and shipped with ground truth and bboxes.',
-    proof: 'Scoped per order. Same delivery shape as the standard libraries.',
+    proof: 'Built deterministically from your schema. Same delivery shape as the standard libraries.',
     href: '/contact?service=custom-library',
     color: '#10B981',
   },
@@ -412,7 +412,7 @@ export default function LibrariesPage() {
               Two-pack insurance preview, or a 25 to 35 document medical review pack.
             </p>
             <p className="text-white/60 text-sm mb-8 leading-relaxed">
-              Same-day on request. Sent by Jack directly from Sydney.
+              Same-day delivery. Sent by Jack directly from Sydney.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

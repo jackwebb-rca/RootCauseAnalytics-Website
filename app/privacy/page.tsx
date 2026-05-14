@@ -68,18 +68,18 @@ export default function PrivacyPage() {
                 <li>Complying with our legal obligations under Australian law.</li>
               </ul>
 
-              <h2 className="text-xl font-bold text-[#1E3A8A] mt-10 mb-3">RCA Extract and Snowflake Marketplace customers</h2>
+              <h2 className="text-xl font-bold text-[#1E3A8A] mt-10 mb-3">RCA Extract customers</h2>
               <p className="text-slate-600 leading-relaxed mb-3">
-                RCA Extract is delivered as a Snowflake Native App that runs inside the customer's own Snowflake account (Snowflake Marketplace listing GZSUZU1HJP). When you use RCA Extract:
+                RCA Extract is delivered as a self-hosted Docker container that runs inside the customer's own infrastructure. When you use RCA Extract:
               </p>
               <ul className="list-disc pl-6 text-slate-600 leading-relaxed mb-6 flex flex-col gap-1">
-                <li>Patient data, documents and extracted output remain entirely within your Snowflake environment.</li>
+                <li>Patient data, documents and extracted output remain entirely within your environment.</li>
                 <li>Root Cause Analytics does not have access to your documents or the extracted data.</li>
-                <li>Your existing Snowflake security controls, audit logs, and access policies apply to every document processed.</li>
-                <li>There is no third-party data processor involved in extraction.</li>
+                <li>Your existing security controls, audit logs and access policies apply to every document processed.</li>
+                <li>No external API calls during extraction. No third-party data processor is involved.</li>
               </ul>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Snowflake collects billing and usage metadata for Marketplace transactions. Refer to Snowflake's own privacy notice for details.
+                License keys are issued directly by Root Cause Analytics. We do not collect document content or extraction telemetry from your environment.
               </p>
 
               <h2 className="text-xl font-bold text-[#1E3A8A] mt-10 mb-3">Synthetic libraries and preview packs</h2>
@@ -97,7 +97,6 @@ export default function PrivacyPage() {
               <ul className="list-disc pl-6 text-slate-600 leading-relaxed mb-6 flex flex-col gap-1">
                 <li><strong>Vercel</strong>: hosting and edge delivery for this website.</li>
                 <li><strong>Google Analytics 4</strong>: aggregate website analytics. Property ID G-ZMCESC0KQG.</li>
-                <li><strong>Snowflake</strong>: distribution channel for the RCA Extract Native App (Marketplace listing GZSUZU1HJP).</li>
                 <li><strong>Sanity</strong>: content management for the Articles page.</li>
                 <li><strong>GitHub</strong>: source control for this site.</li>
               </ul>

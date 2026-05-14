@@ -80,7 +80,7 @@ const packs = [
       'Ground truth, bboxes, scanned variants, and engineered red flag summary',
       '30-minute handover call to walk through the schema and red flag inventory',
       'AUD $2,500 fixed price',
-      '48 to 72 hour delivery from order confirmation',
+      'Same-day delivery from order confirmation',
       'Designed for QA-ing an existing extraction pipeline against a controlled, varied input set',
     ],
     color: '#0D9488',
@@ -95,7 +95,7 @@ const packs = [
       '5 to 10 packs scoped for vendor evaluation',
       'All vendors get the same PDFs and the same ground truth',
       'You score them against the same baseline',
-      'Pricing on request, depending on scope and number of vendors',
+      'Contact for quote (depends on scope and number of vendors)',
     ],
     color: '#1E3A8A',
     cta: '/contact?pack=insurance-procurement',
@@ -369,7 +369,7 @@ export default function BenchmarkPacksPage() {
               Order the Insurance QA Sprint Pack
             </h2>
             <p className="text-white/80 text-lg mb-8 leading-relaxed">
-              10 complete submission packs. Engineered red flags. AUD $2,500. 48 to 72 hour delivery. 30-minute handover call.
+              10 complete submission packs. Engineered red flags. AUD $2,500. Same-day delivery. 30-minute handover call.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
