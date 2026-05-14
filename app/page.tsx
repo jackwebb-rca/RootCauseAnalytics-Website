@@ -67,7 +67,7 @@ const buyerPersonas = [
     icon: Code,
     label: 'ML engineers',
     headline: 'Shipping healthcare or insurance extraction to production',
-    description: 'You need labeled training data and a regression suite that catches regressions before they hit a customer document. RCA libraries give you pre-labelled PDFs, ground truth, bounding boxes, and scanned variants in one bundle.',
+    description: 'You need labelled training data and a regression suite that catches regressions before they hit a customer document. RCA libraries give you pre-labelled PDFs, ground truth, bounding boxes, and scanned variants in one bundle.',
   },
   {
     icon: Search,
@@ -79,7 +79,7 @@ const buyerPersonas = [
     icon: Database,
     label: 'Data platform teams',
     headline: 'Deploying document extraction inside your own environment',
-    description: 'RCA Extract ships as a self-hosted Docker container that runs in your cloud or on-prem. Zero data egress. Customer-managed compute, customer-managed costs. Your existing RBAC and audit policies apply.',
+    description: 'RCA Extract runs as a self-hosted Docker container in your cloud or on-prem. Zero data egress. Customer-managed compute and costs. Your existing RBAC and audit policies apply.',
   },
 ]
 
@@ -120,7 +120,7 @@ const productLines = [
   {
     icon: Cog,
     name: 'RCA Custom Libraries',
-    blurb: 'Your document types. Your field schema. Your style profiles. Built deterministically and shipped with ground truth and bboxes.',
+    blurb: 'Your document types. Your field schema. Your style profiles. Built deterministically and shipped with ground truth and bounding boxes.',
     href: '/contact?service=custom-library',
     cta: 'Scope a custom library',
     color: '#10B981',
@@ -130,18 +130,18 @@ const productLines = [
 const whyCards = [
   {
     icon: Eye,
-    title: 'Real-looking PDFs at any scale',
-    description: 'Visually varied across eight style profiles and three template families per document type. Not the same template rendered twenty times.',
+    title: 'Real-looking PDFs, real variety',
+    description: 'Visually varied across eight style profiles and three template families per document type. Not one template repeated.',
   },
   {
     icon: Hash,
-    title: 'Ground truth shipped with every doc',
-    description: 'CSV and JSONL. Bounding boxes for labeled fields. Insurance bboxes include per-claim row entries from claim_rows_json and per-location row entries from location_rows_json.',
+    title: 'Ground truth shipped with every document',
+    description: 'CSV and JSONL. Bounding boxes on every labelled field. Insurance documents add per-claim and per-location row entries, each row with its own bbox.',
   },
   {
     icon: Scan,
     title: 'Scanned variants for the photocopy path',
-    description: 'Every PDF ships with a rotated, noised, JPEG-compressed scanned variant in pdfs_scanned/. Same ground truth, harder input.',
+    description: 'Every clean PDF ships with a rotated, noised, JPEG-compressed scanned variant alongside it. Same ground truth, harder input.',
   },
   {
     icon: Repeat,
@@ -162,7 +162,7 @@ const whyCards = [
 
 const howSteps = [
   { step: '01', title: 'Curated case files', description: 'Hand-authored case archetypes. Phrase banks. Field schemas defined up front.' },
-  { step: '02', title: 'Deterministic generator', description: 'A Python pipeline turns a case file plus a seed into a fully-rendered PDF. No LLM calls in the default pipeline.' },
+  { step: '02', title: 'Deterministic generator', description: 'A Python pipeline turns a case file plus a seed into a fully-rendered PDF. Same seed, same output, every time.' },
   { step: '03', title: 'Labels generated alongside', description: 'Ground truth, bounding boxes and scanned variants are produced in the same pass as the PDFs.' },
   { step: '04', title: 'Library packaging', description: 'Library ships with manifest, splits, README and a written synthetic safety statement.' },
 ]
@@ -346,10 +346,10 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                Built for teams who actually have to ship
+                Three buyer profiles
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                Three buyer profiles where the libraries and RCA Extract earn their keep.
+                ML engineers, procurement leads, data platform teams. Different jobs, same RCA libraries.
               </p>
             </div>
 
@@ -387,7 +387,7 @@ export default function HomePage() {
                 Real samples, not mock-ups
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A8A] mb-4 text-balance">
-                A few pages from the libraries
+                Real pages from the libraries
               </h2>
               <p className="text-slate-600 leading-relaxed">
                 Real pages from the RCA Insurance and Medical libraries. Same generator stack, different document types. Every page ships with ground truth, bounding boxes, a scanned variant, and a visible synthetic disclaimer.
@@ -402,11 +402,11 @@ export default function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 animate-on-scroll">
               <div className="bg-white border border-slate-200 rounded-lg p-4 text-sm">
                 <div className="text-[10px] uppercase tracking-wider text-[#0D9488] font-semibold mb-1">RCA Insurance Library</div>
-                <div className="text-slate-700 leading-relaxed">Complete commercial P&amp;C submission packs. Broker email, loss run, statement of values, policy schedule, COC, application, FNOL, claim report.</div>
+                <div className="text-slate-700 leading-relaxed">Complete commercial P&amp;C submission packs. Broker email, loss run, statement of values, policy schedule, certificate of currency, application, FNOL, claim report.</div>
               </div>
               <div className="bg-white border border-slate-200 rounded-lg p-4 text-sm">
                 <div className="text-[10px] uppercase tracking-wider text-[#1E3A8A] font-semibold mb-1">RCA Medical Library</div>
-                <div className="text-slate-700 leading-relaxed">Forty-plus document types across hospital, ED, GP clinic, pathology, imaging and specialist correspondence. NSW conventions throughout.</div>
+                <div className="text-slate-700 leading-relaxed">40+ document types across hospital, ED, GP clinic, pathology, imaging and specialist correspondence. NSW conventions throughout.</div>
               </div>
               <div className="bg-white border border-slate-200 rounded-lg p-4 text-sm">
                 <div className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1">Ships alongside every PDF</div>
@@ -548,7 +548,6 @@ export default function HomePage() {
                 </p>
                 <ul className="flex flex-col gap-3">
                   {[
-                    'Synthetic data only. Every PDF carries a visible synthetic disclaimer on every page.',
                     'Not for clinical, claims, underwriting, regulatory, accounting or legal use.',
                     'RCA Extract runs as a self-hosted Docker container inside your environment. Zero data egress. Inherits your existing RBAC, audit and access policies.',
                     'Library deliveries are direct downloads. No third-party data processors involved.',
