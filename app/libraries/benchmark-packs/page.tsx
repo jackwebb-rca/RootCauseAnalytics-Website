@@ -98,6 +98,20 @@ const packs = [
     ctaLabel: 'Order the Insurance QA Sprint Pack',
   },
   {
+    icon: Briefcase,
+    name: 'Insurance QA Starter Pack',
+    bullets: [
+      '4 complete commercial P&C submission packs',
+      'Ground truth, bboxes, scanned variants, and engineered red flag summary',
+      'AUD $1,000 fixed price',
+      'Same-day delivery from order confirmation',
+      'Smaller first-look than the 10-pack Sprint. Same library, same quality, fewer packs.',
+    ],
+    color: '#1E3A8A',
+    cta: '/contact?pack=insurance-qa-starter',
+    ctaLabel: 'Order the Insurance QA Starter Pack',
+  },
+  {
     icon: Target,
     name: 'Insurance Procurement Pack',
     bullets: [
@@ -155,6 +169,11 @@ const pricing: PricingRow[] = [
     tier: 'Insurance 2-pack preview',
     scope: '2 complete submission packs',
     price: 'Free',
+  },
+  {
+    tier: 'Insurance QA Starter Pack',
+    scope: '4 complete packs + engineered red flag summary',
+    price: 'AUD $1,000',
   },
   {
     tier: 'Insurance QA Sprint Pack',
