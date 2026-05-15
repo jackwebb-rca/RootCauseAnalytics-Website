@@ -196,6 +196,11 @@ const pricing: PricingRow[] = [
     scope: '100 to 200 documents scoped to your specialty (discharge, pathology, or a specific clinical area)',
     price: 'Contact for quote',
   },
+  {
+    tier: 'Education and tertiary',
+    scope: 'Substantial discount on any library or pack for accredited education and research institutions',
+    price: 'Contact for quote',
+  },
 ]
 
 export default function BenchmarkPacksPage() {
