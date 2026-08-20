@@ -68,7 +68,6 @@ export default function HomePage() {
             <div className="panel">
               <div className="panel-head">
                 <span>Extracted fields</span>
-                <i>4/4 matched</i>
               </div>
               <div className="phead" aria-hidden="true">
                 <span>Field</span>
