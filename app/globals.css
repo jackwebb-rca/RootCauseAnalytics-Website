@@ -98,7 +98,7 @@ h1 em { font-style: italic; font-weight: 450; color: var(--green); }
 .doc { position: relative; border: 1.5px solid var(--ink); background: #fff; box-shadow: 10px 10px 0 var(--paper-deep), 10px 10px 0 1.5px var(--ink); transform: rotate(.7deg); transition: transform .4s ease; }
 .doc:hover { transform: rotate(0); }
 .doc img { display: block; width: 100%; height: auto; }
-.mk { position: absolute; background: rgba(126, 217, 87, .45); border: 1.5px solid #4caf50; opacity: 0; transition: opacity .35s ease, background .15s ease; }
+.mk { position: absolute; background: rgba(100, 200, 105, .45); border: 1.5px solid #43a047; opacity: 0; transition: opacity .35s ease, background .15s ease; }
 .doc.in .mk { opacity: 1; }
 .doc.in .m1 { transition-delay: .25s; } .doc.in .m2 { transition-delay: .55s; }
 .doc.in .m3 { transition-delay: .85s; } .doc.in .m4 { transition-delay: 1.15s; }
@@ -117,9 +117,9 @@ h1 em { font-style: italic; font-weight: 450; color: var(--green); }
 .prow.p3 { transition-delay: .95s; } .prow.p4 { transition-delay: 1.25s; }
 /* Hovering a numbered marker highlights its row in the panel. */
 .doc.in .mk { cursor: pointer; }
-.doc.in .mk:hover { background: rgba(126, 217, 87, .65); }
+.doc.in .mk:hover { background: rgba(100, 200, 105, .65); }
 .m1:hover ~ .panel .prow.p1, .m2:hover ~ .panel .prow.p2,
-.m3:hover ~ .panel .prow.p3, .m4:hover ~ .panel .prow.p4 { background: rgba(126, 217, 87, .3); }
+.m3:hover ~ .panel .prow.p3, .m4:hover ~ .panel .prow.p4 { background: rgba(100, 200, 105, .3); }
 .spec-cap { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--ink-soft); margin-top: 12px; display: flex; justify-content: space-between; }
 .spec-cap i { font-style: normal; color: var(--green); font-weight: 600; }
 
