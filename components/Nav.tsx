@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const LINKS = [
+  { href: "/", label: "Home" },
   { href: "/document-library", label: "Document Library" },
   { href: "/document-generator", label: "Document Generator" },
   { href: "/evidence", label: "Evidence" },
@@ -19,6 +20,9 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => setOpen(false), [pathname]);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
   return (
     <nav className="site-nav" aria-label="Main">
@@ -40,7 +44,7 @@ export default function Nav() {
           <li key={l.href}>
             <Link
               href={l.href}
-              aria-current={pathname === l.href ? "page" : undefined}
+              aria-current={isActive(l.href) ? "page" : undefined}
             >
               {l.label}
             </Link>
@@ -63,7 +67,12 @@ export default function Nav() {
           <ul>
             {LINKS.map((l) => (
               <li key={l.href}>
-                <Link href={l.href}>{l.label}</Link>
+                <Link
+                  href={l.href}
+                  aria-current={isActive(l.href) ? "page" : undefined}
+                >
+                  {l.label}
+                </Link>
               </li>
             ))}
           </ul>
