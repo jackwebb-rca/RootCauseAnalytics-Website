@@ -1,0 +1,287 @@
+{
+  "generatedAt": "2026-08-20T08:37:50.744Z",
+  "sourceFiles": [
+    "extract-accuracy-live-trial-2026-08-05.json",
+    "extract-v2-selftest.json"
+  ],
+  "liveTrial": {
+    "title": "W3 live re-measure after QA remediation W1-W6 (2026-08-05)",
+    "note": "Same 20-document subset as the 2026-08-04 reCheck, same corpus, run after W2 (truncation detection + 8192 output cap) and W3 (part-blank retry) landed. Sonnet 92/100 field checks (was 91), zero part-blanks, zero truncations. Haiku 87/100 HONEST accounting: doc-0028, previously silently part-blank, is now fully recovered; doc-0042 and doc-0044 hit the 8192 output cap and are now LOUD failures scored zero, where the old runs recorded their truncated replies as completed. Conclusion: haiku's part-blank pattern on dense flow sheets was output truncation all along; 8192 is still not enough for haiku on those two documents. On the 18 documents haiku completed it scored 87/90. Platform fee charged only on completed docs (18 x 10c = US$1.80) per the P4/W4 discipline. Spend this run: A$1.51 (sonnet) + A$0.41 (haiku) api.",
+    "date": "2026-08-05T10:32:27.366Z",
+    "dataset": "rca-library-trial-20-w3",
+    "docs": 20,
+    "totalSpendAud": 1.93,
+    "runs": [
+      {
+        "model": "claude-sonnet-5",
+        "dataset": "rca-library-trial-20-w3",
+        "docs": 20,
+        "completed": 20,
+        "fields": {
+          "docType": {
+            "correct": 14,
+            "total": 20,
+            "accuracy": 0.7
+          },
+          "docDate": {
+            "correct": 19,
+            "total": 20,
+            "accuracy": 0.95
+          },
+          "entity": {
+            "correct": 20,
+            "total": 20,
+            "accuracy": 1
+          },
+          "amount": {
+            "correct": 20,
+            "total": 20,
+            "accuracy": 1
+          },
+          "refNumber": {
+            "correct": 19,
+            "total": 20,
+            "accuracy": 0.95
+          }
+        },
+        "overall": {
+          "correct": 92,
+          "total": 100
+        },
+        "spendAud": 1.5134,
+        "failedDocs": [],
+        "calibration": {
+          "statedFields": 74,
+          "unstatedFields": 26,
+          "bands": {
+            "high": {
+              "correct": 55,
+              "total": 56,
+              "accuracy": 0.982
+            },
+            "medium": {
+              "correct": 11,
+              "total": 14,
+              "accuracy": 0.786
+            },
+            "low": {
+              "correct": 0,
+              "total": 4,
+              "accuracy": 0
+            }
+          }
+        }
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "dataset": "rca-library-trial-20-w3",
+        "docs": 20,
+        "completed": 18,
+        "fields": {
+          "docType": {
+            "correct": 15,
+            "total": 20,
+            "accuracy": 0.75
+          },
+          "docDate": {
+            "correct": 18,
+            "total": 20,
+            "accuracy": 0.9
+          },
+          "entity": {
+            "correct": 18,
+            "total": 20,
+            "accuracy": 0.9
+          },
+          "amount": {
+            "correct": 20,
+            "total": 20,
+            "accuracy": 1
+          },
+          "refNumber": {
+            "correct": 16,
+            "total": 20,
+            "accuracy": 0.8
+          }
+        },
+        "overall": {
+          "correct": 87,
+          "total": 100
+        },
+        "spendAud": 0.4144,
+        "failedDocs": [
+          {
+            "id": "doc-0042",
+            "error": "anthropic: output_truncated - reply hit the max_tokens output limit"
+          },
+          {
+            "id": "doc-0044",
+            "error": "anthropic: output_truncated - reply hit the max_tokens output limit"
+          }
+        ],
+        "calibration": {
+          "statedFields": 59,
+          "unstatedFields": 41,
+          "bands": {
+            "high": {
+              "correct": 54,
+              "total": 59,
+              "accuracy": 0.915
+            },
+            "medium": {
+              "correct": 0,
+              "total": 0,
+              "accuracy": null
+            },
+            "low": {
+              "correct": 0,
+              "total": 0,
+              "accuracy": null
+            }
+          }
+        }
+      }
+    ],
+    "fieldRows": [
+      {
+        "key": "entity",
+        "label": "Entity",
+        "cells": [
+          {
+            "model": "claude-sonnet-5",
+            "correct": 20,
+            "total": 20
+          },
+          {
+            "model": "claude-haiku-4-5",
+            "correct": 18,
+            "total": 20
+          }
+        ]
+      },
+      {
+        "key": "amount",
+        "label": "Amount",
+        "cells": [
+          {
+            "model": "claude-sonnet-5",
+            "correct": 20,
+            "total": 20
+          },
+          {
+            "model": "claude-haiku-4-5",
+            "correct": 20,
+            "total": 20
+          }
+        ]
+      },
+      {
+        "key": "docDate",
+        "label": "Document date",
+        "cells": [
+          {
+            "model": "claude-sonnet-5",
+            "correct": 19,
+            "total": 20
+          },
+          {
+            "model": "claude-haiku-4-5",
+            "correct": 18,
+            "total": 20
+          }
+        ]
+      },
+      {
+        "key": "refNumber",
+        "label": "Reference number",
+        "cells": [
+          {
+            "model": "claude-sonnet-5",
+            "correct": 19,
+            "total": 20
+          },
+          {
+            "model": "claude-haiku-4-5",
+            "correct": 16,
+            "total": 20
+          }
+        ]
+      },
+      {
+        "key": "docType",
+        "label": "Document type",
+        "cells": [
+          {
+            "model": "claude-sonnet-5",
+            "correct": 14,
+            "total": 20
+          },
+          {
+            "model": "claude-haiku-4-5",
+            "correct": 15,
+            "total": 20
+          }
+        ]
+      }
+    ]
+  },
+  "v2Benchmark": {
+    "generatedAt": "2026-06-04T18:33:10.336Z",
+    "dataset": "tests/bench/extract-v2 (bundled synthetic self-test)",
+    "docs": 13,
+    "fields": 76,
+    "ocrOnly": {
+      "correct": 73,
+      "total": 76,
+      "accuracy": 0.961
+    },
+    "accuracyPct": 96.1,
+    "byTemplate": {
+      "finance-invoice.json": {
+        "correct": 15,
+        "total": 16,
+        "accuracy": 0.938
+      },
+      "finance-receipt.json": {
+        "correct": 9,
+        "total": 10,
+        "accuracy": 0.9
+      },
+      "clinical-lab-report.json": {
+        "correct": 14,
+        "total": 14,
+        "accuracy": 1
+      },
+      "insurance-claim.json": {
+        "correct": 9,
+        "total": 10,
+        "accuracy": 0.9
+      },
+      "insurance-eob.json": {
+        "correct": 7,
+        "total": 7,
+        "accuracy": 1
+      },
+      "finance-bank-statement.json": {
+        "correct": 5,
+        "total": 5,
+        "accuracy": 1
+      },
+      "identity-passport.json": {
+        "correct": 6,
+        "total": 6,
+        "accuracy": 1
+      },
+      "identity-drivers-license.json": {
+        "correct": 5,
+        "total": 5,
+        "accuracy": 1
+      },
+      "generic-keyvalue.json": {
+        "correct": 3,
+        "total": 3,
+        "accuracy": 1
+      }
+    }
+  }
+}
