@@ -137,6 +137,86 @@ export default function DocumentGeneratorPage() {
         </ul>
       </section>
 
+      <section className="section">
+        <div className="sec-head rv">
+          <h2>What it costs</h2>
+          <span>Quote-based · anchors published</span>
+        </div>
+        <div className="table-scroll rv d1">
+          <table>
+            <caption>Insurance library · pricing ledger</caption>
+            <thead>
+              <tr>
+                <th scope="col">Tier</th>
+                <th scope="col">What you get</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Free sample</td>
+                <td>2 submission packs. Review the schema, the ground truth and the disclaimer in real output.</td>
+                <td className="num"><span className="ok">Free</span></td>
+              </tr>
+              <tr>
+                <td>QA Sprint Pack</td>
+                <td>10 submission packs, an engineered red-flag summary, and a 30-minute handover call. Built for pipeline QA and vendor evaluation.</td>
+                <td className="num">AUD $2,500</td>
+              </tr>
+              <tr>
+                <td>Production library</td>
+                <td>100+ submission packs for a production regression suite or internal QA at scale.</td>
+                <td className="num">Quote</td>
+              </tr>
+              <tr>
+                <td>Training library</td>
+                <td>1,000+ submission packs with train, validation and test splits for model training.</td>
+                <td className="num">Quote</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="table-scroll rv d2" style={{ marginTop: 28 }}>
+          <table>
+            <caption>Medical library · pricing ledger</caption>
+            <thead>
+              <tr>
+                <th scope="col">Tier</th>
+                <th scope="col">What you get</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Free sample</td>
+                <td>25 to 35 documents. Review the schema, the Australian conventions and the disclaimer.</td>
+                <td className="num"><span className="ok">Free</span></td>
+              </tr>
+              <tr>
+                <td>Pilot pack</td>
+                <td>100 to 200 documents scoped to your specialty, for an internal pilot with ground truth.</td>
+                <td className="num">Quote</td>
+              </tr>
+              <tr>
+                <td>Production library</td>
+                <td>500 to 1,000 documents across 40+ types for a production regression suite.</td>
+                <td className="num">Quote</td>
+              </tr>
+              <tr>
+                <td>Training library</td>
+                <td>5,000+ documents with train, validation and test splits for model training at scale.</td>
+                <td className="num">Quote</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="spec-cap rv d2" style={{ marginTop: 16 }}>
+          Custom libraries are also available: your document types, your field
+          schema, built deterministically and shipped with full ground truth.
+          Tell us what you need to test and we will quote the corpus.
+        </p>
+      </section>
+
       <section className="cta">
         <div className="cta-card rv">
           <div>

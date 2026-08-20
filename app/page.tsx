@@ -61,14 +61,20 @@ export default function HomePage() {
               priority
               style={{ width: "100%", height: "auto" }}
             />
-            <span className="mk m1" style={{ left: "33%", top: "18.6%" }}>1</span>
-            <span className="mk m2" style={{ left: "76%", top: "20.1%" }}>2</span>
-            <span className="mk m3" style={{ left: "30%", top: "22.2%" }}>3</span>
-            <span className="mk m4" style={{ left: "57%", top: "30.3%" }}>4</span>
+            <span className="mk m1" style={{ left: "21%", top: "12.8%" }}>1</span>
+            <span className="mk m2" style={{ left: "60.5%", top: "15.2%" }}>2</span>
+            <span className="mk m3" style={{ left: "21%", top: "20.4%" }}>3</span>
+            <span className="mk m4" style={{ left: "29%", top: "35.1%" }}>4</span>
             <div className="panel">
               <div className="panel-head">
                 <span>Extracted fields · AUS-TRN-0001</span>
                 <i>4/4 matched</i>
+              </div>
+              <div className="phead" aria-hidden="true">
+                <span className="n"></span>
+                <span>Field</span>
+                <span>Extracted value</span>
+                <span className="pc">Conf.</span>
               </div>
               <div className="prow p1">
                 <span className="n">1</span>

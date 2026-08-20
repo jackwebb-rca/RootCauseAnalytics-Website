@@ -125,6 +125,58 @@ export default function DocumentLibraryPage() {
       </section>
 
       <section className="section">
+        <div className="sec-head rv">
+          <h2>What it costs</h2>
+          <span>Quote-based · anchors published</span>
+        </div>
+        <div className="table-scroll rv d1">
+          <table>
+            <caption>Document Library · pricing ledger</caption>
+            <thead>
+              <tr>
+                <th scope="col">Stage</th>
+                <th scope="col">What you get</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Evaluation</td>
+                <td>
+                  A trial run on your own document types, on your hardware or
+                  on synthetic stand-ins. You see real extraction results
+                  before you commit to anything.
+                </td>
+                <td className="num"><span className="ok">Free</span></td>
+              </tr>
+              <tr>
+                <td>Extraction</td>
+                <td>
+                  Per-document fee once you run at volume. Covers OCR,
+                  extraction, confidence scoring and cataloguing.
+                </td>
+                <td className="num">10c per document</td>
+              </tr>
+              <tr>
+                <td>Licence and setup</td>
+                <td>
+                  Scoped to your deployment: single desktop or self-hosted
+                  Docker server, template building, and handover.
+                </td>
+                <td className="num">Quote</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="spec-cap rv d2" style={{ marginTop: 16 }}>
+          For comparison: Australian scanning bureaus typically charge 8 to 25
+          cents per page for scanning alone, before any data extraction or
+          cataloguing. Tell us your document volume and we will give you a
+          full quote.
+        </p>
+      </section>
+
+      <section className="section">
         <div className="honesty rv">
           <span className="tag">What we do not claim</span>
           <p>

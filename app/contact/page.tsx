@@ -23,7 +23,7 @@ const FAQ = [
   },
   {
     q: "How is it priced?",
-    a: "Preview packs are free for qualified prospects. Larger libraries, benchmark packs and Document Library deployments are quoted by scope, invoiced in Australian dollars. You will always see the quality before you spend a dollar.",
+    a: "Quote-based, with published anchors on each product page: extraction runs at 10 cents per document in the Document Library, and the Generator's Insurance QA Sprint Pack is AUD $2,500. Preview packs and evaluations are free, so you always see the quality before you spend a dollar. Everything is invoiced in Australian dollars.",
   },
   {
     q: "Can our synthetic documents be mistaken for real records?",

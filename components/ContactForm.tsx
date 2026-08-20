@@ -6,10 +6,14 @@ const EMAIL = "jack.webb@rootcauseanalytics.com.au";
 
 // A backend-free contact form: composes a pre-filled email in the visitor's
 // own mail client. Nothing is collected or stored by the website.
+// The three selects are the qualifying questions for a quote: industry,
+// document volume, and deployment constraints.
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
-  const [docKind, setDocKind] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [volume, setVolume] = useState("");
+  const [deployment, setDeployment] = useState("");
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,7 +21,9 @@ export default function ContactForm() {
     const body = [
       message,
       "",
-      docKind ? `Document types: ${docKind}` : "",
+      industry ? `Industry: ${industry}` : "",
+      volume ? `Document volume: ${volume}` : "",
+      deployment ? `Deployment constraints: ${deployment}` : "",
       name ? `From: ${name}` : "",
     ]
       .filter(Boolean)
@@ -40,14 +46,39 @@ export default function ContactForm() {
         />
       </label>
       <label className="form-field">
-        <span>What kind of documents? (optional)</span>
-        <select value={docKind} onChange={(e) => setDocKind(e.target.value)}>
+        <span>Your industry (optional)</span>
+        <select value={industry} onChange={(e) => setIndustry(e.target.value)}>
           <option value="">Choose one, or skip</option>
-          <option>Medical records</option>
-          <option>Insurance documents</option>
-          <option>Financial and invoices</option>
-          <option>Mixed paper archive</option>
+          <option>Medical or health</option>
+          <option>Insurance</option>
+          <option>Legal</option>
+          <option>Government</option>
+          <option>Research or education</option>
           <option>Something else</option>
+        </select>
+      </label>
+      <label className="form-field">
+        <span>Roughly how many documents? (optional)</span>
+        <select value={volume} onChange={(e) => setVolume(e.target.value)}>
+          <option value="">Choose one, or skip</option>
+          <option>Under 1,000</option>
+          <option>1,000 to 10,000</option>
+          <option>10,000 to 100,000</option>
+          <option>More than 100,000</option>
+          <option>Not sure yet</option>
+        </select>
+      </label>
+      <label className="form-field">
+        <span>Where must it run? (optional)</span>
+        <select
+          value={deployment}
+          onChange={(e) => setDeployment(e.target.value)}
+        >
+          <option value="">Choose one, or skip</option>
+          <option>Fully on our own hardware, offline</option>
+          <option>Our own cloud is fine</option>
+          <option>No constraint yet</option>
+          <option>Not sure</option>
         </select>
       </label>
       <label className="form-field">
@@ -65,7 +96,7 @@ export default function ContactForm() {
       </button>
       <p className="spec-cap" style={{ marginTop: 14 }}>
         This opens your own email app with the message filled in. The website
-        stores nothing.
+        stores nothing. Replies within one business day, Sydney time.
       </p>
     </form>
   );
