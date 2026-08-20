@@ -82,7 +82,6 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 
 /* ---------- hero ---------- */
 .hero { max-width: 1300px; margin: 0 auto; padding: 76px 40px 90px; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 70px; align-items: center; position: relative; }
-.hero::before { content: ""; position: absolute; top: 0; bottom: 0; left: 26px; width: 1px; background: var(--red); opacity: .35; }
 .kicker { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--green-deep); font-weight: 600; margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
 .kicker::before { content: ""; width: 40px; height: 2px; background: var(--green); }
 h1 { font-family: "Fraunces", serif; font-weight: 550; font-size: clamp(44px, 5.4vw, 76px); line-height: 1.04; letter-spacing: -.02em; }
@@ -103,12 +102,12 @@ h1 em { font-style: italic; font-weight: 450; color: var(--green); }
 .doc.in .mk { opacity: 1; }
 .doc.in .m1 { transition-delay: .25s; } .doc.in .m2 { transition-delay: .55s; }
 .doc.in .m3 { transition-delay: .85s; } .doc.in .m4 { transition-delay: 1.15s; }
-.panel { position: absolute; left: -34px; bottom: 26px; width: 71%; background: var(--card); border: 1.5px solid var(--ink); box-shadow: 6px 6px 0 var(--paper-deep), 6px 6px 0 1.5px var(--ink); z-index: 2; }
+.panel { position: absolute; left: -34px; bottom: 26px; width: 79%; background: var(--card); border: 1.5px solid var(--ink); box-shadow: 6px 6px 0 var(--paper-deep), 6px 6px 0 1.5px var(--ink); z-index: 2; }
 .panel-head { display: flex; justify-content: space-between; align-items: center; padding: 9px 14px; border-bottom: 1.5px solid var(--ink); background: var(--ink); color: var(--paper); font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
 .panel-head i { font-style: normal; color: var(--gold); }
-.phead { display: grid; grid-template-columns: 1fr 1.5fr 74px; gap: 8px; align-items: center; padding: 6px 14px; border-bottom: 1.5px solid var(--ink); font-family: "IBM Plex Mono", monospace; font-size: 8px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+.phead { display: grid; grid-template-columns: .9fr 1.5fr 96px; gap: 12px; align-items: center; padding: 6px 14px; border-bottom: 1.5px solid var(--ink); font-family: "IBM Plex Mono", monospace; font-size: 8px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
 .phead .pc { text-align: right; line-height: 1.35; }
-.prow { display: grid; grid-template-columns: 1fr 1.5fr 74px; gap: 8px; align-items: center; padding: 8px 14px; border-bottom: 1px solid var(--rule); font-size: 11.5px; opacity: 0; transform: translateX(-8px); transition: opacity .4s ease, transform .4s ease; }
+.prow { display: grid; grid-template-columns: .9fr 1.5fr 96px; gap: 12px; align-items: center; padding: 8px 14px; border-bottom: 1px solid var(--rule); font-size: 11.5px; opacity: 0; transform: translateX(-8px); transition: opacity .4s ease, transform .4s ease; }
 .doc.in .prow { opacity: 1; transform: none; }
 .prow:last-child { border-bottom: none; }
 .prow .f { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--ink-soft); }
@@ -213,7 +212,6 @@ tr:last-child td { border-bottom: none; }
 
 /* ---------- shared page scaffolding (inner pages) ---------- */
 .page-hero { max-width: 1300px; margin: 0 auto; padding: 70px 40px 50px; position: relative; }
-.page-hero::before { content: ""; position: absolute; top: 0; bottom: 0; left: 26px; width: 1px; background: var(--red); opacity: .35; }
 .page-hero h1 { max-width: 900px; }
 .page-hero .sub { max-width: 640px; }
 .section { max-width: 1300px; margin: 0 auto; padding: 40px 40px 80px; }
@@ -274,8 +272,8 @@ tr:last-child td { border-bottom: none; }
 @media (max-width: 980px) {
   .hero, .ev-grid, .prod-grid, .cta-card, .contact-grid { grid-template-columns: 1fr; }
   .hero { padding-top: 52px; }
-  .panel { left: 8px; width: 88%; }
-  .phead, .prow { grid-template-columns: .85fr 1.7fr 58px; gap: 6px; }
+  .panel { left: 8px; width: 92%; }
+  .phead, .prow { grid-template-columns: .8fr 1.6fr 72px; gap: 8px; }
   .prow { font-size: 11px; }
   .panel-head { font-size: 9px; gap: 8px; }
   .panel-head span { white-space: nowrap; }
@@ -296,7 +294,6 @@ tr:last-child td { border-bottom: none; }
   .cta-card { padding: 44px 28px; }
   .founder-inner { padding: 70px 20px; }
   .strip-head { padding: 0 20px; }
-  .hero::before, .page-hero::before { left: 8px; }
 }
 @media (max-width: 560px) {
   .gallery { grid-template-columns: 1fr; }
