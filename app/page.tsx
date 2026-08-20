@@ -67,35 +67,30 @@ export default function HomePage() {
             <span className="mk m4" style={{ left: "29%", top: "35.1%" }}>4</span>
             <div className="panel">
               <div className="panel-head">
-                <span>Extracted fields · AUS-TRN-0001</span>
+                <span>Extracted fields</span>
                 <i>4/4 matched</i>
               </div>
               <div className="phead" aria-hidden="true">
-                <span className="n"></span>
                 <span>Field</span>
                 <span>Extracted value</span>
                 <span className="pc">Extraction accuracy</span>
               </div>
               <div className="prow p1">
-                <span className="n">1</span>
                 <span className="f">patient_name</span>
                 <span className="v">Sarah Rebecca Wright</span>
                 <span className="c">0.99</span>
               </div>
               <div className="prow p2">
-                <span className="n">2</span>
                 <span className="f">medicare_no</span>
                 <span className="v">6600 13384 1</span>
                 <span className="c">0.98</span>
               </div>
               <div className="prow p3">
-                <span className="n">3</span>
                 <span className="f">plan_date</span>
                 <span className="v">26/06/2026</span>
                 <span className="c">0.97</span>
               </div>
               <div className="prow p4 warn">
-                <span className="n">4</span>
                 <span className="f">diagnosis</span>
                 <span className="v">Bilateral knee OA (M17.9)</span>
                 <span className="c">0.84</span>
