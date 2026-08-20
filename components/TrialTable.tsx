@@ -1,8 +1,8 @@
 import evidence from "@/lib/evidence.json";
 
 const MODEL_NAMES: Record<string, string> = {
-  "claude-sonnet-5": "Sonnet",
-  "claude-haiku-4-5": "Haiku",
+  "claude-sonnet-5": "Sonnet 5",
+  "claude-haiku-4-5": "Haiku 4.5",
 };
 
 // Renders the live-trial field accuracy table straight from lib/evidence.json,

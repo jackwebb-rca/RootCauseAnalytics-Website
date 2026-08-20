@@ -204,20 +204,18 @@ export default function HomePage() {
         <div className="ev-grid">
           <div className="rv d1">
             <p>
-              Most vendors quote a single glossy accuracy number. We publish
-              the full run log instead: every field, every document, including
-              the ones we got wrong.{" "}
-              <b>When a model fails, we score it zero and say so.</b> Two dense
-              flow sheets broke the output limit on the smaller model. They are
-              in the table, not under the rug.
+              Most vendors quote a single accuracy number. We publish the full
+              run log: every field on every document, including the ones the
+              models got wrong.{" "}
+              <b>When a model fails a document, it is scored zero and recorded
+              in the results.</b>{" "}
+              In this run, two dense flow sheets exceeded the output limit on
+              Haiku 4.5. Both are counted as failures in the table.
             </p>
             <p className="foot">
               Run {trial.dataset} · {trialDate}, Sydney time
               <br />
-              Total API spend for this run: A${trial.totalSpendAud}*
-              <br />
-              *Yes, under two dollars. Testing with ground truth is cheap.
-              Guessing is expensive.
+              Total API spend for this run: A${trial.totalSpendAud}
             </p>
             <p style={{ marginTop: 22 }}>
               <Link className="btn btn-ghost" href="/evidence">

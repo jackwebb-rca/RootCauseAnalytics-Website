@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 };
 
 const MODEL_NAMES: Record<string, string> = {
-  "claude-sonnet-5": "Sonnet",
-  "claude-haiku-4-5": "Haiku",
+  "claude-sonnet-5": "Sonnet 5",
+  "claude-haiku-4-5": "Haiku 4.5",
 };
 
 export default function EvidencePage() {
@@ -33,9 +33,10 @@ export default function EvidencePage() {
           We publish <span className="hl">our misses.</span>
         </h1>
         <p className="sub rv-auto d2">
-          Most vendors quote one glossy accuracy number. We publish run logs:
-          every field, every document, <b>including the ones we got wrong</b>.
-          When a model fails, we score it zero and say so.
+          Most vendors quote one accuracy number. We publish run logs: every
+          field on every document, <b>including the ones the models got
+          wrong</b>. When a model fails a document, it is scored zero and
+          recorded in the results.
         </p>
       </section>
 
@@ -51,17 +52,14 @@ export default function EvidencePage() {
             <div className="rv d1">
               <p>
                 {trial.docs} documents, five fields each, ground truth known
-                before the run. Sonnet completed all {trial.docs}. Haiku
+                before the run. Sonnet 5 completed all {trial.docs}. Haiku 4.5
                 completed {trial.runs[1]?.completed} and hit its output limit
                 on two dense flow sheets, so those two{" "}
-                <b>score zero in the table</b>. Document type identification is
-                our current weak spot and we say so.
+                <b>score zero in the table</b>. Document type identification
+                is our current weak spot.
               </p>
               <p className="foot">
-                Total API spend for this run: A${trial.totalSpendAud}*
-                <br />
-                *Yes, under two dollars. Testing with ground truth is cheap.
-                Guessing is expensive.
+                Total API spend for this run: A${trial.totalSpendAud}
               </p>
               <ul className="fact-list red" style={{ marginTop: 22 }}>
                 {trial.runs.flatMap((r) =>
