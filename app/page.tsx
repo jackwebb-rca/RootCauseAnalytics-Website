@@ -74,7 +74,7 @@ export default function HomePage() {
                 <span className="n"></span>
                 <span>Field</span>
                 <span>Extracted value</span>
-                <span className="pc">Conf.</span>
+                <span className="pc">Extraction accuracy</span>
               </div>
               <div className="prow p1">
                 <span className="n">1</span>
