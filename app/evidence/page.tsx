@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 const MODEL_NAMES: Record<string, string> = {
   "claude-sonnet-5": "Sonnet 5",
   "claude-haiku-4-5": "Haiku 4.5",
+  "claude-opus-5": "Opus 5",
 };
 
 export default function EvidencePage() {
@@ -52,9 +53,9 @@ export default function EvidencePage() {
             <div className="rv d1">
               <p>
                 {trial.docs} documents, five fields each, ground truth known
-                before the run. Sonnet 5 completed all {trial.docs}. Haiku 4.5
-                completed {trial.runs[1]?.completed} and hit its output limit
-                on two dense flow sheets, so those two{" "}
+                before the run. Sonnet 5 and Opus 5 completed all {trial.docs}.
+                Haiku 4.5 completed {trial.runs[1]?.completed} and hit its
+                output limit on two dense flow sheets, so those two{" "}
                 <b>score zero in the table</b>. Document type identification
                 is our current weak spot.
               </p>

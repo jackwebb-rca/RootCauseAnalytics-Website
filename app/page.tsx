@@ -214,9 +214,11 @@ export default function HomePage() {
               Haiku 4.5. Both are counted as failures in the table.
             </p>
             <p className="foot">
-              Run {trial.dataset} · {trialDate}, Sydney time
+              Run {trial.dataset} · {trialDate}, Sydney time. Opus 5 pass
+              added 21 Aug 2026, same documents and ground truth.
               <br />
-              Total API spend for this run: A${trial.totalSpendAud}
+              Total API spend across the three model runs: A$
+              {trial.totalSpendAud}
             </p>
             <p style={{ marginTop: 22 }}>
               <Link className="btn btn-ghost" href="/evidence">

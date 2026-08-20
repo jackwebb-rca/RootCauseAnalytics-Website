@@ -1,16 +1,18 @@
 {
-  "generatedAt": "2026-08-20T08:37:50.744Z",
+  "generatedAt": "2026-08-20T23:24:13.474Z",
   "sourceFiles": [
     "extract-accuracy-live-trial-2026-08-05.json",
+    "extract-accuracy-live-trial-2026-08-21-opus.json",
     "extract-v2-selftest.json"
   ],
   "liveTrial": {
     "title": "W3 live re-measure after QA remediation W1-W6 (2026-08-05)",
-    "note": "Same 20-document subset as the 2026-08-04 reCheck, same corpus, run after W2 (truncation detection + 8192 output cap) and W3 (part-blank retry) landed. Sonnet 92/100 field checks (was 91), zero part-blanks, zero truncations. Haiku 87/100 HONEST accounting: doc-0028, previously silently part-blank, is now fully recovered; doc-0042 and doc-0044 hit the 8192 output cap and are now LOUD failures scored zero, where the old runs recorded their truncated replies as completed. Conclusion: haiku's part-blank pattern on dense flow sheets was output truncation all along; 8192 is still not enough for haiku on those two documents. On the 18 documents haiku completed it scored 87/90. Platform fee charged only on completed docs (18 x 10c = US$1.80) per the P4/W4 discipline. Spend this run: A$1.51 (sonnet) + A$0.41 (haiku) api.",
+    "note": "Same 20-document subset as the 2026-08-04 reCheck, same corpus, run after W2 (truncation detection + 8192 output cap) and W3 (part-blank retry) landed. Sonnet 92/100 field checks (was 91), zero part-blanks, zero truncations. Haiku 87/100 HONEST accounting: doc-0028, previously silently part-blank, is now fully recovered; doc-0042 and doc-0044 hit the 8192 output cap and are now LOUD failures scored zero, where the old runs recorded their truncated replies as completed. Conclusion: haiku's part-blank pattern on dense flow sheets was output truncation all along; 8192 is still not enough for haiku on those two documents. On the 18 documents haiku completed it scored 87/90. Platform fee charged only on completed docs (18 x 10c = US$1.80) per the P4/W4 discipline. Spend this run: A$1.51 (sonnet) + A$0.41 (haiku) api. Opus 5 pass added 2026-08-21: same 20-document corpus and ground truth, 20/20 completed, 90/100 field checks, A$2.4903 api spend.",
     "date": "2026-08-05T10:32:27.366Z",
+    "opusDate": "2026-08-20T23:23:12.046Z",
     "dataset": "rca-library-trial-20-w3",
     "docs": 20,
-    "totalSpendAud": 1.93,
+    "totalSpendAud": 4.42,
     "runs": [
       {
         "model": "claude-sonnet-5",
@@ -140,6 +142,66 @@
             }
           }
         }
+      },
+      {
+        "model": "claude-opus-5",
+        "dataset": "rca-library-trial-20-w3",
+        "docs": 20,
+        "completed": 20,
+        "fields": {
+          "docType": {
+            "correct": 14,
+            "total": 20,
+            "accuracy": 0.7
+          },
+          "docDate": {
+            "correct": 20,
+            "total": 20,
+            "accuracy": 1
+          },
+          "entity": {
+            "correct": 20,
+            "total": 20,
+            "accuracy": 1
+          },
+          "amount": {
+            "correct": 20,
+            "total": 20,
+            "accuracy": 1
+          },
+          "refNumber": {
+            "correct": 16,
+            "total": 20,
+            "accuracy": 0.8
+          }
+        },
+        "overall": {
+          "correct": 90,
+          "total": 100
+        },
+        "spendAud": 2.4903,
+        "failedDocs": [],
+        "calibration": {
+          "statedFields": 4,
+          "unstatedFields": 96,
+          "bands": {
+            "high": {
+              "correct": 4,
+              "total": 4,
+              "accuracy": 1
+            },
+            "medium": {
+              "correct": 0,
+              "total": 0,
+              "accuracy": null
+            },
+            "low": {
+              "correct": 0,
+              "total": 0,
+              "accuracy": null
+            }
+          }
+        }
       }
     ],
     "fieldRows": [
@@ -156,6 +218,11 @@
             "model": "claude-haiku-4-5",
             "correct": 18,
             "total": 20
+          },
+          {
+            "model": "claude-opus-5",
+            "correct": 20,
+            "total": 20
           }
         ]
       },
@@ -170,6 +237,11 @@
           },
           {
             "model": "claude-haiku-4-5",
+            "correct": 20,
+            "total": 20
+          },
+          {
+            "model": "claude-opus-5",
             "correct": 20,
             "total": 20
           }
@@ -188,6 +260,11 @@
             "model": "claude-haiku-4-5",
             "correct": 18,
             "total": 20
+          },
+          {
+            "model": "claude-opus-5",
+            "correct": 20,
+            "total": 20
           }
         ]
       },
@@ -202,6 +279,11 @@
           },
           {
             "model": "claude-haiku-4-5",
+            "correct": 16,
+            "total": 20
+          },
+          {
+            "model": "claude-opus-5",
             "correct": 16,
             "total": 20
           }
@@ -219,6 +301,11 @@
           {
             "model": "claude-haiku-4-5",
             "correct": 15,
+            "total": 20
+          },
+          {
+            "model": "claude-opus-5",
+            "correct": 14,
             "total": 20
           }
         ]

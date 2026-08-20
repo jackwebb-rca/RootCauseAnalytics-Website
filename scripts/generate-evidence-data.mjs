@@ -15,6 +15,11 @@ const readJson = async (f) => JSON.parse(await readFile(f, "utf8"));
 const liveTrial = await readJson(
   path.join(resultsDir, "extract-accuracy-live-trial-2026-08-05.json")
 );
+// Opus 5 pass over the same 20-document corpus (rca-library-trial-20-w3),
+// run 2026-08-21. Same harness, same ground truth, merged as a third column.
+const opusTrial = await readJson(
+  path.join(resultsDir, "extract-accuracy-live-trial-2026-08-21-opus.json")
+);
 const v2 = await readJson(path.join(resultsDir, "extract-v2-selftest.json"));
 
 const FIELD_LABELS = {
@@ -25,7 +30,7 @@ const FIELD_LABELS = {
   docType: "Document type",
 };
 
-const runs = liveTrial.runs.map((r) => {
+const mapRun = (r) => {
   const fields = Object.fromEntries(
     Object.entries(r.fields).map(([k, v]) => [
       k,
@@ -47,7 +52,9 @@ const runs = liveTrial.runs.map((r) => {
       .map((p) => ({ id: p.id, error: p.error })),
     calibration: r.calibration ?? null,
   };
-});
+};
+
+const runs = [...liveTrial.runs, ...opusTrial.runs].map(mapRun);
 
 // Comparison table rows in a fixed, meaningful order.
 const rowOrder = ["entity", "amount", "docDate", "refNumber", "docType"];
@@ -65,12 +72,18 @@ const data = {
   generatedAt: new Date().toISOString(),
   sourceFiles: [
     "extract-accuracy-live-trial-2026-08-05.json",
+    "extract-accuracy-live-trial-2026-08-21-opus.json",
     "extract-v2-selftest.json",
   ],
   liveTrial: {
     title: liveTrial.title,
-    note: liveTrial.note,
+    note:
+      liveTrial.note +
+      " Opus 5 pass added 2026-08-21: same 20-document corpus and ground truth, 20/20 completed, 90/100 field checks, A$" +
+      (opusTrial.runs[0]?.spend?.costAud ?? "?") +
+      " api spend.",
     date: liveTrial.generatedAt,
+    opusDate: opusTrial.generatedAt,
     dataset: runs[0]?.dataset ?? null,
     docs: runs[0]?.docs ?? null,
     totalSpendAud:
