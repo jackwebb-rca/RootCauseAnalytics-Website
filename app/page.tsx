@@ -61,10 +61,10 @@ export default function HomePage() {
               priority
               style={{ width: "100%", height: "auto" }}
             />
-            <span className="mk m1" style={{ left: "21%", top: "12.8%" }}>1</span>
-            <span className="mk m2" style={{ left: "60.5%", top: "15.2%" }}>2</span>
-            <span className="mk m3" style={{ left: "21%", top: "20.4%" }}>3</span>
-            <span className="mk m4" style={{ left: "29%", top: "35.1%" }}>4</span>
+            <span className="mk m1" aria-hidden="true" style={{ left: "26%", top: "12.6%", width: "19.5%", height: "2.8%" }} />
+            <span className="mk m2" aria-hidden="true" style={{ left: "66%", top: "14.9%", width: "11%", height: "2.6%" }} />
+            <span className="mk m3" aria-hidden="true" style={{ left: "26%", top: "20.6%", width: "12.5%", height: "2.6%" }} />
+            <span className="mk m4" aria-hidden="true" style={{ left: "33.5%", top: "35%", width: "28.5%", height: "2.6%" }} />
             <div className="panel">
               <div className="panel-head">
                 <span>Extracted fields</span>
