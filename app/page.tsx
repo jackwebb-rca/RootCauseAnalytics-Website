@@ -72,7 +72,7 @@ export default function HomePage() {
               <div className="phead" aria-hidden="true">
                 <span>Field</span>
                 <span>Extracted value</span>
-                <span className="pc">Extraction accuracy</span>
+                <span className="pc">Accuracy</span>
               </div>
               <div className="prow p1">
                 <span className="f">patient_name</span>
