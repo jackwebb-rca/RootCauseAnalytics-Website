@@ -67,7 +67,10 @@ export default function DownloadsPage() {
             Downloads folder and run:
           </p>
           <p>
-            <code>certutil -hashfile RCA-Document-Library-Setup.exe SHA512</code>
+            <code>
+              certutil -hashfile &quot;RCA Document Library Setup 0.9.0.exe&quot;
+              SHA512
+            </code>
           </p>
           <p>
             The value the command prints must match the value on this page

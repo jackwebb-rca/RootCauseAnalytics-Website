@@ -35,4 +35,19 @@ export interface Release {
   files: ReleaseFile[];
 }
 
-export const releases: Release[] = [];
+export const releases: Release[] = [
+  {
+    version: "0.9.0",
+    tag: "v0.9.0",
+    date: "2026-08-27",
+    files: [
+      {
+        name: "RCA Document Library Setup 0.9.0.exe",
+        label: "Windows installer, 64-bit",
+        sha512:
+          "ca50e4b4daef2b7a5341d128bf83a556677f0baec3c5e139bb50d68e0c6497411f9d6fca0860eaf2cdb20f9bf7557bdd857e7483d428c728578f2b07a57e820e",
+        sizeBytes: 251418054,
+      },
+    ],
+  },
+];
