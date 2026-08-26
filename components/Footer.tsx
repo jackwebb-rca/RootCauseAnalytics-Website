@@ -21,7 +21,7 @@ export default function Footer() {
         </a>
         <br />
         <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> ·{" "}
-        <a href="/security">Security</a>
+        <a href="/security">Security</a> · <a href="/downloads">Downloads</a>
       </span>
     </footer>
   );
