@@ -45,8 +45,8 @@ export const releases: Release[] = [
         name: "RCA-Document-Library-Setup-0.9.0.exe",
         label: "Windows installer, 64-bit",
         sha512:
-          "ca50e4b4daef2b7a5341d128bf83a556677f0baec3c5e139bb50d68e0c6497411f9d6fca0860eaf2cdb20f9bf7557bdd857e7483d428c728578f2b07a57e820e",
-        sizeBytes: 251418054,
+          "0707eeba41d62b2acb8773ffe6a30016aebab200bc8e1b5103812a73131da2948be847273b9df4256331a360f5772ec695120c04952826a43246ec862a511013",
+        sizeBytes: 251360049,
       },
     ],
   },
