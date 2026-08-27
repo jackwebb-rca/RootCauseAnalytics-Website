@@ -1,11 +1,11 @@
 {
   "version": "0.9.0",
   "url": "https://www.rootcauseanalytics.com.au/downloads",
-  "manifestVersion": 1787753807,
-  "expires": "2026-11-24T14:16:47.929Z",
+  "manifestVersion": 1787810863,
+  "expires": "2026-11-25T06:07:44.227Z",
   "files": [
     {
-      "name": "RCA Document Library Setup 0.9.0.exe",
+      "name": "RCA-Document-Library-Setup-0.9.0.exe",
       "sha512": "ca50e4b4daef2b7a5341d128bf83a556677f0baec3c5e139bb50d68e0c6497411f9d6fca0860eaf2cdb20f9bf7557bdd857e7483d428c728578f2b07a57e820e",
       "size": 251418054
     }
