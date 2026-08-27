@@ -68,8 +68,7 @@ export default function DownloadsPage() {
           </p>
           <p>
             <code>
-              certutil -hashfile &quot;RCA Document Library Setup 0.9.0.exe&quot;
-              SHA512
+              certutil -hashfile RCA-Document-Library-Setup-0.9.0.exe SHA512
             </code>
           </p>
           <p>
