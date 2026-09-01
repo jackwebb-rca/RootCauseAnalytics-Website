@@ -82,8 +82,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 
 /* ---------- hero ---------- */
 .hero { max-width: 1300px; margin: 0 auto; padding: 76px 40px 90px; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 70px; align-items: center; position: relative; }
-.kicker { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--green-deep); font-weight: 600; margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
-.kicker::before { content: ""; width: 40px; height: 2px; background: var(--green); }
+.kicker { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--green-deep); font-weight: 600; margin-bottom: 28px; }
 h1 { font-family: "Fraunces", serif; font-weight: 550; font-size: clamp(44px, 5.4vw, 76px); line-height: 1.04; letter-spacing: -.02em; }
 h1 em { font-style: italic; font-weight: 450; color: var(--green); }
 .sub { max-width: 540px; margin: 28px 0 36px; font-size: 17.5px; line-height: 1.7; color: var(--ink-soft); font-weight: 500; }
