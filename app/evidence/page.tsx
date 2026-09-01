@@ -4,7 +4,7 @@ import TrialTable from "@/components/TrialTable";
 import evidence from "@/lib/evidence.json";
 
 export const metadata: Metadata = {
-  title: "Evidence",
+  title: "Live trials",
   description:
     "Published benchmark run logs for Root Cause Analytics: every field, every document, including the misses. Tables render directly from the raw result files.",
   alternates: { canonical: "/evidence" },
@@ -29,7 +29,7 @@ export default function EvidencePage() {
   return (
     <>
       <section className="page-hero">
-        <p className="kicker rv-auto">Evidence · run logs, not brochures</p>
+        <p className="kicker rv-auto">Live trials · published run logs</p>
         <h1 className="rv-auto d1">
           We publish <span className="hl">our misses.</span>
         </h1>
