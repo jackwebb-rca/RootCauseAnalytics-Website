@@ -4,7 +4,7 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Talk to Jack. There is no sales team. Replies within one business day, Sydney time.",
+    "Talk directly with the founder. Replies within one business day, Sydney time.",
   alternates: { canonical: "/contact" },
 };
 
@@ -23,7 +23,7 @@ const FAQ = [
   },
   {
     q: "How is it priced?",
-    a: "Quote-based, with published anchors on each product page: extraction runs at 10 cents per document in the Document Library, and the Generator's Insurance QA Sprint Pack is AUD $2,500. Preview packs and evaluations are free, so you always see the quality before you spend a dollar. Everything is invoiced in Australian dollars.",
+    a: "Quote-based, with published anchors on each product page: extraction runs at 10 cents per document in the Document Library, and the Generator's Insurance QA Sprint Pack is AUD $2,500. Preview packs and evaluations are free, so you can check the quality before you pay. Everything is invoiced in Australian dollars.",
   },
   {
     q: "Can our synthetic documents be mistaken for real records?",
@@ -55,7 +55,7 @@ export default function ContactPage() {
       <section className="page-hero">
         <p className="kicker rv-auto">Contact · direct line</p>
         <h1 className="rv-auto d1">
-          Talk to Jack. There is <span className="hl">no sales team.</span>
+          Talk directly with <span className="hl">the founder.</span>
         </h1>
         <p className="sub rv-auto d2">
           Tell me what documents you are dealing with and what you want out of

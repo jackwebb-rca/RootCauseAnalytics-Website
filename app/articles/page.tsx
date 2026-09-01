@@ -15,7 +15,8 @@ export default function ArticlesPage() {
       <section className="page-hero">
         <p className="kicker rv-auto">Articles · the newsletter</p>
         <h1 className="rv-auto d1">
-          Notes from the <span className="hl">paper mines.</span>
+          Articles on document extraction and{" "}
+          <span className="hl">synthetic data.</span>
         </h1>
         <p className="sub rv-auto d2">
           Short, practical writing on document extraction, synthetic data and

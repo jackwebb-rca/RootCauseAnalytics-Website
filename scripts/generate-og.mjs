@@ -34,8 +34,8 @@ h1 .hl{background-image:linear-gradient(rgba(232,184,75,.35),rgba(232,184,75,.35
 <div class="strip"><span>Root Cause Analytics <span class="dot">●</span> Sydney, Australia</span><span>File № RCA-2026</span></div>
 <div class="wrap">
   <div>
-    <h1>Ten thousand PDFs in. <span class="hl">One clean table</span> out.</h1>
-    <p class="sub">Document extraction and synthetic data systems. Self-hosted, offline, benchmarks published, misses included.</p>
+    <h1>Turn thousands of PDFs into <span class="hl">one clean, searchable table</span>.</h1>
+    <p class="sub">Document extraction and synthetic data systems. Self-hosted, offline, with published benchmarks.</p>
   </div>
   <div class="doc"><img src="file://${root}/public/specimens/spec-treatment-plan-1.png"></div>
 </div>

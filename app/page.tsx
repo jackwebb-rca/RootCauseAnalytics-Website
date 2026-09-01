@@ -6,7 +6,7 @@ import TrialTable from "@/components/TrialTable";
 import evidence from "@/lib/evidence.json";
 
 export const metadata: Metadata = {
-  title: "Root Cause Analytics · Ten thousand PDFs in. One clean table out.",
+  title: "Root Cause Analytics · Document extraction and synthetic data, Sydney",
   description:
     "RCA turns large quantities of PDFs and paper documents into clean, catalogued tables, and generates realistic synthetic Australian documents for AI training and evaluation. Sydney, Australia.",
   alternates: { canonical: "/" },
@@ -26,8 +26,8 @@ export default function HomePage() {
       <section className="hero">
         <div>
           <h1 className="rv-auto d1">
-            Ten thousand PDFs in. <span className="hl">One clean table</span>{" "}
-            out.
+            Turn thousands of PDFs and paper documents into{" "}
+            <span className="hl">one clean, searchable table</span>.
           </h1>
           <p className="sub rv-auto d2">
             RCA turns large quantities of PDFs and paper documents into{" "}
@@ -199,8 +199,8 @@ export default function HomePage() {
 
       <section className="evidence">
         <div className="sec-head rv">
-          <h2>We publish our misses.</h2>
-          <span>Evidence · live trial {trialDate}</span>
+          <h2>Published live trials</h2>
+          <span>Live trial · {trialDate}</span>
         </div>
         <div className="ev-grid">
           <div className="rv d1">
@@ -258,7 +258,7 @@ export default function HomePage() {
         <div className="cta-card rv">
           <div>
             <h2>
-              See the quality before you <em>spend a dollar.</em>
+              Request a <em>free preview pack.</em>
             </h2>
             <p>
               Request a free preview pack with real sample documents so your

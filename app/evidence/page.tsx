@@ -31,7 +31,8 @@ export default function EvidencePage() {
       <section className="page-hero">
         <p className="kicker rv-auto">Live trials · published run logs</p>
         <h1 className="rv-auto d1">
-          We publish <span className="hl">our misses.</span>
+          Full run logs for every benchmark,{" "}
+          <span className="hl">including the failures.</span>
         </h1>
         <p className="sub rv-auto d2">
           Most vendors quote one accuracy number. We publish run logs: every

@@ -12,7 +12,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="page-hero">
-        <p className="kicker rv-auto">About · the file on us</p>
+        <p className="kicker rv-auto">About · Root Cause Analytics</p>
         <h1 className="rv-auto d1">
           A one-person company with{" "}
           <span className="hl">published benchmarks.</span>

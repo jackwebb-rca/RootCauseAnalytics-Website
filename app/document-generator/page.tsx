@@ -43,14 +43,14 @@ export default function DocumentGeneratorPage() {
       <section className="page-hero">
         <p className="kicker rv-auto">№ 02 · RCA Document Generator</p>
         <h1 className="rv-auto d1">
-          Real enough to train on. <span className="hl">Fake enough</span> to
-          sleep at night.
+          Realistic synthetic documents for AI training, with{" "}
+          <span className="hl">zero privacy risk.</span>
         </h1>
         <p className="sub rv-auto d2">
           The Generator produces realistic synthetic Australian documents and
-          records for AI training and evaluation, with{" "}
-          <b>zero privacy risk</b>. Every document ships with complete ground
-          truth, so you always know the right answer when you test.
+          records for AI training and evaluation. Every document ships with{" "}
+          <b>complete ground truth</b>, so you always know the right answer
+          when you test.
         </p>
       </section>
 
@@ -109,7 +109,7 @@ export default function DocumentGeneratorPage() {
 
       <section className="section">
         <div className="sec-head rv">
-          <h2>Built for evaluation, not just volume</h2>
+          <h2>Built for evaluation</h2>
           <span>The engineering</span>
         </div>
         <ul className="fact-list red rv d1">
@@ -221,7 +221,7 @@ export default function DocumentGeneratorPage() {
         <div className="cta-card rv">
           <div>
             <h2>
-              Test on documents that <em>cannot hurt anyone.</em>
+              Start with a <em>free sample set.</em>
             </h2>
             <p>
               Request a preview pack with ground truth included, so your team

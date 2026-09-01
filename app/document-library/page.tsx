@@ -32,8 +32,8 @@ export default function DocumentLibraryPage() {
       <section className="page-hero">
         <p className="kicker rv-auto">№ 01 · RCA Document Library</p>
         <h1 className="rv-auto d1">
-          From a box of paper to a{" "}
-          <span className="hl">table you can query.</span>
+          Digitise your paper archive into a{" "}
+          <span className="hl">table you can search and audit.</span>
         </h1>
         <p className="sub rv-auto d2">
           The Document Library is a self-hosted app for digitising and
