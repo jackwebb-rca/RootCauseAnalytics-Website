@@ -29,7 +29,7 @@ export default function EvidencePage() {
   return (
     <>
       <section className="page-hero">
-        <p className="kicker rv-auto">Live trials · published run logs</p>
+        <p className="kicker rv-auto">Published run logs</p>
         <h1 className="rv-auto d1">
           Full run logs for every benchmark,{" "}
           <span className="hl">including the failures.</span>
@@ -45,7 +45,7 @@ export default function EvidencePage() {
       <section className="section">
         <div className="ev-run">
           <div className="ev-run-head rv">
-            <h3>Latest live trial · {trialDate}</h3>
+            <h3>Latest live trial, {trialDate}</h3>
             <span>
               Run {trial.dataset} · {trial.docs} documents
             </span>
@@ -61,7 +61,8 @@ export default function EvidencePage() {
                 is our current weak spot.
               </p>
               <p className="foot">
-                Total API spend for this run: A${trial.totalSpendAud}
+                Total API spend across the three model passes: A$
+                {trial.totalSpendAud}
               </p>
               <ul className="fact-list red" style={{ marginTop: 22 }}>
                 {trial.runs.flatMap((r) =>
@@ -84,7 +85,7 @@ export default function EvidencePage() {
 
         <div className="ev-run">
           <div className="ev-run-head rv">
-            <h3>V2 OCR benchmark · no AI assistance</h3>
+            <h3>V2 OCR benchmark, no AI assistance</h3>
             <span>
               {v2.docs} documents · {v2.fields} fields
             </span>
@@ -164,8 +165,8 @@ export default function EvidencePage() {
             Nothing is typed in by hand.
           </li>
           <li>
-            <b>Spend is published per run.</b> The {trialDate} trial cost A$
-            {trial.totalSpendAud} in API fees.
+            <b>Spend is published per run.</b> Across its three model passes,
+            this trial cost A${trial.totalSpendAud} in API fees.
           </li>
           <li>
             <b>Failures score zero.</b> A model that does not answer does not

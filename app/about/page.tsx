@@ -12,7 +12,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="page-hero">
-        <p className="kicker rv-auto">About · Root Cause Analytics</p>
+        <p className="kicker rv-auto">About Root Cause Analytics</p>
         <h1 className="rv-auto d1">
           A one-person company with{" "}
           <span className="hl">published benchmarks.</span>
@@ -61,7 +61,7 @@ export default function AboutPage() {
           </div>
           <div className="cta-actions">
             <Link className="btn btn-gold" href="/evidence">
-              See the evidence
+              See the live trials
             </Link>
             <Link className="btn btn-paper" href="/contact">
               Talk to Jack →

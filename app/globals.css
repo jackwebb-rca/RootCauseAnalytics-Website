@@ -88,7 +88,6 @@ h1 { font-family: "Fraunces", serif; font-weight: 550; font-size: clamp(44px, 5.
 h1 em { font-style: italic; font-weight: 450; color: var(--green); }
 .sub { max-width: 540px; margin: 28px 0 36px; font-size: 17.5px; line-height: 1.7; color: var(--ink-soft); font-weight: 500; }
 .sub b { color: var(--ink); font-weight: 600; }
-.ctas { display: flex; gap: 14px; flex-wrap: wrap; }
 .hero-note { margin-top: 32px; font-family: "IBM Plex Mono", monospace; font-size: 12px; line-height: 1.8; color: var(--ink-soft); max-width: 480px; border-left: 2px solid var(--green); padding-left: 14px; }
 .hl { background-image: linear-gradient(var(--high), var(--high)); background-repeat: no-repeat; background-position: 0 72%; background-size: 100% 38%; padding: 0 2px; }
 
@@ -120,23 +119,18 @@ h1 em { font-style: italic; font-weight: 450; color: var(--green); }
 .doc.in .mk:hover { background: rgba(100, 200, 105, .65); }
 .m1:hover ~ .panel .prow.p1, .m2:hover ~ .panel .prow.p2,
 .m3:hover ~ .panel .prow.p3, .m4:hover ~ .panel .prow.p4 { background: rgba(100, 200, 105, .3); }
-.spec-cap { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--ink-soft); margin-top: 12px; display: flex; justify-content: space-between; }
+.spec-cap { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--ink-soft); margin-top: 12px; display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
+.spec-cap a { color: var(--green); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.spec-cap a:hover, .spec-cap a:focus-visible { text-decoration: underline; }
 .spec-cap i { font-style: normal; color: var(--green); font-weight: 600; }
 
-/* ---------- sections / products ---------- */
-.products { max-width: 1300px; margin: 0 auto; padding: 20px 40px 90px; }
+/* ---------- section headers and product cards ---------- */
 .sec-head { display: flex; justify-content: space-between; align-items: baseline; border-top: 1.5px solid var(--ink); padding-top: 20px; margin-bottom: 40px; }
 .sec-head h2 { font-family: "Fraunces", serif; font-weight: 550; font-size: 38px; letter-spacing: -.01em; }
 .sec-head span { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase; }
-.prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .prod { background: var(--card); border: 1.5px solid var(--ink); padding: 36px; position: relative; transition: transform .25s, box-shadow .25s; display: flex; flex-direction: column; }
 .prod:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
-.prod .no { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; letter-spacing: .1em; color: var(--paper); background: var(--green); display: inline-block; padding: 4px 10px; margin-bottom: 20px; align-self: flex-start; }
-/* #C23720 is --red darkened one step so the 11px badge text passes WCAG AA
-   (4.75:1 vs 4.46:1 with the raw token). Visually indistinguishable. */
-.prod.alt .no { background: #C23720; }
 .prod h3 { font-family: "Fraunces", serif; font-size: 29px; font-weight: 600; margin-bottom: 6px; }
-.prod .what { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 18px; }
 .prod p { font-size: 15.5px; line-height: 1.7; color: var(--ink-soft); }
 .prod p b { color: var(--ink); }
 .prod ul { margin: 18px 0 26px; list-style: none; padding: 0; }
@@ -166,7 +160,6 @@ h1 em { font-style: italic; font-weight: 450; color: var(--green); }
 .tile-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px 18px; margin: 0 -26px 18px; padding: 8px 26px; background: var(--ink); color: var(--paper); font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; line-height: 1.5; }
 .tile-head .tn { color: var(--gold); font-weight: 600; white-space: nowrap; }
 .tile-head .tk { text-align: right; flex: 1; }
-.tile.alt .tile-head .tn { color: #f2a68d; }
 .tile h3 { font-size: 24px; margin-bottom: 8px; transition: color .2s ease; }
 .tile p { font-size: 15.5px; line-height: 1.5; }
 .tile p b { background-image: linear-gradient(var(--high), var(--high)); background-repeat: no-repeat; background-position: 0 72%; background-size: 100% 38%; padding: 0 2px; }
@@ -201,7 +194,12 @@ h1 em { font-style: italic; font-weight: 450; color: var(--green); }
 @media (prefers-reduced-motion: reduce) { .strip-track { animation: none; } }
 .cell { background: #fff; border: 1.5px solid var(--ink); width: 190px; flex: none; margin: 0; }
 .cell img { display: block; width: 100%; height: 250px; object-fit: cover; object-position: top; }
-.cell figcaption { font-family: "IBM Plex Mono", monospace; font-size: 9px; letter-spacing: .06em; text-transform: uppercase; padding: 8px 10px; border-top: 1.5px solid var(--ink); background: var(--card); color: var(--ink-soft); }
+/* The reel cells are links (a.cell); the Generator page gallery reuses the
+   same box as plain figures, so the hover lift is scoped to links only. */
+a.cell { display: block; text-decoration: none; color: inherit; transition: transform .2s ease, box-shadow .2s ease; }
+a.cell:hover, a.cell:focus-visible { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+.cell figcaption, .cell-cap { display: block; font-family: "IBM Plex Mono", monospace; font-size: 9px; letter-spacing: .06em; text-transform: uppercase; padding: 8px 10px; border-top: 1.5px solid var(--ink); background: var(--card); color: var(--ink-soft); }
+@media (hover: none) { .strip-hint { display: none; } }
 
 /* ---------- proof band ---------- */
 .band { background: var(--ink); color: var(--paper); padding: 70px 40px; position: relative; overflow: hidden; }
@@ -315,7 +313,7 @@ tr:last-child td { border-bottom: none; }
 .table-scroll { overflow-x: auto; }
 
 @media (max-width: 980px) {
-  .hero, .ev-grid, .prod-grid, .cta-card, .contact-grid { grid-template-columns: 1fr; }
+  .hero, .ev-grid, .cta-card, .contact-grid { grid-template-columns: 1fr; }
   .hero { padding-top: 52px; }
   .hero-tiles { grid-template-rows: auto; padding-top: 52px; }
   .hero-tiles .specimen-wrap { margin-top: 56px; }
@@ -338,7 +336,7 @@ tr:last-child td { border-bottom: none; }
   .mobile-menu li a { display: block; padding: 14px 24px; font-size: 16px; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
   .mobile-menu li a[aria-current="page"] { color: var(--green); box-shadow: inset 4px 0 0 var(--green); }
   .mobile-menu .menu-cta { display: block; margin: 16px 24px 18px; text-align: center; }
-  .hero, .products, .evidence, .cta, .page-hero, .section { padding-left: 20px; padding-right: 20px; }
+  .hero, .evidence, .cta, .page-hero, .section { padding-left: 20px; padding-right: 20px; }
   .band { padding: 56px 20px; }
   .cta-card { padding: 44px 28px; }
   .founder-inner { padding: 70px 20px; }

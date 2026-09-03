@@ -53,7 +53,7 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <section className="page-hero">
-        <p className="kicker rv-auto">Contact · direct line</p>
+        <p className="kicker rv-auto">Contact</p>
         <h1 className="rv-auto d1">
           Talk directly with <span className="hl">the founder.</span>
         </h1>

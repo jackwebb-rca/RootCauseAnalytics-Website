@@ -11,8 +11,7 @@ export default function Footer() {
         style={{ height: 54, width: "auto" }}
       />
       <span className="mid">
-        Every document on this site is synthetic. Including the ones that look
-        worryingly real.
+        Every document shown on this site is synthetic.
       </span>
       <span>
         © 2026 · Sydney NSW ·{" "}

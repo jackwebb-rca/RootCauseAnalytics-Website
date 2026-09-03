@@ -5,7 +5,7 @@ import { articles } from "@/lib/articles";
 export const metadata: Metadata = {
   title: "Articles",
   description:
-    "Short, practical writing on document extraction, synthetic data and the unglamorous reality of digitisation. No hype pieces.",
+    "Short, practical writing on document extraction, synthetic data and digitisation work.",
   alternates: { canonical: "/articles" },
 };
 
@@ -13,14 +13,14 @@ export default function ArticlesPage() {
   return (
     <>
       <section className="page-hero">
-        <p className="kicker rv-auto">Articles · the newsletter</p>
+        <p className="kicker rv-auto">Articles and newsletter</p>
         <h1 className="rv-auto d1">
           Articles on document extraction and{" "}
           <span className="hl">synthetic data.</span>
         </h1>
         <p className="sub rv-auto d2">
           Short, practical writing on document extraction, synthetic data and
-          the unglamorous reality of digitisation. <b>No hype pieces.</b>
+          digitisation work.
         </p>
       </section>
 
@@ -47,16 +47,16 @@ export default function ArticlesPage() {
           </ul>
         ) : (
           <div className="honesty rv">
-            <span className="tag">The archive is being unpacked</span>
+            <span className="tag">No articles published yet</span>
             <p>
-              New articles land here. Until then, the newsletter continues on
-              LinkedIn, and you can{" "}
+              New articles will be published here. Until then, the newsletter
+              continues on LinkedIn. You can also{" "}
               <b>
                 <Link href="/contact" style={{ color: "inherit" }}>
                   write to Jack directly
                 </Link>
               </b>{" "}
-              with questions worth answering in public.
+              with a question.
             </p>
           </div>
         )}

@@ -12,7 +12,8 @@ await mkdir(outDir, { recursive: true });
 const html = `<!DOCTYPE html>
 <html><head><meta charset="utf-8">
 <style>
-@font-face{font-family:'Fraunces';src:url('file://${root}/public/fonts/fraunces-normal-400-550-latin.woff2') format('woff2');font-weight:400 550;}
+@font-face{font-family:'Fraunces';src:url('file://${root}/public/fonts/fraunces-normal-550-latin.woff2') format('woff2');font-weight:550;}
+@font-face{font-family:'Source Sans 3';src:url('file://${root}/public/fonts/source-sans-3-normal-600-latin.woff2') format('woff2');font-weight:600;}
 @font-face{font-family:'IBM Plex Mono';src:url('file://${root}/public/fonts/ibm-plex-mono-normal-600-latin.woff2') format('woff2');font-weight:600;}
 @font-face{font-family:'Source Sans 3';src:url('file://${root}/public/fonts/source-sans-3-normal-500-latin.woff2') format('woff2');font-weight:500;}
 *{margin:0;box-sizing:border-box}
@@ -20,9 +21,11 @@ body{width:1200px;height:630px;background:#F5EFE3;font-family:'Source Sans 3',sa
 .strip{display:flex;justify-content:space-between;padding:14px 48px;background:#191510;color:#F5EFE3;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.1em;text-transform:uppercase}
 .strip .dot{color:#E8B84B}
 .wrap{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;padding:64px 48px 0;align-items:start}
-h1{font-family:'Fraunces',serif;font-weight:550;font-size:76px;line-height:1.05;letter-spacing:-.02em}
+h1{font-family:'Fraunces',serif;font-weight:550;font-size:64px;line-height:1.08;letter-spacing:-.02em}
 h1 .hl{background-image:linear-gradient(rgba(232,184,75,.35),rgba(232,184,75,.35));background-repeat:no-repeat;background-position:0 72%;background-size:100% 38%}
-.sub{margin-top:28px;font-size:24px;line-height:1.5;color:#6E6353;max-width:560px}
+.sub{margin-top:24px;font-size:22px;line-height:1.45;color:#6E6353;max-width:640px}
+.sub b{color:#191510;font-weight:600}
+.sub+.sub{margin-top:14px}
 .note{position:absolute;left:48px;bottom:44px;display:flex;align-items:center;gap:18px}
 .note img{height:64px}
 .note span{font-family:'IBM Plex Mono',monospace;font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:#6E6353}
@@ -34,8 +37,9 @@ h1 .hl{background-image:linear-gradient(rgba(232,184,75,.35),rgba(232,184,75,.35
 <div class="strip"><span>Root Cause Analytics <span class="dot">●</span> Sydney, Australia</span><span>File № RCA-2026</span></div>
 <div class="wrap">
   <div>
-    <h1>Turn thousands of PDFs into <span class="hl">one clean, searchable table</span>.</h1>
-    <p class="sub">Document extraction and synthetic data systems. Self-hosted, offline, with published benchmarks.</p>
+    <h1>Two applications for <span class="hl">document work</span>.</h1>
+    <p class="sub"><b>RCA Document Library</b> reads and catalogues your real documents, providing a structured table from extracted fields.</p>
+    <p class="sub"><b>RCA Document Generator</b> produces accurate, risk-free synthetic documents for AI training and testing in regulated sectors.</p>
   </div>
   <div class="doc"><img src="file://${root}/public/specimens/spec-treatment-plan-1.png"></div>
 </div>
@@ -45,7 +49,7 @@ h1 .hl{background-image:linear-gradient(rgba(232,184,75,.35),rgba(232,184,75,.35
 
 const tmp = path.join(outDir, "_og-template.html");
 await writeFile(tmp, html);
-const browser = await chromium.launch();
+const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
 await page.goto("file://" + tmp, { waitUntil: "load" });
 await page.waitForTimeout(600);

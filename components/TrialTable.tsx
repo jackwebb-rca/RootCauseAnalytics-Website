@@ -60,7 +60,13 @@ export default function TrialTable() {
             </td>
           ))}
           <td className="num">
-            <span className="ok">honest</span>
+            {(() => {
+              const worst = Math.min(
+                ...runs.map((r) => r.overall.correct / r.overall.total)
+              );
+              const v = verdict(worst, 1);
+              return <span className={v.cls}>{v.label}</span>;
+            })()}
           </td>
         </tr>
       </tbody>

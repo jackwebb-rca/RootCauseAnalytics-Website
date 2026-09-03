@@ -67,8 +67,8 @@ export default function DocumentGeneratorPage() {
           </li>
           <li>
             <b>81 internally consistent clinical case archetypes.</b> The
-            medications match the diagnosis. The dates line up. The story
-            holds.
+            medications match the diagnosis and the dates line up across
+            every document in a case.
           </li>
           <li>
             <b>Commercial insurance packs:</b> broker submissions, policy
@@ -85,7 +85,7 @@ export default function DocumentGeneratorPage() {
       <section className="section">
         <div className="sec-head rv">
           <h2>From the current libraries</h2>
-          <span>Real generator output · reduced</span>
+          <span>Generator output, reduced in size</span>
         </div>
         <div className="gallery rv d1">
           {GALLERY.map((g) => (
@@ -119,15 +119,15 @@ export default function DocumentGeneratorPage() {
           </li>
           <li>
             <b>Anti-memorisation variety:</b> 8 style profiles, 3 template
-            families, 4 disclaimer placements, density variation. Your model
-            learns documents, not one template.
+            families, 4 disclaimer placements, density variation, so a model
+            sees varied layouts of each document type.
           </li>
           <li>
             <b>Fully offline and fast.</b> No LLM calls. About 50 documents in
             5 seconds, 5,000 in around 5 minutes.
           </li>
           <li>
-            <b>Australian to the bone:</b> valid Medicare and provider number
+            <b>Australian formats:</b> valid Medicare and provider number
             formats, NSW addresses, local health districts.
           </li>
           <li>
@@ -140,7 +140,7 @@ export default function DocumentGeneratorPage() {
       <section className="section">
         <div className="sec-head rv">
           <h2>What it costs</h2>
-          <span>Quote-based · anchors published</span>
+          <span>Quote based, anchors published</span>
         </div>
         <div className="table-scroll rv d1">
           <table>
@@ -233,7 +233,7 @@ export default function DocumentGeneratorPage() {
               Request a preview pack
             </Link>
             <Link className="btn btn-paper" href="/evidence">
-              See the evidence →
+              See the live trials →
             </Link>
             <span className="mono-note">
               Replies within one business day, Sydney time.

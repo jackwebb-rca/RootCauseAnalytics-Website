@@ -47,7 +47,7 @@ export default function DocumentLibraryPage() {
       <section className="section">
         <div className="sec-head rv">
           <h2>How it works</h2>
-          <span>Four steps · no black box</span>
+          <span>Four steps</span>
         </div>
         <div className="steps">
           <div className="step rv">
@@ -73,7 +73,8 @@ export default function DocumentLibraryPage() {
               <h3>Extraction runs with per-field confidence</h3>
               <p>
                 Confidence is built from four visible factors: OCR quality,
-                rule match, type check and shape check. No black box scores.
+                rule match, type check and shape check, so there is no
+                black-box score.
               </p>
             </div>
           </div>
@@ -93,13 +94,13 @@ export default function DocumentLibraryPage() {
       <section className="section">
         <div className="sec-head rv">
           <h2>Why teams pick it over digitisation vendors</h2>
-          <span>The claims · all verifiable</span>
+          <span>All claims verifiable</span>
         </div>
         <ul className="fact-list rv d1">
           <li>
             <b>{v2.accuracyPct}% field accuracy</b> on OCR-only extraction in
-            the V2 benchmark ({v2.fields} fields). No AI required for that
-            number.
+            the V2 benchmark ({v2.fields} fields). That number is OCR only,
+            with no AI assistance.
           </li>
           <li>
             <b>Offline-first.</b> OCR, extraction, search and export all run
@@ -127,7 +128,7 @@ export default function DocumentLibraryPage() {
       <section className="section">
         <div className="sec-head rv">
           <h2>What it costs</h2>
-          <span>Quote-based · anchors published</span>
+          <span>Quote based, anchors published</span>
         </div>
         <div className="table-scroll rv d1">
           <table>
@@ -204,7 +205,7 @@ export default function DocumentLibraryPage() {
               Request an evaluation
             </Link>
             <Link className="btn btn-paper" href="/evidence">
-              See the evidence →
+              See the live trials →
             </Link>
             <span className="mono-note">
               Replies within one business day, Sydney time.

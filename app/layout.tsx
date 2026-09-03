@@ -53,8 +53,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-AU">
       <head>
-        {/* The display face used by every page's h1 (the usual LCP element).
-            One preload only: more of them delays first paint. */}
+        {/* The display face used by the inner pages' h1 and the home page's
+            catalogue heading (weight 550). One preload only: more of them
+            delays first paint. */}
         <link
           rel="preload"
           href="/fonts/fraunces-normal-550-latin.woff2"

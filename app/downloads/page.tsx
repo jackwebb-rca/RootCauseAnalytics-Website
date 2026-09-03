@@ -17,7 +17,7 @@ export default function DownloadsPage() {
   return (
     <>
       <section className="page-hero">
-        <p className="kicker rv-auto">Downloads · pilot release</p>
+        <p className="kicker rv-auto">Pilot release downloads</p>
         <h1 className="rv-auto d1">Downloads</h1>
       </section>
       <section className="section">

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 // One specimen per cell, first page only. Order mixes document types so the
 // same type is never next to itself in the reel.
@@ -32,10 +33,16 @@ function Group({ hidden = false }: { hidden?: boolean }) {
   return (
     <div className="strip-group" aria-hidden={hidden || undefined}>
       {CELLS.map((c) => (
-        <figure className="cell" key={c.src + (hidden ? "-b" : "-a")}>
-          <Image src={c.src} alt={hidden ? "" : c.alt} width={190} height={250} style={{ width: "100%", height: 250, objectFit: "cover", objectPosition: "top" }} />
-          <figcaption>{c.cap}</figcaption>
-        </figure>
+        <Link
+          className="cell"
+          href="/document-generator"
+          key={c.src + (hidden ? "-b" : "-a")}
+          tabIndex={hidden ? -1 : undefined}
+          aria-label={hidden ? undefined : `${c.alt}, see the Document Generator`}
+        >
+          <Image src={c.src} alt="" width={190} height={250} style={{ width: "100%", height: 250, objectFit: "cover", objectPosition: "top" }} />
+          <span className="cell-cap">{c.cap}</span>
+        </Link>
       ))}
     </div>
   );
@@ -46,7 +53,7 @@ export default function FilmStrip() {
     <div className="strip">
       <div className="strip-head">
         <span>Sample documents from the Document Generator, shown at reduced size</span>
-        <span>Pauses when you hover</span>
+        <span className="strip-hint">Pauses when you hover</span>
       </div>
       {/* Two identical groups; the track slides exactly one group width
           (50%) per cycle, so the loop has no visible join. */}
