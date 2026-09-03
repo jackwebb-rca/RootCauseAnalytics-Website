@@ -29,15 +29,23 @@ export default function HomePage() {
           generation software, Sydney
         </h1>
         <div className="cat-head rv-auto d1">
-          <h2>The catalogue</h2>
+          <h2>Our catalogue</h2>
+          <p>
+            RCA builds two applications for document work: the{" "}
+            <b>Document Library</b> reads and catalogues your real documents,
+            and the <b>Document Generator</b> produces synthetic documents for
+            AI training and testing.
+          </p>
         </div>
         <div className="tile-col">
           <div className="tile-stack">
             <div className="rv-auto d1">
               <Link className="prod tile" href="/document-library">
-                <span className="no">№ 01</span>
+                <span className="tile-head">
+                  <span className="tn">№ 01</span>
+                  <span className="tk">Catalogue and extract data from your real documents</span>
+                </span>
                 <h3>RCA Document Library</h3>
-                <div className="what">For your real documents</div>
                 <p>
                   Point it at your PDFs and scans. It reads them, extracts the
                   fields you care about, scores its own confidence on every
@@ -60,9 +68,11 @@ export default function HomePage() {
             </div>
             <div className="rv-auto d2">
               <Link className="prod alt tile" href="/document-generator">
-                <span className="no">№ 02</span>
+                <span className="tile-head">
+                  <span className="tn">№ 02</span>
+                  <span className="tk">Generate synthetic documents for risk free AI training</span>
+                </span>
                 <h3>RCA Document Generator</h3>
-                <div className="what">For safe AI training and testing</div>
                 <p>
                   Realistic synthetic Australian documents for training and
                   evaluating AI, with <b>complete ground truth on every field</b>.
