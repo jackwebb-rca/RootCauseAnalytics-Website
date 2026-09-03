@@ -14,9 +14,9 @@ const html = `<!DOCTYPE html>
 <style>
 @font-face{font-family:'Fraunces';src:url('file://${root}/public/fonts/fraunces-normal-400-550-latin.woff2') format('woff2');font-weight:400 550;}
 @font-face{font-family:'IBM Plex Mono';src:url('file://${root}/public/fonts/ibm-plex-mono-normal-600-latin.woff2') format('woff2');font-weight:600;}
-@font-face{font-family:'IBM Plex Sans';src:url('file://${root}/public/fonts/ibm-plex-sans-normal-500-latin.woff2') format('woff2');font-weight:500;}
+@font-face{font-family:'Source Sans 3';src:url('file://${root}/public/fonts/source-sans-3-normal-500-latin.woff2') format('woff2');font-weight:500;}
 *{margin:0;box-sizing:border-box}
-body{width:1200px;height:630px;background:#F5EFE3;font-family:'IBM Plex Sans',sans-serif;color:#191510;overflow:hidden;position:relative}
+body{width:1200px;height:630px;background:#F5EFE3;font-family:'Source Sans 3',sans-serif;color:#191510;overflow:hidden;position:relative}
 .strip{display:flex;justify-content:space-between;padding:14px 48px;background:#191510;color:#F5EFE3;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.1em;text-transform:uppercase}
 .strip .dot{color:#E8B84B}
 .wrap{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;padding:64px 48px 0;align-items:start}

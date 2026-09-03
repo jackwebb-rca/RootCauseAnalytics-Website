@@ -24,19 +24,19 @@ export default function HomePage() {
   return (
     <>
       <section className="hero hero-tiles">
+        <h1 className="sr-only">
+          Root Cause Analytics: document extraction and synthetic document
+          generation software, Sydney
+        </h1>
+        <div className="cat-head rv-auto d1">
+          <h2>The catalogue</h2>
+        </div>
         <div className="tile-col">
-          <h1 className="sr-only">
-            Root Cause Analytics: document extraction and synthetic document
-            generation software, Sydney
-          </h1>
-          <div className="cat-head rv-auto d1">
-            <span>The catalogue</span>
-          </div>
           <div className="tile-stack">
             <div className="rv-auto d1">
               <Link className="prod tile" href="/document-library">
                 <span className="no">№ 01</span>
-                <h2>RCA Document Library</h2>
+                <h3>RCA Document Library</h3>
                 <div className="what">For your real documents</div>
                 <p>
                   Point it at your PDFs and scans. It reads them, extracts the
@@ -61,7 +61,7 @@ export default function HomePage() {
             <div className="rv-auto d2">
               <Link className="prod alt tile" href="/document-generator">
                 <span className="no">№ 02</span>
-                <h2>RCA Document Generator</h2>
+                <h3>RCA Document Generator</h3>
                 <div className="what">For safe AI training and testing</div>
                 <p>
                   Realistic synthetic Australian documents for training and
