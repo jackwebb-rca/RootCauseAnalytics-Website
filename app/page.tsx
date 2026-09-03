@@ -30,11 +30,17 @@ export default function HomePage() {
         </h1>
         <div className="cat-head rv-auto d1">
           <h2>Our catalogue</h2>
+          <p className="lead">
+            Root Cause Analytics builds two applications for document work:
+          </p>
           <p>
-            RCA builds two applications for document work: the{" "}
-            <b>Document Library</b> reads and catalogues your real documents,
-            and the <b>Document Generator</b> produces synthetic documents for
-            AI training and testing.
+            <b>RCA Document Library</b> reads and catalogues your real
+            documents, providing a structured table from extracted fields.
+          </p>
+          <p>
+            <b>RCA Document Generator</b> produces accurate, risk-free
+            synthetic documents for AI training and testing in regulated
+            sectors.
           </p>
         </div>
         <div className="tile-col">
@@ -43,7 +49,7 @@ export default function HomePage() {
               <Link className="prod tile" href="/document-library">
                 <span className="tile-head">
                   <span className="tn">№ 01</span>
-                  <span className="tk">Catalogue and extract data from your real documents</span>
+                  <span className="tk">Catalogue documents and extract data</span>
                 </span>
                 <h3>RCA Document Library</h3>
                 <p>
@@ -70,7 +76,7 @@ export default function HomePage() {
               <Link className="prod alt tile" href="/document-generator">
                 <span className="tile-head">
                   <span className="tn">№ 02</span>
-                  <span className="tk">Generate synthetic documents for risk free AI training</span>
+                  <span className="tk">Generate synthetic documents</span>
                 </span>
                 <h3>RCA Document Generator</h3>
                 <p>
