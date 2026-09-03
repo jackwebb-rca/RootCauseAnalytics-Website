@@ -5,7 +5,7 @@ import { writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 
 const CSS_URL =
-  "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,550;0,9..144,650;1,9..144,450&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Caveat:wght@500&display=swap";
+  "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,550;0,9..144,650;1,9..144,450&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Caveat:wght@500&display=swap";
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36";
 

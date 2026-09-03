@@ -23,7 +23,7 @@ const config: Config = {
       },
       fontFamily: {
         display: ["var(--font-fraunces)", "serif"],
-        body: ["var(--font-hanken)", "sans-serif"],
+        body: ["var(--font-sans)", "sans-serif"],
         mono: ["var(--font-plex-mono)", "monospace"],
         signature: ["var(--font-caveat)", "cursive"],
       },
