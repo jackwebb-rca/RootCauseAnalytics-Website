@@ -234,6 +234,13 @@ export default function HomePage() {
       </section>
 
       <section className="founder">
+        <Image
+          className="mark"
+          src="/brand/logo-mark-paper.png"
+          alt=""
+          width={500}
+          height={500}
+        />
         <div className="founder-inner rv">
           <blockquote className="founder-quote">
             <p>

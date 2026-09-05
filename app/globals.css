@@ -227,7 +227,10 @@ td .miss { color: var(--red); font-weight: 600; }
 tr:last-child td { border-bottom: none; }
 
 /* ---------- founder ---------- */
-.founder { background: var(--green-deep); color: var(--paper); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
+/* Founder statement shares the numbers band's look: ink ground, paper text,
+   gold marks, and the logo watermark at the right edge. */
+.founder { background: var(--ink); color: var(--paper); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); position: relative; overflow: hidden; }
+.founder .mark { position: absolute; right: -140px; top: 50%; transform: translateY(-50%); height: 115%; width: auto; opacity: .07; pointer-events: none; }
 .founder-inner { max-width: 880px; margin: 0 auto; padding: 90px 40px; position: relative; }
 .founder-inner::before { content: "\201C"; font-family: "Fraunces", serif; font-size: 180px; line-height: 0; position: absolute; top: 104px; left: -8px; color: var(--gold); opacity: .55; }
 .founder-quote { margin: 0; }
@@ -238,9 +241,8 @@ tr:last-child td { border-bottom: none; }
 .founder-quote em { font-style: normal; text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 3px; text-underline-offset: 7px; text-decoration-skip-ink: none; }
 .founder .sig { margin-top: 34px; display: flex; align-items: center; gap: 18px; }
 .founder .sig .name { font-family: "Caveat", cursive; font-size: 34px; color: var(--paper); transform: rotate(-2deg); }
-/* #B8D8CD is the preview's #9fc4b8 lightened one step so the 11px role text
-   passes WCAG AA on the deep green (5.21:1 vs 4.19:1). */
-.founder .sig .role { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #B8D8CD; line-height: 1.7; }
+/* Same muted paper as the band's stat captions (#b9ae9b on ink: 7.6:1). */
+.founder .sig .role { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #b9ae9b; line-height: 1.7; }
 
 /* ---------- CTA + footer ---------- */
 .cta { max-width: 1300px; margin: 90px auto 100px; padding: 0 40px; }
