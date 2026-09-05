@@ -150,8 +150,8 @@ h1 em { font-style: italic; font-weight: 450; color: var(--green); }
 .tile-col { min-width: 0; display: flex; flex-direction: column; }
 .cat-head { grid-column: 1 / -1; border-top: 1.5px solid var(--ink); padding-top: 22px; margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
 .cat-head h2 + p { margin-top: 6px; }
-.cat-head h2 { font-family: "Fraunces", serif; font-weight: 550; font-size: 36px; letter-spacing: -.01em; line-height: 1.1; }
-.cat-head p { max-width: 920px; font-size: 16.5px; line-height: 1.55; color: var(--ink-soft); font-weight: 500; }
+.cat-head h2 { font-family: "Fraunces", serif; font-weight: 550; font-size: 40px; letter-spacing: -.01em; line-height: 1.1; }
+.cat-head p { max-width: 1000px; font-size: 18px; line-height: 1.55; color: var(--ink-soft); font-weight: 500; }
 .cat-head p.lead { color: var(--ink); font-weight: 600; }
 .cat-head p b { color: var(--ink); font-weight: 600; }
 .tile-stack { flex: 1; display: grid; grid-template-rows: 1fr 1fr; gap: 16px; }
