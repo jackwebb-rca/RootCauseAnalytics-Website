@@ -235,21 +235,27 @@ export default function HomePage() {
 
       <section className="founder">
         <div className="founder-inner rv">
-          <h2>
-            I started RCA because I had this problem myself and could not find
-            a good solution on the market. Most businesses sit on thousands of
-            PDFs and paper documents they cannot use. RCA extracts the key
-            values, builds a clean table for cataloguing them, and gives you
-            metrics and patterns that were locked in paper. RCA Document
-            Library does what the standard digitisation vendors do, with far
-            more capability and near-instant turnaround,{" "}
-            <em>
-              at a fraction of the cost of traditional outsourced digitisation.
-            </em>{" "}
-            We operate solely on a consumption-based pricing model, so users
-            can try our apps without committing to a subscription or paying
-            upfront fees.
-          </h2>
+          <blockquote className="founder-quote">
+            <p>
+              I started RCA because I had this problem myself and could not
+              find a good solution on the market. Most businesses sit on
+              thousands of PDFs and paper documents they cannot use. RCA
+              extracts the key values, builds a clean table for cataloguing
+              them, and gives you metrics and patterns that were locked in
+              paper. RCA Document Library does what the standard digitisation
+              vendors do, with far more capability and near-instant
+              turnaround,{" "}
+              <em>
+                at a fraction of the cost of traditional outsourced
+                digitisation.
+              </em>
+            </p>
+            <p>
+              We operate solely on a consumption-based pricing model, so users
+              can try our apps without committing to a subscription or paying
+              upfront fees.
+            </p>
+          </blockquote>
           <div className="sig">
             <span className="name">Jack Webb</span>
             <span className="role">

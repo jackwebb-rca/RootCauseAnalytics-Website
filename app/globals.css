@@ -230,8 +230,12 @@ tr:last-child td { border-bottom: none; }
 .founder { background: var(--green-deep); color: var(--paper); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
 .founder-inner { max-width: 880px; margin: 0 auto; padding: 90px 40px; position: relative; }
 .founder-inner::before { content: "\201C"; font-family: "Fraunces", serif; font-size: 180px; line-height: 0; position: absolute; top: 104px; left: -8px; color: var(--gold); opacity: .55; }
-.founder h2 { font-family: "Fraunces", serif; font-weight: 450; font-size: clamp(24px, 2.7vw, 33px); line-height: 1.5; letter-spacing: -.01em; }
-.founder h2 em { font-style: italic; color: var(--gold); }
+.founder-quote { margin: 0; }
+.founder-quote p { font-family: "Fraunces", serif; font-weight: 450; font-size: clamp(24px, 2.7vw, 33px); line-height: 1.5; letter-spacing: -.01em; }
+.founder-quote p + p { margin-top: 26px; }
+/* The key clause keeps the paper colour and is marked with a gold rule
+   beneath it; gold text on the deep green read as a weaker colour. */
+.founder-quote em { font-style: normal; text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 3px; text-underline-offset: 7px; text-decoration-skip-ink: none; }
 .founder .sig { margin-top: 34px; display: flex; align-items: center; gap: 18px; }
 .founder .sig .name { font-family: "Caveat", cursive; font-size: 34px; color: var(--paper); transform: rotate(-2deg); }
 /* #B8D8CD is the preview's #9fc4b8 lightened one step so the 11px role text
