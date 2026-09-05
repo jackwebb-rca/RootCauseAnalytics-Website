@@ -65,7 +65,7 @@ export default function HomePage() {
                   <li>Offline-first: OCR, extraction, search and export without internet</li>
                   <li>Confidence built from four visible factors, not a black box</li>
                   <li>Optional AI validation layer that never overwrites OCR results</li>
-                  <li>Costs a fraction of a standard digitisation contract</li>
+                  <li>USD $0.10 per document extracted, no subscription or upfront fee</li>
                 </ul>
                 <span className="go">
                   Open the Document Library <i aria-hidden="true">→</i>

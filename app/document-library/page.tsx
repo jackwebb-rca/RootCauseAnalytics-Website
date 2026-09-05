@@ -17,7 +17,7 @@ const productSchema = {
   operatingSystem: "Self-hosted",
   description:
     "Self-hosted app for digitising and cataloguing documents. OCR, field extraction with per-field confidence scores, offline operation.",
-  offers: { "@type": "Offer", priceCurrency: "AUD", price: "0", description: "Quote-based. Free evaluation first." },
+  offers: { "@type": "Offer", priceCurrency: "USD", price: "0.10", description: "USD $0.10 per document extracted. No subscription or upfront fee. Free evaluation first." },
   publisher: { "@type": "Organization", name: "Root Cause Analytics" },
 };
 
@@ -119,8 +119,8 @@ export default function DocumentLibraryPage() {
             <b>Australian formats understood</b>, including Medicare numbers.
           </li>
           <li>
-            Costs a fraction of a standard digitisation contract, and you own
-            the setup.
+            <b>USD $0.10 per document extracted.</b> No subscription and no
+            upfront fee, a fraction of a standard digitisation contract.
           </li>
         </ul>
       </section>
@@ -128,7 +128,7 @@ export default function DocumentLibraryPage() {
       <section className="section">
         <div className="sec-head rv">
           <h2>What it costs</h2>
-          <span>Quote based, anchors published</span>
+          <span>Consumption based</span>
         </div>
         <div className="table-scroll rv d1">
           <table>
@@ -153,18 +153,19 @@ export default function DocumentLibraryPage() {
               <tr>
                 <td>Extraction</td>
                 <td>
-                  Per-document fee once you run at volume. Covers OCR,
-                  extraction, confidence scoring and cataloguing.
+                  Charged per document extracted. Covers OCR, extraction,
+                  confidence scoring and cataloguing.
                 </td>
-                <td className="num">10c per document</td>
+                <td className="num">USD $0.10 per document</td>
               </tr>
               <tr>
-                <td>Licence and setup</td>
+                <td>Licence and subscription</td>
                 <td>
-                  Scoped to your deployment: single desktop or self-hosted
-                  Docker server, template building, and handover.
+                  None. The app runs on your own hardware, single desktop or
+                  self-hosted Docker server, and you pay only for the
+                  documents you extract.
                 </td>
-                <td className="num">Quote</td>
+                <td className="num"><span className="ok">$0</span></td>
               </tr>
             </tbody>
           </table>
@@ -172,8 +173,8 @@ export default function DocumentLibraryPage() {
         <p className="spec-cap rv d2" style={{ marginTop: 16 }}>
           For comparison: Australian scanning bureaus typically charge 8 to 25
           cents per page for scanning alone, before any data extraction or
-          cataloguing. Tell us your document volume and we will give you a
-          full quote.
+          cataloguing. Prices are in US dollars, with no subscription and no
+          upfront fee.
         </p>
       </section>
 

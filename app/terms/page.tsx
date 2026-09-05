@@ -40,10 +40,11 @@ export default function TermsPage() {
             prohibited.
           </p>
           <p>
-            <b>4. Pricing and payment.</b> Preview packs are free for
-            qualified prospects. Larger libraries and app deployments are
-            quoted by scope and invoiced in Australian dollars, with terms
-            stated per invoice.
+            <b>4. Pricing and payment.</b> Evaluations and sample sets are
+            free. Use of the apps is charged per document: USD $0.10 per
+            document extracted in RCA Document Library and USD $0.10 per
+            document generated in RCA Document Generator, with no subscription
+            and no upfront fee. Prices are in US dollars.
           </p>
           <p>
             <b>5. Deployment.</b> The extraction app operates within your

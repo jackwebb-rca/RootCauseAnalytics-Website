@@ -23,7 +23,7 @@ const FAQ = [
   },
   {
     q: "How is it priced?",
-    a: "Quote-based, with published anchors on each product page: extraction runs at 10 cents per document in the Document Library, and the Generator's Insurance QA Sprint Pack is AUD $2,500. Preview packs and evaluations are free, so you can check the quality before you pay. Everything is invoiced in Australian dollars.",
+    a: "Consumption based. The Document Library charges USD $0.10 per document extracted and the Document Generator charges USD $0.10 per document generated. There is no subscription and no upfront fee. Evaluations and sample sets are free, so you can check the quality before you pay.",
   },
   {
     q: "Can our synthetic documents be mistaken for real records?",

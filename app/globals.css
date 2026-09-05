@@ -221,7 +221,7 @@ table { width: 100%; border-collapse: collapse; background: var(--card); border:
 caption { text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 12px 16px; border: 1.5px solid var(--ink); border-bottom: none; background: var(--ink); color: var(--paper); }
 th, td { padding: 12px 16px; text-align: left; font-size: 14px; border-bottom: 1px solid var(--rule); }
 th { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
-td.num { font-family: "IBM Plex Mono", monospace; font-size: 13.5px; }
+td.num { font-family: "IBM Plex Mono", monospace; font-size: 13.5px; white-space: nowrap; }
 td .ok { color: var(--green); font-weight: 600; }
 td .miss { color: var(--red); font-weight: 600; }
 tr:last-child td { border-bottom: none; }
@@ -233,7 +233,7 @@ tr:last-child td { border-bottom: none; }
 .founder h2 { font-family: "Fraunces", serif; font-weight: 450; font-size: clamp(24px, 2.7vw, 33px); line-height: 1.5; letter-spacing: -.01em; }
 .founder h2 em { font-style: italic; color: var(--gold); }
 .founder .sig { margin-top: 34px; display: flex; align-items: center; gap: 18px; }
-.founder .sig .name { font-family: "Caveat", cursive; font-size: 34px; color: var(--gold); transform: rotate(-2deg); }
+.founder .sig .name { font-family: "Caveat", cursive; font-size: 34px; color: var(--paper); transform: rotate(-2deg); }
 /* #B8D8CD is the preview's #9fc4b8 lightened one step so the 11px role text
    passes WCAG AA on the deep green (5.21:1 vs 4.19:1). */
 .founder .sig .role { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #B8D8CD; line-height: 1.7; }

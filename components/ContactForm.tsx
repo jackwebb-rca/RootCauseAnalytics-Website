@@ -6,8 +6,8 @@ const EMAIL = "jack.webb@rootcauseanalytics.com.au";
 
 // A backend-free contact form: composes a pre-filled email in the visitor's
 // own mail client. Nothing is collected or stored by the website.
-// The three selects are the qualifying questions for a quote: industry,
-// document volume, and deployment constraints.
+// The three selects give the context a reply needs: industry, document
+// volume, and deployment constraints.
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
