@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./fonts.css";
 import "./globals.css";
 import FileStrip from "@/components/FileStrip";
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <ScrollFx />
+        <Analytics />
         <script dangerouslySetInnerHTML={{ __html: revealInit }} />
       </body>
     </html>
